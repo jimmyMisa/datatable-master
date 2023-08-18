@@ -1,6 +1,6 @@
 import {ClientFieldManager} from "modules/client/functions/client.fields.js";
 import {ClientButtonManager} from "modules/client/functions/client.buttons.js";
-import {configure} from "modules/client/functions/client.configure.js";
+import {ClientDatatableManager} from "modules/client/classes/ClientDatatableManager.js";
 import { FIELD } from "common/structure/FIELD/FIELD.js";
 import {getConfig} from 'modules/client/client_config.js';
 
@@ -11,8 +11,10 @@ function configure(){
     var page = "CLIENT_LIST";
     FIELD.init({lang, domain});
     
-    getConfig().component.fields = ClientFieldManager.getAll({page});
-    getConfig().component.buttons = ClientButtonManager.getAll({page});
+    getConfig().components.fields = ClientFieldManager.getAll({page});
+    getConfig().components.buttons = ClientButtonManager.getAll({page});
+
+    getConfig().components.datatableConfig = ClientDatatableManager.getConfiguration();
 
 }
 

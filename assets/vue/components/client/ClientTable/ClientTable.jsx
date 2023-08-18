@@ -5,9 +5,11 @@ import CreateClientModal from "vue/components/client/ClientTable/ClientTableComp
 
 export default C.make({
 	$render(h, instance) {
+		var {config = {}} = this
+		var {datatableConfig = {}} = config
 		return (
 			<div>
-				
+				{this.renderDatatable(datatableConfig)}
 			</div>
 		);
 	},

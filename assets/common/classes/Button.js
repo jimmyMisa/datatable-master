@@ -6,6 +6,7 @@ class Button{
 	onFailure = () =>{};
 
 	text;
+	params = {};
 	required_fields=[];
 
 	static create(params = {}){

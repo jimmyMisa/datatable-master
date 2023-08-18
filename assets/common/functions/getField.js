@@ -1,21 +1,10 @@
-import FIELDMG from "common/structure/FIELD/LANG/FIELD.mg.js"
-import FIELDFR from "common/structure/FIELD/LANG/FIELD.fr.js"
 import {
     Field,
     VALIDATION,
     RESTRICTION,
     LIMITATION,
 } from "pw-components-js-dev"
-
-
-function getFields(){
-    if(window.lang == "MG"){
-        return FIELDMG
-    }
-    else if(window.lang == "FR"){
-        return FIELDFR
-    }
-}
+import { getFields } from "assets/common/functions/getFields.js";
 
 function getField(){
     if(FieldManager.Field){

@@ -18,7 +18,7 @@ export default C.make({
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title">Ajouter un client</h5>
+							<h5 class="modal-title">Detail sur un client</h5>
 							<button
 								type="button"
 								class="close"
@@ -31,10 +31,12 @@ export default C.make({
 						<div class="modal-body">
 							<form>
 								<div class="form-group mb-4 col-12">
-									{this.$input(ClientAssets.ClientConfig.params.addFields().nom)}
+									{this.$input(ClientAssets.ClientConfig.params.detailFields().labels.nom)} : 
+									{this.$input(ClientAssets.ClientConfig.params.detailFields().nom)}
 								</div>
 								<div class="form-group mb-4 col-12">
-									{this.$input(ClientAssets.ClientConfig.params.addFields().phone)}
+									{this.$input(ClientAssets.ClientConfig.params.detailFields().labels.phone)} : 
+									{this.$input(ClientAssets.ClientConfig.params.detailFields().phone)}
 								</div>
 							</form>
 						</div>
@@ -44,9 +46,8 @@ export default C.make({
 								class="btn btn-secondary"
 								data-dismiss="modal"
 							>
-								{ClientAssets.ClientConfig.params.cancelSaveButton.text}
+								{ClientAssets.ClientConfig.params.closeDetailButton.text}
 							</button>
-							{this.$button(ClientAssets.ClientConfig.params.saveButton)}
 						</div>
 					</div>
 				</div>

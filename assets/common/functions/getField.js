@@ -17,6 +17,22 @@ function getFields(){
     }
 }
 
+function getText(key, conversion){
+    var fields = getFields();
+    var field = fields[key]
+    if(conversion){
+        Object.keys(conversion).map((key) =>{
+            var value = conversion[key]
+            if(typeof value == "function"){
+                value = value()
+            }
+            key = `{{${key}}}`
+            field = field.split(key).join(value)
+        })
+    }
+    return field
+}
+
 function getField(){
     if(FieldManager.Field){
         return FieldManager.Field;
@@ -86,4 +102,4 @@ class FieldManager{
 }
 
 
-export { getField, FieldManager }
+export { getField, FieldManager, getText }

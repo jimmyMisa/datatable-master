@@ -1,7 +1,8 @@
 import { C } from "vue/helper/V02Component.jsx";
-import { ModalCommonMethods } from "modules/common/ModalCommonMethods.jsx";ClientAssets
 import classNames from "classnames";
+import { ModalCommonMethods } from "modules/common/ModalCommonMethods.jsx";
 import Components from "vue/components/common/Components/Components.jsx";
+import { ClientAssets as Assets } from "modules/client/ClientAssets.js";
 
 export default C.make({
 	...Components.getMethods(),

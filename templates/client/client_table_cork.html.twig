@@ -1,0 +1,12 @@
+{% extends 'client/client_layout_cork.html.twig' %}
+
+{% block title %}Gestion des clients{% endblock %}
+
+{% block body %}
+{{ encore_entry_link_tags('client_index') }}
+<div id="app">
+</div>
+<div id="app_modal_wrapper">
+</div>
+{{ encore_entry_script_tags('client_index') }}
+{% endblock %}

@@ -13,4 +13,10 @@ class PageClientController extends AbstractController
     {
         return $this->render('client/client_table.html.twig');
     }
+
+    #[Route('/liste-des-clients-cork', name: 'page_list_client_cork')]
+    public function cork(): Response
+    {
+        return $this->render('client/client_table_cork.html.twig');
+    }
 }

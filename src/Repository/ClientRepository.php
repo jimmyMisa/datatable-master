@@ -20,4 +20,18 @@ class ClientRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Client::class);
     }
+
+    public function save(Client $client): void
+    {
+        $entityManager = $this->getEntityManager();
+        $entityManager->persist($client);
+        $entityManager->flush();
+    }
+
+    public function remove(Client $client): void
+    {
+        $entityManager = $this->getEntityManager();
+        $entityManager->remove($client);
+        $entityManager->flush();
+    }
 }

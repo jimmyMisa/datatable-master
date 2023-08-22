@@ -4,7 +4,23 @@ import {
     RESTRICTION,
     LIMITATION,
 } from "pw-components-js-dev"
-import { getFields } from "assets/common/functions/getFields.js";
+import { getFields } from "common/functions/getFields.js";
+
+function getText(key, conversion){
+    var fields = getFields();
+    var field = fields[key]
+    if(conversion){
+        Object.keys(conversion).map((key) =>{
+            var value = conversion[key]
+            if(typeof value == "function"){
+                value = value()
+            }
+            key = `{{${key}}}`
+            field = field.split(key).join(value)
+        })
+    }
+    return field
+}
 
 function getField(){
     if(FieldManager.Field){
@@ -12,6 +28,12 @@ function getField(){
     }
     var FIELD = getFields()
     Object.keys(FIELD).map((field) =>{
+        if(typeof FIELD[field] == "string"){
+            return true;
+        }
+        if(!FIELD[field] || !FIELD[field].LABEL){
+            return true;
+        }
         Field.add(field, FIELD[field]);
     })
     FieldManager.Field = Field.get();
@@ -75,4 +97,4 @@ class FieldManager{
 }
 
 
-export { getField, FieldManager }
+export { getField, FieldManager, getText }

@@ -31,6 +31,10 @@ class Button{
 
 		var isValid = true;
 
+		if(!this.required_fields){
+			this.required_fields = []
+		}
+
 		this.required_fields.map((field) => {
 			field.validationsCheck()
 			isValid = isValid && field.isValid;

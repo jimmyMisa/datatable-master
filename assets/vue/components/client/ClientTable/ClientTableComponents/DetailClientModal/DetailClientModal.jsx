@@ -1,6 +1,5 @@
 import { C } from "vue/helper/V02Component.jsx";
-import { ModalCommonMethods } from "modules/common/ModalCommonMethods.jsx";
-import { ClientAssets as Assets } from "modules/client/ClientAssets.js";
+import { ModalCommonMethods } from "modules/common/ModalCommonMethods.jsx";ClientAssets
 import classNames from "classnames";
 import Components from "vue/components/common/Components/Components.jsx";
 
@@ -19,7 +18,7 @@ export default C.make({
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title">Modifier un client</h5>
+							<h5 class="modal-title">Detail sur un client</h5>
 							<button
 								type="button"
 								class="close"
@@ -32,10 +31,16 @@ export default C.make({
 						<div class="modal-body">
 							<form>
 								<div class="form-group mb-4 col-12">
-									{this.$input(Assets.config("editFields").name)}
+									{Assets.config("detailFields").labels.id} :{" "}
+									{Assets.config("detailFields").id}
 								</div>
 								<div class="form-group mb-4 col-12">
-									{this.$phone(Assets.config("editFields").phone)}
+									{Assets.config("detailFields").labels.name} :{" "}
+									{Assets.config("detailFields").name}
+								</div>
+								<div class="form-group mb-4 col-12">
+									{Assets.config("detailFields").labels.phone} :{" "}  
+									{Assets.config("detailFields").phone}
 								</div>
 							</form>
 						</div>
@@ -45,9 +50,8 @@ export default C.make({
 								class="btn btn-secondary"
 								data-dismiss="modal"
 							>
-								{Assets.config("cancelEditButton").text}
+								{Assets.config("closeDetailButton").text}
 							</button>
-							{this.$button(Assets.config("saveEditButton")(Assets.config("editFields")))}
 						</div>
 					</div>
 				</div>

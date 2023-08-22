@@ -1,21 +1,15 @@
-import ClientTable from "vue/components/common/ClientTable/ClientTable";
+import ClientTable from "vue/components/client/ClientTable/ClientTable";
 import { C } from "vue/helper/V01Component";
 import { setChildView } from "vue/helper/renderVue.js";
-import {getConfig} from './client_config.js';
-
-import {configure} from "modules/client/functions/client.configure.js";
+import { ClientAssets } from "modules/client/ClientAssets.js";
+import {FIELD} from "common/structure/FIELD/FIELD.js"
 
 function main() {
 
-    getConfig().component = {};
-
-    configure();
-
-    var datatableConfig = new DatatableConfig();
-    datatable.draw(query);
+    ClientAssets.get().ClientConfig.init();
 
 
-	setChildView("#app", ClientTable, getConfig().components);
+    setChildView("#app", ClientTable, {});
 }
 
-export { main, getConfig };
+export { main };

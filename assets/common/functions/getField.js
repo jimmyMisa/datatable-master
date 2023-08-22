@@ -4,7 +4,7 @@ import {
     RESTRICTION,
     LIMITATION,
 } from "pw-components-js-dev"
-import { getFields } from "assets/common/functions/getFields.js";
+import { getFields } from "common/functions/getFields.js";
 
 function getText(key, conversion){
     var fields = getFields();
@@ -28,6 +28,12 @@ function getField(){
     }
     var FIELD = getFields()
     Object.keys(FIELD).map((field) =>{
+        if(typeof FIELD[field] == "string"){
+            return true;
+        }
+        if(!FIELD[field] || !FIELD[field].LABEL){
+            return true;
+        }
         Field.add(field, FIELD[field]);
     })
     FieldManager.Field = Field.get();

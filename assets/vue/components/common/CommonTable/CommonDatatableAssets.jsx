@@ -6,7 +6,6 @@ import { CommonDatatableBottom } from "./CommonDatatableBottom/CommonDatatableBo
 
 class CommonDatatableAssets {
 	static CommonDatatableFull = CommonDatatableFull;
-	static CommonDatatableSubComponent = CommonDatatableSubComponent;
 	static CommonDatatableTop = CommonDatatableTop;
 	static CommonDatatableHeader = CommonDatatableHeader;
 	static CommonDatatableContent = CommonDatatableContent;

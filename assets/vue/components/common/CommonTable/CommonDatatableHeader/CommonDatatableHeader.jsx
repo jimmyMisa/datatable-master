@@ -4,11 +4,10 @@ class CommonDatatableHeader{
 	static getMethods(){
 		return {
 			Header(){
-				var configurations = CommonTable.getMethod(this, "Configurations")()
-				var ths = Configurations.headerColumns.columns.map((headerColumn = {}, index) =>{
+				var ths = this.getConfig().headerColumns.columns.map((headerColumn = {}, index) =>{
 					return CommonTable.getMethod(this, "HeaderColumn")({headerColumn, index})
 				});
-				if(ClientConfig.params.haveAction){
+				if(this.getConfig().haveAction){
 					ths.push(CommonTable.getMethod(this, "HeaderColumnAction")())
 				}
 				return <tr>{ths}</tr>

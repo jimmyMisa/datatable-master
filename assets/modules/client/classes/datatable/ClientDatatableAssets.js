@@ -49,6 +49,9 @@ class ClientDatatableAssets {
 	static pageSize = pageSize;
 
 	static searchInput = searchInput;
+	
+	static headerColumns = headerColumns;
+	static contentLines = contentLines;
 
 	static editButton = editButton;
 	static editModal = editModal;

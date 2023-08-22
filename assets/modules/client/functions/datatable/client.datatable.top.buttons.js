@@ -6,6 +6,7 @@ function addButton(){
         domain: ComponentAssets.FieldManager.domain,
         //required_fields: Object.values([lastname, password, confirm_password]),
     });
+    return button
 }
 
 function saveButton(){
@@ -14,6 +15,7 @@ function saveButton(){
         domain: ComponentAssets.FieldManager.domain,
         //required_fields: Object.values([lastname, password, confirm_password]),
     });
+    return button
 }
 
 function cancelSaveButton(){
@@ -22,6 +24,7 @@ function cancelSaveButton(){
         domain: ComponentAssets.FieldManager.domain,
         //required_fields: Object.values([lastname, password, confirm_password]),
     });
+    return button
 }
 
 

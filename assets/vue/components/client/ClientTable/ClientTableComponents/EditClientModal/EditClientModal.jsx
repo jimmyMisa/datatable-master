@@ -1,11 +1,12 @@
 import { C } from "vue/helper/V02Component.jsx";
-import { ModalCommonMethods } from "assets/modules/common/ModalCommonMethods.jsx";
-import { ClientAssets } "modules/client/ClientAssets.js";
+import { ModalCommonMethods } from "modules/common/ModalCommonMethods.jsx";
+import { ClientAssets as Assets } from "modules/client/ClientAssets.js";
 import classNames from "classnames";
+import Components from "vue/components/common/Components/Components.jsx";
 
 export default C.make({
-	...Components.getMethodsJsx(),
-	...ModalCommonMethods.getMethodsJsx(),
+	...Components.getMethods(),
+	...ModalCommonMethods.getMethods(),
 	$render(h, instance) {
 		return (
 			<div
@@ -31,10 +32,10 @@ export default C.make({
 						<div class="modal-body">
 							<form>
 								<div class="form-group mb-4 col-12">
-									{this.$input(ClientAssets.ClientConfig.params.editFields().nom)}
+									{this.$input(Assets.config("editFields").name)}
 								</div>
 								<div class="form-group mb-4 col-12">
-									{this.$input(ClientAssets.ClientConfig.params.editFields().phone)}
+									{this.$phone(Assets.config("editFields").phone)}
 								</div>
 							</form>
 						</div>
@@ -44,9 +45,9 @@ export default C.make({
 								class="btn btn-secondary"
 								data-dismiss="modal"
 							>
-								{ClientAssets.ClientConfig.params.cancelEditButton.text}
+								{Assets.config("cancelEditButton").text}
 							</button>
-							{this.$button(ClientAssets.ClientConfig.params.saveEditButton)}
+							{this.$button(Assets.config("saveEditButton")(Assets.config("editFields")))}
 						</div>
 					</div>
 				</div>

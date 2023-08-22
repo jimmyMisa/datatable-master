@@ -1,7 +1,8 @@
-import { ClientAssets } "modules/client/ClientAssets.js";
+import { ComponentAssets } from "common/classes/ComponentAssets.js"
+import { ClientAssets } from "modules/client/ClientAssets.js";
 
 function searchInput(){
-    return FieldManager.create("CLIENT_SEARCH", ClientAssets.params.displayPage);
+    return ComponentAssets.FieldManager.create("CLIENT_SEARCH", ClientAssets.get().ClientConfig.params.displayPage);
 }
 
 export {

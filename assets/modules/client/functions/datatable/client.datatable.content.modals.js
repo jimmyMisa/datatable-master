@@ -1,18 +1,20 @@
-import { ClientAssets } "modules/client/ClientAssets.js";
+import { ClientAssets } from "modules/client/ClientAssets.js";
 import { showModal } from "common/modal/modal.js"
+import { ComponentAssets } from "common/classes/ComponentAssets.js"
+
 
 function addFields(){
 	return {
-		name:FieldManager.create("CLIENT_NAME", ClientAssets.params.displayPage)
-		phone:FieldManager.create("CLIENT_PHONE", ClientAssets.params.displayPage)
+		name:ComponentAssets.FieldManager.create("CLIENT_NAME", ClientAssets.get().ClientConfig.params.displayPage),
+		phone:ComponentAssets.FieldManager.create("CLIENT_PHONE", ClientAssets.get().ClientConfig.params.displayPage)
 	}
 }
 
 function createModal(){
-	ClientAssets.ClientConfig.params.addFields = addFields
+	ClientAssets.get().ClientConfig.params.addFields = addFields
 	var modal = {
 		show(){
-			modal.instance = showModal(ClientAssets.CreateClientModal, {})
+			modal.instance = showModal(ClientAssets.get().CreateClientModal, {})
 		},
 		hide(){
 			modal.instance.hide();
@@ -21,70 +23,84 @@ function createModal(){
 	return modal;
 }
 
-function editFields(){
+function editFields(params){
 	return {
-		name:FieldManager.create("CLIENT_NAME", ClientAssets.params.displayPage)
-		phone:FieldManager.create("CLIENT_PHONE", ClientAssets.params.displayPage)
+		id: params.contentLine.id,
+		name:ComponentAssets.FieldManager.create("CLIENT_NAME", ClientAssets.get().ClientConfig.params.displayPage),
+		phone:ComponentAssets.FieldManager.create("CLIENT_PHONE", ClientAssets.get().ClientConfig.params.displayPage)
 	}
 }
 
 function editModal(){
-	ClientAssets.ClientConfig.params.editFields = editFields
-	var modal = {
-		show(){
-			ClientAssets.ClientConfig.params.editFields.name.value = lientAssets.ClientConfig.params.editButton.params.contentLine.name
-			ClientAssets.ClientConfig.params.editFields.phone.value = lientAssets.ClientConfig.params.editButton.params.contentLine.phone
-			modal.instance = showModal(ClientAssets.EditClientModal, {})
-		},
-		hide(){
-			modal.instance.hide();
+	return (params) =>{
+		ClientAssets.get().ClientConfig.params.editFields = editFields(params)
+		var modal = {
+			show(){
+				modal.instance = showModal(ClientAssets.get().EditClientModal, {});
+				setTimeout(() =>{
+					ClientAssets.get().ClientConfig.params.editFields.name.value = params.contentLine.name;
+					var phone = ClientAssets.get().ClientConfig.params.editFields.phone
+					$(phone.instance.$refs[phone.id].$refs.input).val(params.contentLine.phone)
+					ClientAssets.get().ClientConfig.params.editFields.name.refresh();
+				}, 100)
+			},
+			hide(){
+				modal.instance.hide();
+			}
 		}
+		return modal;
 	}
-	return modal;
 }
 
 function removeModal(){
-	ClientAssets.ClientConfig.params.removeText = () =>{
-		return ClientAssets.ComponentAssets.getText("CLIENT_REMOVE_MESSAGE", {
-			clientName:() =>{
-				//TODO send this formation datatable actions
-				ClientAssets.ClientConfig.params.removeButton.params.contentLine.name;
-			}
-		})
-	}
-	var modal = {
-		show(){
-			modal.instance = showModal(ClientAssets.RemoveClientModal, {})
-		},
-		hide(){
-			modal.instance.hide();
+	return (params) =>{
+		ClientAssets.get().ClientConfig.params.removeParams = params.contentLine;
+		ClientAssets.get().ClientConfig.params.removeText = () =>{
+			return ClientAssets.get().ComponentAssets.getText("CLIENT_REMOVE_MESSAGE", {
+				clientName:() =>{
+					//TODO send this formation datatable actions
+					return params.contentLine.name;
+				}
+			})
 		}
+		var modal = {
+			show(){
+				modal.instance = showModal(ClientAssets.get().RemoveClientModal, {})
+			},
+			hide(){
+				modal.instance.hide();
+			}
+		}
+		return modal;
 	}
-	return modal;
 }
 
-function detailFields(){
+function detailFields(params){
 	return {
-		name:ClientAssets.ClientConfig.params.editButton.params.contentLine.name
-		phone:ClientAssets.ClientConfig.params.editButton.params.contentLine.phone
+		id:params.contentLine.id,
+		name:params.contentLine.name,
+		phone:params.contentLine.phone,
 		labels:{
-			name:ClientAssets.ComponentAssets.getText("CLIENT_NAME").LABEL.DEFAULT
-			phone:ClientAssets.ComponentAssets.getText("CLIENT_PHONE").LABEL.DEFAULT
+			id:ClientAssets.get().ComponentAssets.getText("CLIENT_ID"),
+			name:ClientAssets.get().ComponentAssets.getText("CLIENT_NAME").LABEL.DEFAULT,
+			phone:ClientAssets.get().ComponentAssets.getText("CLIENT_PHONE").LABEL.DEFAULT
 		}
 	}
 }
 
 function detailModal(){
-	ClientAssets.ClientConfig.params.detailFields = detailFields
-	var modal = {
-		show(){
-			modal.instance = showModal(ClientAssets.DetailClientModal, {})
-		},
-		hide(){
-			modal.instance.hide();
+	return (params) =>{
+		ClientAssets.get().ClientConfig.params.detailFields = detailFields(params)
+		var modal = {
+			show(){
+				modal.instance = showModal(ClientAssets.get().DetailClientModal, {})
+			},
+			hide(){
+				modal.instance.hide();
+			}
 		}
+		return modal;
 	}
-	return modal;
 }
 
 export { 

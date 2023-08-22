@@ -1,4 +1,4 @@
-import { ClientAssets } "modules/client/ClientAssets.js";
+import { ClientAssets } from "modules/client/ClientAssets.js";
 
 function headerColumns() {
 	return {
@@ -6,10 +6,10 @@ function headerColumns() {
 		order:"DESC",
 		columns:[{
 			name:"name",
-			label:ClientAssets.ComponentAssets.getText("CLIENT_NAME").TH,
+			label:ClientAssets.get().ComponentAssets.getText("CLIENT_NAME").TH,
 		},{
 			name:"phone",
-			label:ClientAssets.ComponentAssets.getText("CLIENT_PHONE").TH,
+			label:ClientAssets.get().ComponentAssets.getText("CLIENT_PHONE").TH,
 		}],
 	}
 }

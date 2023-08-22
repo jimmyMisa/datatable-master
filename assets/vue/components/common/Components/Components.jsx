@@ -1,12 +1,11 @@
 import classNames from "classnames";
-import { waitInput } from "core/utilities/input/input.js";
+import { waitInput } from "pw-components-core-dev";
 import { idGenerator } from "core/tools/security/idGenerator.js";
-import { PwInput } from "pw-components-jsx-dev";
+import { PwInput, PwSelect } from "pw-components-jsx-dev";
 
 class Components {
     static getMethods() {
         return {
-            ...CustomComponentsExtendAssets.getMethods(),
             $setupInstance(elements) {
                 elements.map((element) => {
                     element.instance = this;
@@ -26,6 +25,7 @@ class Components {
                             <input
                                 data-jid={field.id}
                                 ref={id}
+                                value={field.value}
                                 type={field.type}
                                 placeholder={field.placeholder}
                                 name={field.name}
@@ -51,8 +51,13 @@ class Components {
                 );
             },
             $phone(field, callback = () => {}) {
+                console.log("000000")
                 this.$setupInstance([field]);
-                var id = idGenerator();
+                var id = field.id;
+                if(!field.id){
+                    id = idGenerator();
+                    field.id = id;
+                }
                 setTimeout(() => {
                     var { [id]: element } = this.$refs;
                     callback({ element });
@@ -100,6 +105,54 @@ class Components {
                     </div>
                 );
             },
+            $select(field, callback = () =>{}) {
+                this.$setupInstance([field])
+                var id = idGenerator();
+                setTimeout(() =>{
+                    var {[id]:element} = this.$refs 
+                    callback({element})
+                }, 100);
+                var {onChange = field.checkValidation.bind(field)} = field
+                return (
+                    <div class="form-group">
+                        <label class="pw_input">
+                            {field.label}
+                            <PwSelect
+                                ref={id}
+                                config={{
+                                    mask: "phone",
+                                    placeholder:field.placeholder,
+                                    name:field.name,
+                                    required:field.required,
+                                    className:"pw_input form-control",
+
+                                    isDirect:true,
+                                    onChange,
+                                    onRender:(instance) =>{
+                                        field.component = instance
+                                    },
+                                    options: field.options,
+                                    params: {
+                                        attrs: {
+                                            "data-jid":field.id
+                                        },
+                                    },
+                                }}
+                            />
+                        </label>
+                        <span
+                            class={classNames(
+                                "form_feedback_error",
+                                field.isValid
+                                    ? "d-none"
+                                    : "invalid-feedback d-block"
+                            )}
+                        >
+                            {field.errorMessage}
+                        </span>
+                    </div>
+                );
+            },
             $button(button) {
                 this.$setupInstance([button]);
                 return (
@@ -128,8 +181,8 @@ class Components {
                             return ""
                         }
                         pages.push(
-                            <li class="page-item">
-                                <a class={classNames("page-link", active())} href="#!" onClick={pagination.goto(page)}>
+                            <li class={classNames("page-item", active())}>
+                                <a class={classNames("page-link")} href="#!" onClick={pagination.goto(page)}>
                                     {page}
                                 </a>
                             </li>,
@@ -142,13 +195,13 @@ class Components {
                     <nav>
                         <ul class="pagination">
                             <li class="page-item">
-                                <a class="page-link" href="#" onClick={pagination.prev()}>
+                                <a class="page-link" href="#" onClick={pagination.prev}>
                                     Previous
                                 </a>
                             </li>
                             {pages()}
                             <li class="page-item">
-                                <a class="page-link" href="#" onClick={pagination.next()}>
+                                <a class="page-link" href="#" onClick={pagination.next}>
                                     Next
                                 </a>
                             </li>

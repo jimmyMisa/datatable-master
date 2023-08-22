@@ -25,6 +25,9 @@ class FIELD{
         EMPTY_MESSAGE:{
             DEFAULT:"Veuillez saisir le numéro de téléphone du client",
         },
+        INVALID_PHONE:{
+            DEFAULT:"Numero invalide",
+        },
         TH:"Téléphone",
     }
     static CLIENT_SEARCH = {
@@ -33,7 +36,7 @@ class FIELD{
             DEFAULT:"Entrer une clé de recherche",
         },
         LABEL:{
-            DEFAULT:"REchercher : ",
+            DEFAULT:"Rechercher : ",
         },
         EMPTY_MESSAGE:{
             DEFAULT:"Veuillez saisir une clé de recherche",
@@ -42,7 +45,17 @@ class FIELD{
             DEFAULT:"Veuillez saisir au moins 3 lettres",
         },
     }
-    static CLIENT_REMOVE_MESSAGE = "Etes vous sur de supprimer {{ clientName }} ?"
+    static PAGE_SIZE = {
+        ...STRUCTURE.PAGE_SIZE,
+        PLACEHOLDER:{
+            DEFAULT:"Selectionner le nombre d'element dans une page",
+        },
+        LABEL:{
+            DEFAULT:"Nombre d'element dans une page : ",
+        },
+    }
+    static CLIENT_REMOVE_MESSAGE = "Etes vous sur de supprimer {{clientName}} ?"
+    static CLIENT_ID = "Id"
 }
 
 export default FIELD;

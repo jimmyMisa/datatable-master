@@ -16,7 +16,7 @@ class CommonDatatableTop{
 				return this.$input(this.getConfig().searchInput);
 			},
 			PageSize(){
-				return this.$select(this.getConfig().pageSize);
+				return this.$select(this.getConfig().pageSize.field());
 			},
 			TopActions(){
 				return CommonTable.getMethod(this, "CreateButton")()

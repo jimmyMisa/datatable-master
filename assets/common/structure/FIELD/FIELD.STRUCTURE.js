@@ -5,11 +5,15 @@ class STRUCTURE{
     }
     static PHONE = {
         NAME:"phone",
-        TYPE:"text"
+        TYPE:"phone"
     }
     static SEARCH = {
         NAME:"search",
         TYPE:"text"
+    }
+    static PAGE_SIZE = {
+        NAME:"page_size",
+        TYPE:"select"
     }
 }
 

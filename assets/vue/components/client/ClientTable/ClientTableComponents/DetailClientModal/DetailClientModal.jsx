@@ -1,11 +1,11 @@
 import { C } from "vue/helper/V02Component.jsx";
-import { ModalCommonMethods } from "assets/modules/common/ModalCommonMethods.jsx";
-import { ClientAssets } "modules/client/ClientAssets.js";
+import { ModalCommonMethods } from "modules/common/ModalCommonMethods.jsx";ClientAssets
 import classNames from "classnames";
+import Components from "vue/components/common/Components/Components.jsx";
 
 export default C.make({
-	...Components.getMethodsJsx(),
-	...ModalCommonMethods.getMethodsJsx(),
+	...Components.getMethods(),
+	...ModalCommonMethods.getMethods(),
 	$render(h, instance) {
 		return (
 			<div
@@ -31,12 +31,16 @@ export default C.make({
 						<div class="modal-body">
 							<form>
 								<div class="form-group mb-4 col-12">
-									{this.$input(ClientAssets.ClientConfig.params.detailFields().labels.nom)} : 
-									{this.$input(ClientAssets.ClientConfig.params.detailFields().nom)}
+									{Assets.config("detailFields").labels.id} :{" "}
+									{Assets.config("detailFields").id}
 								</div>
 								<div class="form-group mb-4 col-12">
-									{this.$input(ClientAssets.ClientConfig.params.detailFields().labels.phone)} : 
-									{this.$input(ClientAssets.ClientConfig.params.detailFields().phone)}
+									{Assets.config("detailFields").labels.name} :{" "}
+									{Assets.config("detailFields").name}
+								</div>
+								<div class="form-group mb-4 col-12">
+									{Assets.config("detailFields").labels.phone} :{" "}  
+									{Assets.config("detailFields").phone}
 								</div>
 							</form>
 						</div>
@@ -46,7 +50,7 @@ export default C.make({
 								class="btn btn-secondary"
 								data-dismiss="modal"
 							>
-								{ClientAssets.ClientConfig.params.closeDetailButton.text}
+								{Assets.config("closeDetailButton").text}
 							</button>
 						</div>
 					</div>

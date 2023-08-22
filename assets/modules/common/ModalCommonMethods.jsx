@@ -1,5 +1,5 @@
 class ModalCommonMethods {
-	static getMethodsJsx() {
+	static getMethods() {
 		return {
 			show() {
 				var { modal } = this.$refs;

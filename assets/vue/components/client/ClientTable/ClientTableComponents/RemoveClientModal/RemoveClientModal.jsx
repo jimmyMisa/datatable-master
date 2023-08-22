@@ -1,11 +1,12 @@
 import { C } from "vue/helper/V02Component.jsx";
-import { ModalCommonMethods } from "assets/modules/common/ModalCommonMethods.jsx";
-import { ClientAssets } "modules/client/ClientAssets.js";
+import { ModalCommonMethods } from "modules/common/ModalCommonMethods.jsx";
+import { ClientAssets as Assets } from "modules/client/ClientAssets.js";
 import classNames from "classnames";
+import Components from "vue/components/common/Components/Components.jsx";
 
 export default C.make({
-	...Components.getMethodsJsx(),
-	...ModalCommonMethods.getMethodsJsx(),
+	...Components.getMethods(),
+	...ModalCommonMethods.getMethods(),
 	$render(h, instance) {
 		return (
 			<div
@@ -18,7 +19,7 @@ export default C.make({
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title">Ajouter un client</h5>
+							<h5 class="modal-title">Supprimer un client</h5>
 							<button
 								type="button"
 								class="close"
@@ -30,7 +31,7 @@ export default C.make({
 						</div>
 						<div class="modal-body">
 							<p>
-								{ClientAssets.ClientConfig.params.removeText()}
+								{Assets.config("removeText")()}
 							</p>
 						</div>
 						<div class="modal-footer">
@@ -39,9 +40,9 @@ export default C.make({
 								class="btn btn-secondary"
 								data-dismiss="modal"
 							>
-								{ClientAssets.ClientConfig.params.cancelRemoveButton.text}
+								{Assets.config("cancelRemoveButton").text}
 							</button>
-							{this.$button(ClientAssets.ClientConfig.params.saveRemoveButton)}
+							{this.$button(Assets.config("saveRemoveButton")(Assets.config("removeParams")))}
 						</div>
 					</div>
 				</div>

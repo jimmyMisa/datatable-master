@@ -1,4 +1,4 @@
-import { ClientAssets } "modules/client/ClientAssets.js";
+import { ClientAssets } from "modules/client/ClientAssets.js";
 
 function pagination() {
 	return {
@@ -6,17 +6,19 @@ function pagination() {
 		pages:2,
 		prev: () =>{
 			//TODO add restriction
-			ClientAssets.ClientConfig.params.pagination.page = ClientAssets.ClientConfig.params.pagination.page - 1;
-			ClientAssets.ClientDatatable.reload();
+			ClientAssets.get().ClientConfig.params.pagination.page = ClientAssets.get().ClientConfig.params.pagination.page - 1;
+			ClientAssets.get().ClientDatatable.reload();
 		},
 		next: () =>{
 			//TODO add restriction
-			ClientAssets.ClientConfig.params.pagination.page = ClientAssets.ClientConfig.params.pagination.page + 1;
-			ClientAssets.ClientDatatable.reload();
+			ClientAssets.get().ClientConfig.params.pagination.page = ClientAssets.get().ClientConfig.params.pagination.page + 1;
+			ClientAssets.get().ClientDatatable.reload();
 		},
 		goto: (page) =>{
-			ClientAssets.ClientConfig.params.pagination.page = page;
-			ClientAssets.ClientDatatable.reload();
+			return () =>{
+				ClientAssets.get().ClientConfig.params.pagination.page = page;
+				ClientAssets.get().ClientDatatable.reload();
+			}
 		},
 	}
 }

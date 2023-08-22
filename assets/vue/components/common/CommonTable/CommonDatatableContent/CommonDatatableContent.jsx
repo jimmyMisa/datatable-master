@@ -4,8 +4,7 @@ class CommonDatatableContent{
 	static getMethods(){
 		return {
 			Content(){
-				var configurations = CommonTable.getMethod(this, "Configurations")()
-				var trs = Configurations.contentLines.map((contentLine = {}, line) =>{
+				var trs = this.getConfig().contentLines.map((contentLine = {}, line) =>{
 					return CommonTable.getMethod(this, "ContentLine")({contentLine, line})
 				});
 				return trs
@@ -14,16 +13,16 @@ class CommonDatatableContent{
 				var tds = this.getConfig().headerColumns.columns.map((headerColumn, index) =>{
 					return CommonTable.getMethod(this, "ContentColumn")({contentLine, line, headerColumn, index})
 				});
-				if(ClientConfig.params.haveAction){
+				if(this.getConfig().haveAction){
 					tds.push(CommonTable.getMethod(this, "ContentColumnAction")({contentLine, line}))
 				}
 				return (
 					<tr>{tds}</tr>
 				)
 			},
-			ContentColumn({contentLine, index} = {}){
+			ContentColumn({contentLine, line, headerColumn, index} = {}){
 				var contentColumn = () =>{
-					return contentLine[index]
+					return contentLine[headerColumn.name]
 				}
 				return (
 					<td>
@@ -54,16 +53,13 @@ class CommonDatatableContent{
 			},
 
 			DetailButton(params = {}){
-				this.getConfig().detailButton.params = {...this.getConfig().detailButton.params, ...params}
-				return this.$button(this.getConfig().detailButton);
+				return this.$button(this.getConfig().detailButton(params));
 			},
 			EditButton(params = {}){
-				this.getConfig().editButton.params = {...this.getConfig().editButton.params, ...params}
-				return this.$button(this.getConfig().editButton);
+				return this.$button(this.getConfig().editButton(params));
 			},
 			RemoveButton(params = {}){
-				this.getConfig().removeButton.params = {...this.getConfig().removeButton.params, ...params}
-				return this.$button(this.getConfig().removeButton);
+				return this.$button(this.getConfig().removeButton(params));
 			},
 		}
 	}

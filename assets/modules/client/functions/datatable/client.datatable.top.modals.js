@@ -1,18 +1,20 @@
-import { ClientAssets } "modules/client/ClientAssets.js";
+import { ClientAssets } from "modules/client/ClientAssets.js";
 import { showModal } from "common/modal/modal.js"
+import { ComponentAssets } from "common/classes/ComponentAssets.js"
+
 
 function addFields(){
 	return {
-		nom:FieldManager.create("CLIENT_NAME", ClientAssets.params.displayPage)
-		phone:FieldManager.create("CLIENT_PHONE", ClientAssets.params.displayPage)
+		nom:ComponentAssets.FieldManager.create("CLIENT_NAME", ClientAssets.get().ClientConfig.params.displayPage),
+		phone:ComponentAssets.FieldManager.create("CLIENT_PHONE", ClientAssets.get().ClientConfig.params.displayPage)
 	}
 }
 
 function createModal(){
-	ClientAssets.ClientConfig.params.addFields = addFields()
+	ClientAssets.get().ClientConfig.params.addFields = addFields()
 	var modal = {
 		show(){
-			modal.instance = showModal(ClientAssets.CreateClientModal, {})
+			modal.instance = showModal(ClientAssets.get().CreateClientModal, {})
 		},
 		hide(){
 			modal.instance.hide();

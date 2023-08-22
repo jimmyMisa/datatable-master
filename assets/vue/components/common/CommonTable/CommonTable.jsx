@@ -1,10 +1,12 @@
 import {CommonDatatableAssets} from "./CommonDatatableAssets.jsx";
+import Components from "vue/components/common/Components/Components.jsx";
+
 
 class CommonTable{
 	static prefix(){
 		return 'renderDatatable';
 	}
-	static getMethod(instance, name){()
+	static getMethod(instance, name){
 		var prefix = CommonTable.prefix()
 		var prefixedName = `${prefix}${name}`;
 		return instance[prefixedName]
@@ -26,6 +28,7 @@ class CommonTable{
 		var baseMethods = CommonTable.baseMethods();
 		var prefix = CommonTable.prefix()
 		var methods = {
+			...Components.getMethods(),
 			getConfig(){
 				//To override by configuration
 			}
@@ -37,5 +40,9 @@ class CommonTable{
 		});
 		CommonTable.initializedMethods = methods
 		return methods
-	},
+	}
+}
+
+export {
+	CommonTable
 }

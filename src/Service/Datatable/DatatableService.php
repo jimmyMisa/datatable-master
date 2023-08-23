@@ -55,10 +55,18 @@ class DatatableService
         $totalFiltered = $this->cnx->fetchAllAssociative($sqlCount, $params)[0]['total'];
         $total = $this->cnx->fetchAllAssociative($sqlCountAll, $params)[0]['total'];
 
+        $page = 1;
+        $limit = 1;
+        if (isset($data['page'])) {
+            $page = $data['page'];
+        }
+        if (isset($data['limit'])) {
+            $limit = $data['limit'];
+        }
         $result = [
             'datas' => $datas,
-            'page' => $data['page'],
-            'limit' => $data['limit'],
+            'page' => $page,
+            'limit' => $limit,
             'totalFiltered' => $totalFiltered,
             'total' => $total,
         ];
@@ -166,6 +174,7 @@ class DatatableService
         $params = [];
         $search = [];
         $where = [];
+        $whereSql = "";
 
         foreach($whereArray as $w){
             $subquery = $w["query"];

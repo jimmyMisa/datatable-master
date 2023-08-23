@@ -1,28 +1,52 @@
-import { ClientAssets } from "modules/client/ClientAssets.js";
+import { ClientApi } from "modules/client/classes/ClientApi.js";
+import { 
+	ClientAssets as Assets,
+    config,
+    datatable
+} from "modules/client/ClientAssets.js";
 
 class ClientDatatable{
 	static reload(){
 		var data = {
-			page:ClientAssets.get().ClientConfig.params.pagination.value,
-			size:ClientAssets.get().ClientConfig.params.pageSize.value,
-			orderBy:ClientAssets.get().ClientConfig.params.headerColumns.orderBy,
-			order:ClientAssets.get().ClientConfig.params.headerColumns.order,
-			key:ClientAssets.get().ClientConfig.params.searchInput.value,
+			page:config().pagination.value,
+			size:config().pageSize.value,
+			orderBy:config().headerColumns.orderBy,
+			order:config().headerColumns.order,
+			key:config().searchInput.value,
 		}
-		ClientAssets.get().ClientConfig.params.instance.refresh()
-
+		var then = (result={})=>{
+			var {datas=[], total=null} = result;
+	        config().contentLines = datas;
+	        config().pagination.pages = total;
+			config().instance.refresh()
+		}
+		ClientApi.listApi(data, then)
 		//TODO setup Ajax
 	}
 	static edit(params){
-		console.log(params)
-		ClientAssets.get().ClientConfig.params.instance.refresh()
+		var {id, name, phone, then=()=>{}} = params
+		config().instance.refresh()
 
+		var callback = (result)=> {
+			if (result.code==200) {
+				then()
+				datatable().reload();
+			}
+			config().instance.refresh()
+		}
+		ClientApi.editApi(id, {name,phone}, callback)
 		//TODO setup Ajax
 	}
-	static remove(id){
-		console.log(id)
-		ClientAssets.get().ClientConfig.params.instance.refresh()
-
+	static remove(id, then=()=>{}){
+		config().instance.refresh()
+		var callback = (result)=> {
+			if (result.code==200) {
+				then()
+				datatable().reload();
+			}
+			config().instance.refresh()
+		}
+		ClientApi.removeApi(id, callback)
 		//TODO setup Ajax
 	}
 }

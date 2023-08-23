@@ -1,15 +1,19 @@
 import { ComponentAssets } from "common/classes/ComponentAssets.js"
-import { ClientAssets } from "modules/client/ClientAssets.js";
+import { ClientDatatableAssets } from "modules/client/classes/datatable/ClientDatatableAssets.js";
+import { 
+    ClientAssets as Assets,
+    config,
+    datatable
+} from "modules/client/ClientAssets.js";
 
 function editButton() {
     return (params) =>{
         var button = ComponentAssets.Button.create({
             BUTTON: ComponentAssets.getButton().CLIENT_EDIT_BUTTON,
             domain: ComponentAssets.FieldManager.domain,
-            //required_fields: Object.values([lastname, password, confirm_password]),
         });
         button.onSuccess = () =>{
-            ClientAssets.get().ClientConfig.params.editModal(params).show();
+            config().editModal(params).show();
             console.log(params)
         }
         return button
@@ -20,10 +24,9 @@ function removeButton() {
         var button = ComponentAssets.Button.create({
             BUTTON: ComponentAssets.getButton().CLIENT_REMOVE_BUTTON,
             domain: ComponentAssets.FieldManager.domain,
-            //required_fields: Object.values([lastname, password, confirm_password]),
         });
         button.onSuccess = () =>{
-            ClientAssets.get().ClientConfig.params.removeModal(params).show();
+            config().removeModal(params).show();
             console.log(params)
         }
         return button
@@ -34,17 +37,16 @@ function detailButton() {
         var button = ComponentAssets.Button.create({
             BUTTON: ComponentAssets.getButton().CLIENT_DETAIL_BUTTON,
             domain: ComponentAssets.FieldManager.domain,
-            //required_fields: Object.values([lastname, password, confirm_password]),
         });
         button.onSuccess = () =>{
-            ClientAssets.get().ClientConfig.params.detailModal(params).show();
+            config().detailModal(params).show();
             console.log(params)
         }
         return button
     }
 }
 function saveEditButton() {
-    return (fields) =>{
+    return (fields, instance={}) =>{
         var button = ComponentAssets.Button.create({
             BUTTON: ComponentAssets.getButton().CLIENT_SAVE_EDIT_BUTTON,
             domain: ComponentAssets.FieldManager.domain,
@@ -55,8 +57,12 @@ function saveEditButton() {
                 id:fields.id,
                 name:fields.name.value,
                 phone:fields.phone.value,
+                then: ()=>{
+                    var { modal } = instance.$refs;
+                    $(modal).modal("hide")
+                }
             }
-            ClientAssets.get().ClientDatatable.edit(data)
+            datatable().edit(data)
         }
         return button
     }
@@ -65,18 +71,21 @@ function cancelEditButton() {
     var button = ComponentAssets.Button.create({
         BUTTON: ComponentAssets.getButton().CLIENT_CANCEL_EDIT_BUTTON,
         domain: ComponentAssets.FieldManager.domain,
-        //required_fields: Object.values([lastname, password, confirm_password]),
     });
     return button
 }
 function saveRemoveButton() {
-    return (field) =>{
+    return (field, instance={}) =>{
         var button = ComponentAssets.Button.create({
             BUTTON: ComponentAssets.getButton().CLIENT_SAVE_REMOVE_BUTTON,
             domain: ComponentAssets.FieldManager.domain,
         });
         button.onSuccess = () =>{
-            ClientAssets.get().ClientDatatable.remove(field.id)
+            var then = ()=>{
+                var { modal } = instance.$refs;
+                $(modal).modal("hide")
+            }
+            datatable().remove(field.id, then)
         }
         return button
     }
@@ -85,7 +94,6 @@ function cancelRemoveButton() {
     var button = ComponentAssets.Button.create({
         BUTTON: ComponentAssets.getButton().CLIENT_CANCEL_REMOVE_BUTTON,
         domain: ComponentAssets.FieldManager.domain,
-        //required_fields: Object.values([lastname, password, confirm_password]),
     });
     return button
 }
@@ -93,7 +101,6 @@ function closeDetailButton() {
     var button = ComponentAssets.Button.create({
         BUTTON: ComponentAssets.getButton().CLIENT_CLOSE_DETAIL_BUTTON,
         domain: ComponentAssets.FieldManager.domain,
-        //required_fields: Object.values([lastname, password, confirm_password]),
     });
     return button
 }

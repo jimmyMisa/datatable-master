@@ -1,6 +1,9 @@
 import { C } from "vue/helper/V02Component.jsx";
 import { ModalCommonMethods } from "modules/common/ModalCommonMethods.jsx";
-import { ClientAssets as Assets } from "modules/client/ClientAssets.js";
+import { 
+	ClientAssets as Assets,
+    config 
+} from "modules/client/ClientAssets.js";
 import classNames from "classnames";
 import Components from "vue/components/common/Components/Components.jsx";
 
@@ -32,10 +35,10 @@ export default C.make({
 						<div class="modal-body">
 							<form>
 								<div class="form-group mb-4 col-12">
-									{this.$input(Assets.config("addFields")().nom)}
+									{this.$input(config("addFields")().nom)}
 								</div>
 								<div class="form-group mb-4 col-12">
-									{this.$input(Assets.config("addFields")().phone)}
+									{this.$input(config("addFields")().phone)}
 								</div>
 							</form>
 						</div>
@@ -45,9 +48,9 @@ export default C.make({
 								class="btn btn-secondary"
 								data-dismiss="modal"
 							>
-								{Assets.config("cancelSaveButton").text}
+								{config("cancelSaveButton").text}
 							</button>
-							{this.$button(Assets.config("saveButton"))}
+							{this.$button(config("saveButton"))}
 						</div>
 					</div>
 				</div>

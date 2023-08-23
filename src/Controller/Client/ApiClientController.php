@@ -9,6 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Constant\Client\ClientFailureMessages;
 use App\Constant\Client\ClientSuccessMessages;
+use App\Constant\Common\CommonFailureMessages;
 
 class ApiClientController extends AbstractController
 {
@@ -21,7 +22,7 @@ class ApiClientController extends AbstractController
         return $this->json($results);
     }
     #[Route('/api/creer-un-client', name: 'api_create_client')]
-    public function create(ClientService $clientService, Request $request): Response
+    public function create(ClientService $clientService, Request $request)
     {
         $results = ClientFailureMessages::NOT_FOUND;
         $data = json_decode($request->request->get('query'), true);
@@ -32,7 +33,8 @@ class ApiClientController extends AbstractController
             $data["name"] === null || 
             $data["phone"] === null
         ) {
-            return ClientFailureMessages::REQUIRED_FIELD;
+            $results = ClientFailureMessages::REQUIRED_FIELD;
+            return $this->json($results);
         }
 
         $instance = $clientService->createAction($data);
@@ -42,7 +44,7 @@ class ApiClientController extends AbstractController
         return $this->json($results);
     }
     #[Route('/api/supprimer-un-client', name: 'api_remove_client')]
-    public function remove(ClientService $clientService, Request $request): Response
+    public function remove(ClientService $clientService, Request $request)
     {
         $results = ClientFailureMessages::NOT_FOUND;
 
@@ -54,7 +56,8 @@ class ApiClientController extends AbstractController
         }
 
         if (!$id) {
-            return CommonFailureMessages::REQUIRED_FIELD;
+            $results = CommonFailureMessages::REQUIRED_FIELD;
+            return $this->json($results);
         }
 
         $success = $clientService->removeAction($data);
@@ -64,7 +67,7 @@ class ApiClientController extends AbstractController
         return $this->json($results);
     }
     #[Route('/api/modifier-un-client', name: 'api_edit_client')]
-    public function edit(ClientService $clientService, Request $request): Response
+    public function edit(ClientService $clientService, Request $request)
     {
         $results = ClientFailureMessages::NOT_FOUND;
 
@@ -76,7 +79,8 @@ class ApiClientController extends AbstractController
         }
 
         if (!$id) {
-            return CommonFailureMessages::REQUIRED_FIELD;
+            $results = CommonFailureMessages::REQUIRED_FIELD;
+            return $this->json($results);
         }
         
         $instance = $clientService->editAction($data);
@@ -86,7 +90,7 @@ class ApiClientController extends AbstractController
         return $this->json($results);
     }
     #[Route('/api/detail-d-un-client', name: 'api_get_client')]
-    public function get(ClientService $clientService, Request $request): Response
+    public function get(ClientService $clientService, Request $request)
     {
         $results = ClientFailureMessages::NOT_FOUND;
         $data = json_decode($request->request->get('query'), true);
@@ -97,13 +101,14 @@ class ApiClientController extends AbstractController
         }
 
         if (!$id) {
-            return CommonFailureMessages::REQUIRED_FIELD;
+            $results = CommonFailureMessages::REQUIRED_FIELD;
+            return $this->json($results);
         }
         $results = $clientService->getAction($data);
         return $this->json($results);
     }
     #[Route('/api/suppression-multiple-de-client', name: 'api_remove_multiple_client')]
-    public function removeMultiple(ClientService $clientService, Request $request): Response
+    public function removeMultiple(ClientService $clientService, Request $request)
     {
         $results = ClientFailureMessages::NOT_FOUND;
         $data = json_decode($request->request->get('query'), true);
@@ -111,7 +116,8 @@ class ApiClientController extends AbstractController
             !isset($data["ids"]) || 
             is_array($data["ids"])
         ) {
-            return CommonFailureMessages::REQUIRED_FIELD;
+            $results = CommonFailureMessages::REQUIRED_FIELD;
+            return $this->json($results);
         }
         
         $success = $clientService->removeMultiple($data);
@@ -121,7 +127,7 @@ class ApiClientController extends AbstractController
         return $this->json($results);
     }
     #[Route('/api/modification-multiple-de-client', name: 'api_edit_multiple_client')]
-    public function editMultiple(ClientService $clientService, Request $request): Response
+    public function editMultiple(ClientService $clientService, Request $request)
     {
         $results = ClientFailureMessages::NOT_FOUND;
 
@@ -130,7 +136,8 @@ class ApiClientController extends AbstractController
             !isset($data["instance_updates"]) || 
             is_array($data["instance_updates"])
         ){
-            return CommonFailureMessages::REQUIRED_FIELD;
+            $results = CommonFailureMessages::REQUIRED_FIELD;
+            return $this->json($results);
         }
         $success = $clientService->editMultiple($data);
         if($success){

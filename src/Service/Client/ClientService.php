@@ -55,7 +55,7 @@ class ClientService {
                     ]
                 ],
             ];
-        */
+        
         $where = [
             [
                 "query" => "client_name LIKE :client_name_value OR client_name LIKE :client_name_val",
@@ -64,7 +64,8 @@ class ClientService {
                     "client_name_val" => "%rakoto%"
                 ]
             ]
-        ];
+        ];*/
+        $where = [];
         
 
         $data['search_fields'] = $searchFields;

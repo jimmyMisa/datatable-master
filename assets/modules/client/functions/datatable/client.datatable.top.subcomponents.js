@@ -1,5 +1,9 @@
 import { ComponentAssets } from "common/classes/ComponentAssets.js"
-import { ClientAssets } from "modules/client/ClientAssets.js";
+import { 
+	ClientAssets as Assets,
+    config,
+    datatable 
+} from "modules/client/ClientAssets.js";
 
 function pageSize() {
 	var pageSize = {
@@ -10,7 +14,7 @@ function pageSize() {
 			if(pageSize.f){
 				return pageSize.f
 			}
-			var field = ComponentAssets.FieldManager.create("PAGE_SIZE", ClientAssets.get().ClientConfig.params.displayPage);
+			var field = ComponentAssets.FieldManager.create("PAGE_SIZE", config().displayPage);
 			field.value = pageSize.value
 			field.options = pageSize.options.map((key) =>{
 				return {
@@ -19,8 +23,8 @@ function pageSize() {
 		        }
 			});
 			field.onChange = () =>{
-				ClientAssets.get().ClientConfig.params.pageSize.value = ClientAssets.get().ClientConfig.params.pageSize.field().value;
-				ClientAssets.get().ClientDatatable.reload();
+				config().pageSize.value = config().pageSize.field().value;
+				datatable().reload();
 			}
 			pageSize.f = field
 			return field

@@ -4,6 +4,7 @@ import {
     config,
     datatable
 } from "modules/client/ClientAssets.js";
+import { calculatePageNumbers } from "modules/common/datatableUtils.js";
 
 class ClientDatatable{
 	static reload(){
@@ -15,9 +16,9 @@ class ClientDatatable{
 			key:config().searchInput.value,
 		}
 		var then = (result={})=>{
-			var {datas=[], total=null} = result;
+			var {datas=[], total=0, totalFiltered=0} = result;
 	        config().contentLines = datas;
-	        config().pagination.pages = total;
+	        config().pagination.pages = calculatePageNumbers(totalFiltered, config().pageSize.value);;
 			config().instance.refresh()
 		}
 		ClientApi.listApi(data, then)

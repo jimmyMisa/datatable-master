@@ -1,5 +1,5 @@
 import STRUCTURE from "common/structure/FIELD/FIELD.STRUCTURE.js"
-
+//TODO spread default translation and optimize getText: getText("...") > getText()....
 class FIELD{
     static CLIENT_NAME = {
         ...STRUCTURE.NAME,
@@ -56,6 +56,9 @@ class FIELD{
     }
     static CLIENT_REMOVE_MESSAGE = "Etes vous sur de supprimer {{clientName}} ?"
     static CLIENT_ID = "Id"
+    static CLIENT_LIST = {
+        EMPTY_MESSAGE:"Aucun resultat"
+    }
 }
 
 export default FIELD;

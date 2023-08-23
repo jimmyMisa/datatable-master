@@ -1,61 +1,20 @@
 import STRUCTURE from "common/structure/FIELD/FIELD.STRUCTURE.js"
+import FR_FIELD from "./FIELD.fr.js"
 
-class FIELD{
+class FIELD extends FR_FIELD{
     static CLIENT_NAME = {
-        ...STRUCTURE.NAME,
-        PLACEHOLDER:{
-            DEFAULT:"Entrer le nom du client",
-        },
-        LABEL:{
-            DEFAULT:"Nom du client",
-        },
-        EMPTY_MESSAGE:{
-            DEFAULT:"Veuillez saisir le nom du client",
-        },
-        TH:"Nom du client",
+        ...FR_FIELD.CLIENT_NAME
     }
     static CLIENT_PHONE = {
-        ...STRUCTURE.PHONE,
-        PLACEHOLDER:{
-            DEFAULT:"Entrer le numéro de téléphone du client",
-        },
-        LABEL:{
-            DEFAULT:"Numéro de téléphone du client",
-        },
-        EMPTY_MESSAGE:{
-            DEFAULT:"Veuillez saisir le numéro de téléphone du client",
-        },
-        INVALID_PHONE:{
-            DEFAULT:"Numero invalide",
-        },
-        TH:"Téléphone",
+        ...FR_FIELD.CLIENT_PHONE
     }
     static CLIENT_SEARCH = {
-        ...STRUCTURE.SEARCH,
-        PLACEHOLDER:{
-            DEFAULT:"Entrer une clé de recherche",
-        },
-        LABEL:{
-            DEFAULT:"REchercher : ",
-        },
-        EMPTY_MESSAGE:{
-            DEFAULT:"Veuillez saisir une clé de recherche",
-        },
-        LOWER_LENGTH_MESSAGE:{
-            DEFAULT:"Veuillez saisir au moins 3 lettres",
-        },
+        ...FR_FIELD.CLIENT_SEARCH
     }
     static PAGE_SIZE = {
-        ...STRUCTURE.PAGE_SIZE,
-        PLACEHOLDER:{
-            DEFAULT:"Selectionner le nombre d'element dans une page",
-        },
-        LABEL:{
-            DEFAULT:"Nombre d'element dans une page : ",
-        },
+        ...FR_FIELD.PAGE_SIZE
     }
-    static CLIENT_REMOVE_MESSAGE = "Etes vous sur de supprimer {{ clientName }} ?"
-    static CLIENT_ID = "Id"
+    static CLIENT_REMOVE_MESSAGE = "Ho fafaina ve i {{clientName}} ?"
 }
 
 export default FIELD;

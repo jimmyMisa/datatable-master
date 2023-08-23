@@ -6,6 +6,10 @@ class CommonFailureMessages {
 		"code" => "404",
 		"message" => "NOT_FOUND",
 	];
+	public const OK = [
+		"code" => "200",
+		"message" => "VALID",
+	];
 	public const INVALID_FORMAT = [
 		"code" => "400",
 		"message" => "INVALID_FORMAT",

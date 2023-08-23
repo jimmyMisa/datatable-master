@@ -7,14 +7,7 @@
         <title>{% block title %}A modifier{% endblock %}</title>
         {{ encore_entry_link_tags('client_layout') }}
 
-        <link rel="icon" type="image/x-icon" href="{{asset('cork/layouts/src/assets/img/favicon.ico')}}"/>
-        <link href="{{asset('cork/layouts/collapsible-menu/css/light/loader.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{asset('cork/layouts/collapsible-menu/css/dark/loader.css')}}" rel="stylesheet" type="text/css" />
-        <!-- BEGIN GLOBAL MANDATORY STYLES -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
-        <link href="{{asset('cork/layouts/src/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{asset('cork/layouts/collapsible-menu/css/dark/plugins.css')}}" rel="stylesheet" type="text/css" />
-        <!-- END GLOBAL MANDATORY STYLES -->
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
 
         {% block stylesheets %}
         {% endblock %}

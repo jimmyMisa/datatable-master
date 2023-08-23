@@ -278,17 +278,30 @@ class Components {
                     }
                     return pages;
                 };
-                //TODO add disable state on next prev
+
+                var disablePrev = () => {
+                    if(pagination.page == 1){
+                        return "disabled"
+                    }
+                    return ""
+                }
+
+                var disableNext = () => {
+                    if(pagination.page == pagination.pages){
+                        return "disabled";
+                    }
+                    return ""
+                }
                 return (
                     <nav>
                         <ul class="pagination">
-                            <li class="page-item">
+                            <li class={classNames("page-item", disablePrev())}>
                                 <a class="page-link" href="#" onClick={pagination.prev}>
                                     Previous
                                 </a>
                             </li>
                             {pages()}
-                            <li class="page-item">
+                            <li class={classNames("page-item", disableNext())}>
                                 <a class="page-link" href="#" onClick={pagination.next}>
                                     Next
                                 </a>

@@ -1,22 +1,25 @@
 import { ClientDatatableAssets } from "modules/client/classes/datatable/ClientDatatableAssets.js";
-import { ClientAssets } from "modules/client/ClientAssets.js";
+import { 
+    ClientAssets as Assets,
+    config 
+} from "modules/client/ClientAssets.js";
 
 class ClientConfigTop{
-	static configure(){
+	static configure(){ 
         //TOP BUTTONS
-        ClientAssets.get().ClientConfig.params.addButton = ClientDatatableAssets.addButton();
+        config().addButton = ClientDatatableAssets.addButton();
 
         //TOP SEARCH
-        ClientAssets.get().ClientConfig.params.searchInput = ClientDatatableAssets.searchInput();
+        config().searchInput = ClientDatatableAssets.searchInput();
 
         //TOP PAGESIZE
-        ClientAssets.get().ClientConfig.params.pageSize = ClientDatatableAssets.pageSize();
+        config().pageSize = ClientDatatableAssets.pageSize();
 
         //TOP MODALS
-        ClientAssets.get().ClientConfig.params.createModal = ClientDatatableAssets.createModal();
+        config().createModal = ClientDatatableAssets.createModal();
 
-        ClientAssets.get().ClientConfig.params.saveButton = ClientDatatableAssets.saveButton();
-        ClientAssets.get().ClientConfig.params.cancelSaveButton = ClientDatatableAssets.cancelSaveButton();
+        config().saveButton = ClientDatatableAssets.saveButton();
+        config().cancelSaveButton = ClientDatatableAssets.cancelSaveButton();
 	}
 }
 

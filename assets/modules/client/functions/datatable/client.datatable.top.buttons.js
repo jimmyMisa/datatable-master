@@ -1,21 +1,41 @@
 import { ComponentAssets } from "common/classes/ComponentAssets.js"
+import { 
+    ClientAssets as Assets,
+    config,
+    datatable
+} from "modules/client/ClientAssets.js";
 
 function addButton(){
     var button = ComponentAssets.Button.create({
         BUTTON: ComponentAssets.getButton().CLIENT_ADD_BUTTON,
         domain: ComponentAssets.FieldManager.domain,
-        //required_fields: Object.values([lastname, password, confirm_password]),
     });
+    button.onSuccess = () =>{
+        config().createModal().show();
+    }
     return button
 }
 
 function saveButton(){
-    var button = ComponentAssets.Button.create({
-        BUTTON: ComponentAssets.getButton().CLIENT_REGISTER,
-        domain: ComponentAssets.FieldManager.domain,
-        //required_fields: Object.values([lastname, password, confirm_password]),
-    });
-    return button
+    return (fields, instance={}) =>{
+        var button = ComponentAssets.Button.create({
+            BUTTON: ComponentAssets.getButton().CLIENT_REGISTER,
+            domain: ComponentAssets.FieldManager.domain,
+            required_fields: Object.values([fields.name, fields.phone]),
+        });
+        button.onSuccess = () =>{
+            var data = {
+                name:fields.name.value,
+                phone:fields.phone.value,
+                then: ()=>{
+                    var { modal } = instance.$refs;
+                    $(modal).modal("hide")
+                }
+            }
+            datatable().add(data)
+        }
+        return button
+    }
 }
 
 function cancelSaveButton(){

@@ -1,6 +1,9 @@
 import { C } from "vue/helper/V02Component.jsx";
 import { ModalCommonMethods } from "modules/common/ModalCommonMethods.jsx";
-import { ClientAssets as Assets } from "modules/client/ClientAssets.js";
+import { 
+	ClientAssets as Assets,
+    config 
+} from "modules/client/ClientAssets.js";
 import classNames from "classnames";
 import Components from "vue/components/common/Components/Components.jsx";
 
@@ -31,7 +34,7 @@ export default C.make({
 						</div>
 						<div class="modal-body">
 							<p>
-								{Assets.config("removeText")()}
+								{config("removeText")()}
 							</p>
 						</div>
 						<div class="modal-footer">
@@ -40,9 +43,9 @@ export default C.make({
 								class="btn btn-secondary"
 								data-dismiss="modal"
 							>
-								{Assets.config("cancelRemoveButton").text}
+								{config("cancelRemoveButton").text}
 							</button>
-							{this.$button(Assets.config("saveRemoveButton")(Assets.config("removeParams")))}
+							{this.$button(config("saveRemoveButton")(config("removeParams"), instance))}
 						</div>
 					</div>
 				</div>

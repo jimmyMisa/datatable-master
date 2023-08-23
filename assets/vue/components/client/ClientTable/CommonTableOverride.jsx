@@ -23,14 +23,17 @@ class CommonTableOverride{
 				return (
 					<div class="container dataTables_wrapper">
 						{this.renderDatatableTop()}
-						<table class="table table-hover">
-							<thead>
-								{CommonTable.getMethod(this, "Header")()}
-							</thead>
-							<tbody>
-								{CommonTable.getMethod(this, "Content")()}
-							</tbody>
-						</table>
+						<div class="table-responsive">
+
+							<table class="table dt-table-hover dataTable no-footer">
+								<thead>
+									{CommonTable.getMethod(this, "Header")()}
+								</thead>
+								<tbody>
+									{CommonTable.getMethod(this, "Content")()}
+								</tbody>
+							</table>
+						</div>
 						{this.renderDatatableBottom()}
 					</div>
 				)
@@ -138,6 +141,13 @@ class CommonTableOverride{
 			},
 			renderDatatableSearchBar(){
 				return this.$inputInline(this.getConfig().searchInput);
+			},
+			renderDatatableHeaderColumn({headerColumn} = {}){
+				return (
+					<th class="sorting">
+						{headerColumn.name}
+					</th>
+				)
 			},
 		}
 	}

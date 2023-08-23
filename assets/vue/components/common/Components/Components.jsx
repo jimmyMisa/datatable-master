@@ -88,6 +88,34 @@ class Components {
                     </div>
                 );
             },
+            $inputWithIcon(field, params) {
+                var { content="", callback = () => {}, customClass=""} = params;
+                this.$setupInstance([field]);
+                var id = idGenerator();
+                setTimeout(() => {
+                    var { [id]: element } = this.$refs;
+                    callback({ element });
+                }, 100);
+                return (
+                    <label>
+                        {content}
+                        <input
+                            data-jid={field.id}
+                            ref={id}
+                            value={field.value}
+                            type={field.type}
+                            placeholder={field.placeholder}
+                            name={field.name}
+                            required={field.required}
+                            class={classNames("form-control", customClass)}
+                            onInput={field.checkValidation.bind(field)}
+                            onPaste={field.checkRestriction.bind(field)}
+                            onKeypress={field.checkRestriction.bind(field)}
+                        />
+                    </label>
+
+                );
+            },
             $phone(field, callback = () => {}) {
                 console.log("000000")
                 this.$setupInstance([field]);
@@ -254,6 +282,18 @@ class Components {
                     </button>
                 );
             },
+            $iconButtonCork(button, params) {
+                var {content="", customClass=""} = params;
+                this.$setupInstance([button]);
+                return (
+                    <button
+                        class={classNames(customClass)}
+                        onClick={button.handleValidation.bind(button)}
+                    >
+                        {content}
+                    </button>
+                );
+            },
             $pagination(pagination) {
                 var pages = () => {
                     var pages = [];
@@ -291,6 +331,63 @@ class Components {
                             <li class="page-item">
                                 <a class="page-link" href="#" onClick={pagination.next}>
                                     Next
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                );
+            },
+            $paginationCork(pagination, params={}) {
+                var { prevContent="Prev", nextContent="Next" } = params;
+                var pages = () => {
+                    var pages = [];
+                    for (
+                        var page = 1;
+                        page <= pagination.pages;
+                        page = page + 1
+                    ) {
+                        var active = () =>{
+                            if(page == pagination.page){
+                                return "active"
+                            }
+                            return ""
+                        }
+                        pages.push(
+                            <li class={classNames("paginate_button  page-item", active())}>
+                                <a class={classNames("page-link")} href="#!" onClick={pagination.goto(page)}>
+                                    {page}
+                                </a>
+                            </li>,
+                        );
+                    }
+                    return pages;
+                };
+                var disablePrev = () => {
+                    if(pagination.page == 1){
+                        return "disabled"
+                    }
+                    return ""
+                }
+
+                var disableNext = () => {
+                    if(pagination.page == pagination.pages){
+                        return "disabled";
+                    }
+                    return ""
+                }
+                //TODO add disable state on next prev
+                return (
+                    <nav>
+                        <ul class="pagination">
+                            <li class={classNames("paginate_button page-item previous", disablePrev())}>
+                                <a class="page-link" href="#" onClick={pagination.prev}>
+                                    {prevContent}
+                                </a>
+                            </li>
+                            {pages()}
+                            <li class={classNames("paginate_button page-item next", disableNext())}>
+                                <a class="page-link next" href="#" onClick={pagination.next}>
+                                    {nextContent}
                                 </a>
                             </li>
                         </ul>

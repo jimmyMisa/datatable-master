@@ -1,8 +1,8 @@
 :global {
     .rounded_button{
-        border-radius: 50%;
-        width: 35px;
-        height: 35px;
+        background-color: transparent;
+        border: none;
+        color: #515365;
     }
 
     .detail_button {
@@ -46,5 +46,29 @@
         input {
             flex-grow: 1;
         }
+    }
+
+    .action_button {
+        background-color: transparent;
+        border: none;
+    }
+
+    .page-link {
+        &.next{
+            border-radius: 8px;
+        }
+    }
+
+    div.dataTables_wrapper {
+        div.dataTables_filter {
+            input.input_search {
+                width: auto;
+                padding-right: 46px;
+            }
+        }
+    }
+
+    .pages_count_wrapper {
+        visibility: hidden;
     }
 }

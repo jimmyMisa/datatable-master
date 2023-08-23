@@ -18,19 +18,20 @@ export default C.make({
 		Assets.config().instance = this
 
 		return (
-			
-			<div class="container mt-3">
-
-				<div class="card">
-					<div class="card-header">
-						Liste des clients
-						{this.renderDatatableCreate()}
-					</div>
+			<div class="middle-content container-xxl p-0 mt-2">
+				<div class="page-meta">
+					<nav class="breadcrumb-style-one" aria-label="breadcrumb">
+						<ol class="breadcrumb">
+							<li class="breadcrumb-item">
+								{this.renderDatatableCreate()}
+							</li>
+						</ol>
+					</nav>
 					<div class="card-body">
 						{this.renderDatatableFull()}
 					</div>
 				</div>
 			</div>
-		);
+		)
 	},
 });

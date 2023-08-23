@@ -13,5 +13,17 @@
 </div>
 <div id="app_modal_wrapper">
 </div>
+{% endblock %}
+
+{% block javascripts %}
+	<script type="text/javascript">
+	window.api_list_client = "{{ path('api_list_client') }}";
+	window.api_create_client = "{{ path('api_create_client') }}";
+	window.api_remove_client = "{{ path('api_remove_client') }}";
+	window.api_edit_client = "{{ path('api_edit_client') }}";
+	window.api_get_client = "{{ path('api_get_client') }}";
+	window.api_remove_multiple_client = "{{ path('api_remove_multiple_client') }}";
+	window.api_edit_multiple_client = "{{ path('api_edit_multiple_client') }}";
+	</script>
 {{ encore_entry_script_tags('client_index') }}
 {% endblock %}

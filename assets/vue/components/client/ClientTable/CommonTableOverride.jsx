@@ -145,7 +145,7 @@ class CommonTableOverride{
 			renderDatatableHeaderColumn({headerColumn} = {}){
 				return (
 					<th class="sorting">
-						{headerColumn.name}
+						{headerColumn.label}
 					</th>
 				)
 			},

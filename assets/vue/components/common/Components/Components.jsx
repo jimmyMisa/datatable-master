@@ -50,6 +50,44 @@ class Components {
                     </div>
                 );
             },
+            $inputInline(field, callback = () => {}) {
+                this.$setupInstance([field]);
+                var id = idGenerator();
+                setTimeout(() => {
+                    var { [id]: element } = this.$refs;
+                    callback({ element });
+                }, 100);
+                return (
+                    <div class="inline_input">
+                        <span>{field.label}</span>
+                        
+                        <input
+                            data-jid={field.id}
+                            ref={id}
+                            value={field.value}
+                            type={field.type}
+                            placeholder={field.placeholder}
+                            name={field.name}
+                            required={field.required}
+                            class="form-control"
+                            onInput={field.checkValidation.bind(field)}
+                            onPaste={field.checkRestriction.bind(field)}
+                            onKeypress={field.checkRestriction.bind(field)}
+                        />
+
+                        <span
+                            class={classNames(
+                                "form_feedback_error",
+                                field.isValid
+                                    ? "d-none"
+                                    : "invalid-feedback d-block",
+                            )}
+                        >
+                            {field.errorMessage}
+                        </span>
+                    </div>
+                );
+            },
             $phone(field, callback = () => {}) {
                 console.log("000000")
                 this.$setupInstance([field]);
@@ -153,6 +191,44 @@ class Components {
                     </div>
                 );
             },
+            $commonSelect(field, callback = () =>{}) {
+                this.$setupInstance([field]);
+                var id = idGenerator();
+                setTimeout(() => {
+                    var { [id]: element } = this.$refs;
+                    callback({ element });
+                }, 100);
+                var optionsElements = () => {
+                    return field.options.map((option = {}, index) => {
+                        var { value, content, params = {} } = option;
+                        return (
+                            <option 
+                                value={value}
+                                {...params}
+                            >
+                                {content}
+                            </option>
+                        )
+                    })
+                }
+                return (
+                    <select
+                        data-jid={field.id}
+                        ref={id}
+                        value={field.value}
+                        type={field.type}
+                        placeholder={field.placeholder}
+                        name={field.name}
+                        required={field.required}
+                        class={classNames("pw_input form-control", field.class)}
+                        onInput={field.checkValidation.bind(field)}
+                        onPaste={field.checkRestriction.bind(field)}
+                        onKeypress={field.checkRestriction.bind(field)}
+                    >
+                        {optionsElements()}
+                    </select>
+                );
+            },
             $button(button) {
                 this.$setupInstance([button]);
                 return (
@@ -164,6 +240,18 @@ class Components {
                             {button.text}
                         </button>
                     </div>
+                );
+            },
+            $iconButton(button, params) {
+                var {content="", customClass=""} = params;
+                this.$setupInstance([button]);
+                return (
+                    <button
+                        class={classNames("btn m-1 p-1", customClass)}
+                        onClick={button.handleValidation.bind(button)}
+                    >
+                        {content}
+                    </button>
                 );
             },
             $pagination(pagination) {

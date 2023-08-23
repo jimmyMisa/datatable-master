@@ -22,9 +22,9 @@ function main() {
             order:config().headerColumns.order,
             key:config().searchInput.value,
         }, (result)=>{
-        if (result.datas) {
-            config().contentLines = result.datas;
-        }
+        var {datas=[], total=0}= result;
+        config().contentLines = datas;
+        config().pagination.pages = total;
         config().instance.refresh()
     })
 

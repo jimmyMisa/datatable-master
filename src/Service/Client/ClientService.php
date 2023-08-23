@@ -82,9 +82,9 @@ class ClientService {
      */   
     public function createAction($data): Client
     {
-        $data = [];
         $name = trim($data["name"]);
         $phone = trim($data["phone"]);
+
 
         $client = new Client();
         $client->setName($name);

@@ -35,10 +35,10 @@ export default C.make({
 						<div class="modal-body">
 							<form>
 								<div class="form-group mb-4 col-12">
-									{this.$input(config("addFields")().nom)}
+									{this.$input(config("addFields").name)}
 								</div>
 								<div class="form-group mb-4 col-12">
-									{this.$input(config("addFields")().phone)}
+									{this.$phone(config("addFields").phone)}
 								</div>
 							</form>
 						</div>
@@ -50,7 +50,7 @@ export default C.make({
 							>
 								{config("cancelSaveButton").text}
 							</button>
-							{this.$button(config("saveButton"))}
+							{this.$button(config("saveButton")(config("addFields"), instance))}
 						</div>
 					</div>
 				</div>

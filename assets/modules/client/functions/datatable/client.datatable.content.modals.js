@@ -8,26 +8,6 @@ import {
 } from "modules/client/ClientAssets.js";
 
 
-function addFields(){
-	return {
-		name:ComponentAssets.FieldManager.create("CLIENT_NAME", config().displayPage),
-		phone:ComponentAssets.FieldManager.create("CLIENT_PHONE", config().displayPage)
-	}
-}
-
-function createModal(){
-	config().addFields = addFields
-	var modal = {
-		show(){
-			modal.instance = showModal(Assets.createModal(), {})
-		},
-		hide(){
-			modal.instance.hide();
-		}
-	}
-	return modal;
-}
-
 function editFields(params){
 	return {
 		id: params.contentLine.id,

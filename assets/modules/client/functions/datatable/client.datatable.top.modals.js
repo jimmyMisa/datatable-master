@@ -8,22 +8,24 @@ import {
 
 function addFields(){
 	return {
-		nom:ComponentAssets.FieldManager.create("CLIENT_NAME", config().displayPage),
+		name:ComponentAssets.FieldManager.create("CLIENT_NAME", config().displayPage),
 		phone:ComponentAssets.FieldManager.create("CLIENT_PHONE", config().displayPage)
 	}
 }
 
 function createModal(){
-	config().addFields = addFields()
-	var modal = {
-		show(){
-			modal.instance = showModal(Assets.createModal(), {})
-		},
-		hide(){
-			modal.instance.hide();
+	return ()=>{
+		config().addFields = addFields()
+		var modal = {
+			show(){
+				modal.instance = showModal(Assets.createModal(), {})
+			},
+			hide(){
+				modal.instance.hide();
+			}
 		}
+		return modal;
 	}
-	return modal;
 }
 
 export {

@@ -14,6 +14,12 @@ class ClientApi{
 		ClientApi.apis.listAction.run({data: json_encode(data), then})
 	}
 	static createApi(data, then){
+		var query = {
+			...data
+		}
+		var data = {
+			query: json_encode(query)
+		}
 		ClientApi.apis.createAction.run({data, then})
 	}
 	static editApi(id, data, then){

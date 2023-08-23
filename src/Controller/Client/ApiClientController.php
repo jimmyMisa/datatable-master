@@ -37,6 +37,7 @@ class ApiClientController extends AbstractController
             return $this->json($results);
         }
 
+
         $instance = $clientService->createAction($data);
         if($instance){
             $results = ClientSuccessMessages::OK;

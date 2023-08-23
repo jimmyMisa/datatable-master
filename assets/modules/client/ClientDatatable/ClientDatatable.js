@@ -23,6 +23,20 @@ class ClientDatatable{
 		ClientApi.listApi(data, then)
 		//TODO setup Ajax
 	}
+	static add(params){
+		var {name, phone, then=()=>{}} = params
+		config().instance.refresh()
+
+		var callback = (result)=> {
+			if (result.code==200) {
+				then()
+				datatable().reload();
+			}
+			config().instance.refresh()
+		}
+		ClientApi.createApi({name,phone}, callback)
+		//TODO setup Ajax
+	}
 	static edit(params){
 		var {id, name, phone, then=()=>{}} = params
 		config().instance.refresh()

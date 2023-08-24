@@ -17,7 +17,7 @@ function main() {
     config().contentLines = {};
 
     ClientApi.listApi({
-            page:config().pagination.value,
+            page:config().pagination.page,
             size:config().pageSize.value,
             orderBy:config().headerColumns.orderBy,
             order:config().headerColumns.order,

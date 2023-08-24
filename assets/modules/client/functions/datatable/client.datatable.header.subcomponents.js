@@ -5,8 +5,8 @@ import {
 
 function headerColumns() {
 	return {
-		orderBy:"createdAt",
-		order:"DESC",
+		orderBy:"client_name",
+		order:"ASC",
 		columns:[{
 			name:"id",
 			label:"ID",

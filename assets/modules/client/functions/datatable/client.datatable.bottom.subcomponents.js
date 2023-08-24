@@ -7,7 +7,7 @@ import {
 function pagination() {
 	return {
 		page:1,
-		pages:1,
+		pages:10,
 		prev: () =>{
 			//TODO add restriction
 			config().pagination.page = config().pagination.page - 1;

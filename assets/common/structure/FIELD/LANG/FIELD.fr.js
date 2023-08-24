@@ -1,6 +1,19 @@
 import STRUCTURE from "common/structure/FIELD/FIELD.STRUCTURE.js"
 //TODO spread default translation and optimize getText: getText("...") > getText()....
+
 class FIELD{
+    static initProperties(targetClass) {
+        for (var propertyName in this) {
+            if (propertyName !== "initProperties" && propertyName !== "inherit") {
+                targetClass[propertyName] = this[propertyName];
+            }
+        }
+    }
+    
+    static inherit() {
+        this.initProperties(this);
+    }
+
     static CLIENT_NAME = {
         ...STRUCTURE.NAME,
         PLACEHOLDER:{

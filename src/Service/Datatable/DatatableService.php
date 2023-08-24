@@ -134,8 +134,8 @@ class DatatableService
             $page = $data['page'];
         }
 
-        if (isset($data['order_by']) && $data['order_by']) {
-            $orderBy = $data["order_by"];
+        if (isset($data['orderBy']) && $data['orderBy']) {
+            $orderBy = $data["orderBy"];
         }
 
         if (isset($data['order']) && $data['order']) {

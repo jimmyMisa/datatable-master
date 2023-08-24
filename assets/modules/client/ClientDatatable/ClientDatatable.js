@@ -14,10 +14,13 @@ class ClientDatatable{
 			order:config().headerColumns.order,
 			key:config().searchInput.value,
 		}
+
+	    config().datatable_load.isLoading = true;
 		var then = (result={})=>{
 			var {datas=[], total=null} = result;
 	        config().contentLines = datas;
 	        config().pagination.pages = total;
+	    	config().datatable_load.isLoading = false;
 			config().instance.refresh()
 		}
 		ClientApi.listApi(data, then)

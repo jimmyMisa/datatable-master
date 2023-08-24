@@ -9,6 +9,9 @@ import {
 	getText, 
 	config
 } from "modules/client/ClientAssets.js";
+import { 
+    PwLoading,
+} from "pw-components-jsx-dev";
 
 export default C.make({
 	...CommonTable.getMethods(),
@@ -42,6 +45,7 @@ export default C.make({
 	},
 	$render(h, instance) {
 		config().instance = this
+		var {datatable_load={}}= config()
 		
 		return (
 			
@@ -54,6 +58,13 @@ export default C.make({
 					</div>
 					<div class="card-body">
 						{this.renderDatatableFull()}
+                        <PwLoading
+                            ref="loading"
+                            config={{
+                                isVisible: datatable_load.isLoading,
+                                hasConfig:true
+                            }}
+                        />
 					</div>
 				</div>
 			</div>

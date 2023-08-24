@@ -14,6 +14,9 @@ function main() {
     ClientApi.init();
 
     config().contentLines = {};
+    config().datatable_load = {
+        isLoading: true
+    };
 
     ClientApi.listApi({
             page:config().pagination.value,
@@ -25,6 +28,7 @@ function main() {
         var {datas=[], total=0}= result;
         config().contentLines = datas;
         config().pagination.pages = total;
+        config().datatable_load.isLoading=false;
         config().instance.refresh()
     })
 

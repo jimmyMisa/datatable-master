@@ -8,6 +8,13 @@ import RemoveCorkSvg from "vue/components/common/icons/RemoveCorkSvg.jsx";
 import PrevCorkSvg from "vue/components/common/icons/PrevCorkSvg.jsx";
 import NextCorkSvg from "vue/components/common/icons/NextCorkSvg.jsx";
 import SearchCorkSvg from "vue/components/common/icons/SearchCorkSvg";
+import { 
+    ClientAssets as Assets, 
+    config,
+    datatable
+} from "modules/client/ClientAssets.js";
+import classNames from "classnames";
+import { toggleOrder } from "modules/common/datatableUtils.js";
 
 class CommonTableOverride{
 	static getMethods(){
@@ -143,12 +150,34 @@ class CommonTableOverride{
 				return this.$inputInline(this.getConfig().searchInput);
 			},
 			renderDatatableHeaderColumn({headerColumn} = {}){
+				var orderClass = "sorting";
+				var { order } = headerColumn;
+				if(order == "ASC"){
+					orderClass = "sorting_asc";
+				}
+				else if(order == "DESC"){
+					orderClass = "sorting_desc";
+				}
 				return (
-					<th class="sorting">
+					<th class={classNames(orderClass)} onClick={this.sort({headerColumn})}>
 						{headerColumn.label}
 					</th>
 				)
 			},
+			sort({headerColumn}){
+				return () => {
+					var { name = "", index = null, order:columnOrder = null } = headerColumn;
+					config().headerColumns.orderBy = name;
+					var order = toggleOrder(columnOrder);
+					config().headerColumns.order = order;
+					config().headerColumns.columns.map((column) => {
+						return column.order = null;
+					})
+					config().headerColumns.columns[index].order = order;
+					config().instance.refresh()
+					datatable().reload();
+				}
+			}
 		}
 	}
 }

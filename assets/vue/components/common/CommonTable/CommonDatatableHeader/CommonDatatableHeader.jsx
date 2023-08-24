@@ -5,6 +5,7 @@ class CommonDatatableHeader{
 		return {
 			Header(){
 				var ths = this.getConfig().headerColumns.columns.map((headerColumn = {}, index) =>{
+					headerColumn.index = index;
 					return CommonTable.getMethod(this, "HeaderColumn")({headerColumn, index})
 				});
 				if(this.getConfig().haveAction){

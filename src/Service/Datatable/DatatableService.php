@@ -56,7 +56,7 @@ class DatatableService
         $total = $this->cnx->fetchAllAssociative($sqlCountAll, $params)[0]['total'];
 
         $page = 1;
-        $size = 0;
+        $size = 10;
         if (isset($data['page'])) {
             $page = $data['page'];
         }
@@ -88,6 +88,7 @@ class DatatableService
         list($limit, $page, $orderBy, $order, $key, $searchFields, $whereArray) = $this->prepareQueryParams($data);
 
         $orderQuery = $this->getOrderQuery($orderBy, $order);
+       
         $limitQuery = $this->getLimitQuery($page, $limit);
 
         $sql = '';
@@ -134,8 +135,8 @@ class DatatableService
             $page = $data['page'];
         }
 
-        if (isset($data['order_by']) && $data['order_by']) {
-            $orderBy = $data["order_by"];
+        if (isset($data['orderBy']) && $data['orderBy']) {
+            $orderBy = $data["orderBy"];
         }
 
         if (isset($data['order']) && $data['order']) {

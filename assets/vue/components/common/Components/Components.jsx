@@ -221,9 +221,7 @@ class Components {
                         name={field.name}
                         required={field.required}
                         class={classNames("pw_input form-control", field.class)}
-                        onInput={field.checkValidation.bind(field)}
-                        onPaste={field.checkRestriction.bind(field)}
-                        onKeypress={field.checkRestriction.bind(field)}
+                        onChange={field.onChange}
                     >
                         {optionsElements()}
                     </select>

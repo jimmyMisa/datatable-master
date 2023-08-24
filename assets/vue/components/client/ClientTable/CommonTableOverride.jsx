@@ -15,10 +15,12 @@ import {
 } from "modules/client/ClientAssets.js";
 import classNames from "classnames";
 import { toggleOrder } from "modules/common/datatableUtils.js";
+import {ClientDecorator} from "vue/components/client/ClientTable/ClientDecorator.jsx";
 
 class CommonTableOverride{
 	static getMethods(){
 		return {
+			...ClientDecorator.getMethods(),
 			renderDatatableCreate(){
 				return (
 					<div class="float-right">
@@ -74,20 +76,22 @@ class CommonTableOverride{
 				)
 			},
 			renderDatatableBottom(){
-				return (
-					<div class="dt--bottom-section d-sm-flex justify-content-sm-between text-center">
-					<div class="dt--pages-count mb-sm-0 mb-3 pages_count_wrapper">
-						<div class="dataTables_info" role="status" aria-live="polite">
-						
+				if(this.getConfig().pagination.pages > 2){
+					return (
+						<div class="dt--bottom-section d-sm-flex justify-content-sm-between text-center">
+						<div class="dt--pages-count mb-sm-0 mb-3 pages_count_wrapper">
+							<div class="dataTables_info" role="status" aria-live="polite">
+							
+							</div>
 						</div>
-					</div>
-					<div class="dt--pagination">
-						<div class="dataTables_paginate paging_simple_numbers" id="zero-config_paginate">
-							{CommonTable.getMethod(this, "Pagination")()}
+						<div class="dt--pagination">
+							<div class="dataTables_paginate paging_simple_numbers" id="zero-config_paginate">
+								{CommonTable.getMethod(this, "Pagination")()}
+							</div>
 						</div>
-					</div>
-					</div>
-				)
+						</div>
+					)
+				}
 			},
 			renderDatatablePagination(){
 				var params = {

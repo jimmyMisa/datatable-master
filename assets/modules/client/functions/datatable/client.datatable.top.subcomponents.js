@@ -9,7 +9,7 @@ function pageSize() {
 	var pageSize = {
 		f:null,
 		value:10,
-		options: [5, 10, 25, 50, 100],
+		options: [10, 25, 50, 100],
 		field:() =>{
 			if(pageSize.f){
 				return pageSize.f
@@ -25,6 +25,7 @@ function pageSize() {
 			field.onChange = (event) =>{
 				var { currentTarget:input } = event;
 				var { value } = input;
+				config().pagination.page = 1;
 				config().pageSize.value = value;
 				datatable().reload();
 			}

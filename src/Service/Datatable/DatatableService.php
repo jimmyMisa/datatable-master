@@ -56,17 +56,17 @@ class DatatableService
         $total = $this->cnx->fetchAllAssociative($sqlCountAll, $params)[0]['total'];
 
         $page = 1;
-        $limit = 10;
+        $size = 0;
         if (isset($data['page'])) {
             $page = $data['page'];
         }
-        if (isset($data['limit'])) {
-            $limit = $data['limit'];
+        if (isset($data['size'])) {
+            $size = $data['size'];
         }
         $result = [
             'datas' => $datas,
             'page' => $page,
-            'limit' => $limit,
+            'size' => $size,
             'totalFiltered' => $totalFiltered,
             'total' => $total,
         ];
@@ -118,7 +118,7 @@ class DatatableService
      */
     public function prepareQueryParams($data)
     {
-        $limit = 10;
+        $size = 10;
         $page = 1;
         $orderBy = null;
         $order = "ASC";
@@ -126,8 +126,8 @@ class DatatableService
         $searchFields = [];
         $whereArray = [];
 
-        if (isset($data['limit']) && $data['limit']) {
-            $limit = $data['limit'];
+        if (isset($data['size']) && $data['size']) {
+            $size = $data['size'];
         }
 
         if (isset($data['page']) && $data['page']) {
@@ -154,7 +154,7 @@ class DatatableService
             $whereArray = $data['where_array'];
         }
 
-        return [$limit, $page, $orderBy, $order, $key, $searchFields, $whereArray];
+        return [$size, $page, $orderBy, $order, $key, $searchFields, $whereArray];
     }
 
     public function generateAlias() {

@@ -1,13 +1,5 @@
 import {CommonTable} from "vue/components/common/CommonTable/CommonTable.jsx";
-import ViewSvg from "vue/components/common/icons/ViewSvg.jsx";
-import ViewCorkSvg from "vue/components/common/icons/ViewCorkSvg.jsx";
-import EditSvg from "vue/components/common/icons/EditSvg.jsx";
-import EditCorkSvg from "vue/components/common/icons/EditCorkSvg.jsx";
-import RemoveSvg from "vue/components/common/icons/RemoveSvg.jsx";
-import RemoveCorkSvg from "vue/components/common/icons/RemoveCorkSvg.jsx";
-import PrevCorkSvg from "vue/components/common/icons/PrevCorkSvg.jsx";
-import NextCorkSvg from "vue/components/common/icons/NextCorkSvg.jsx";
-import SearchCorkSvg from "vue/components/common/icons/SearchCorkSvg";
+
 import { 
     ClientAssets as Assets, 
     config,
@@ -47,9 +39,6 @@ class CommonTableOverride{
 					</div>
 				)
 			},
-			searchIcon(){
-				return <SearchCorkSvg />
-			},
 			renderDatatableTop(){
 				var params = {
 					"content": this.searchIcon(),
@@ -59,7 +48,7 @@ class CommonTableOverride{
 					<div class="dt--top-section">
 						<div class="row">
 							<div class="col-12 col-sm-6 d-flex justify-content-sm-start justify-content-center">
-							<div class="dataTables_length" id="zero-config_length">
+							<div class="dataTables_length">
 								<label>
 								Results :
 								{this.$commonSelect(this.getConfig().pageSize.field())}
@@ -76,22 +65,20 @@ class CommonTableOverride{
 				)
 			},
 			renderDatatableBottom(){
-				if(this.getConfig().pagination.pages > 2){
-					return (
-						<div class="dt--bottom-section d-sm-flex justify-content-sm-between text-center">
-						<div class="dt--pages-count mb-sm-0 mb-3 pages_count_wrapper">
-							<div class="dataTables_info" role="status" aria-live="polite">
-							
-							</div>
+				return (
+					<div class="dt--bottom-section d-sm-flex justify-content-sm-between text-center">
+					<div class="dt--pages-count mb-sm-0 mb-3 pages_count_wrapper">
+						<div class="dataTables_info" role="status" aria-live="polite">
+						
 						</div>
-						<div class="dt--pagination">
-							<div class="dataTables_paginate paging_simple_numbers" id="zero-config_paginate">
-								{CommonTable.getMethod(this, "Pagination")()}
-							</div>
+					</div>
+					<div class="dt--pagination">
+						<div class="dataTables_paginate paging_simple_numbers" id="zero-config_paginate">
+							{CommonTable.getMethod(this, "Pagination")()}
 						</div>
-						</div>
-					)
-				}
+					</div>
+					</div>
+				)
 			},
 			renderDatatablePagination(){
 				var params = {
@@ -99,21 +86,6 @@ class CommonTableOverride{
 					"nextContent": this.nextIcon()
 				}
 				return this.$paginationCork(this.getConfig().pagination, params);
-			},
-			detailIcon(){
-				return <ViewCorkSvg />
-			},
-			editIcon(){
-				return <EditCorkSvg />
-			},
-			removeIcon(){
-				return <RemoveCorkSvg />
-			},
-			prevIcon(){
-				return <PrevCorkSvg />
-			},
-			nextIcon(){
-				return <NextCorkSvg />
 			},
 			renderDatatableDetailButton(params = {}){
 				return this.$iconButtonCork(
@@ -162,13 +134,14 @@ class CommonTableOverride{
 				else if(order == "DESC"){
 					orderClass = "sorting_desc";
 				}
+				console.log({headerColumn})
 				return (
-					<th class={classNames(orderClass)} onClick={this.sort({headerColumn})}>
+					<th class={classNames(orderClass)} onClick={this.sortColumns({headerColumn})}>
 						{headerColumn.label}
 					</th>
 				)
 			},
-			sort({headerColumn}){
+			sortColumns({headerColumn}){
 				return () => {
 					var { name = "", index = null, order:columnOrder = null } = headerColumn;
 					config().headerColumns.orderBy = name;

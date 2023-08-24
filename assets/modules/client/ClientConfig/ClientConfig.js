@@ -5,7 +5,7 @@ class ClientConfig {
     static params = {};
     static init() {
         //GLOBAL CONFIGURAITONS
-        ClientConfig.params.lang = "FR";
+        ClientConfig.params.lang = "MG";
         ClientConfig.params.domain = "DEFAULT";
         ClientConfig.params.displayPage = "CLIENT_LIST";
 

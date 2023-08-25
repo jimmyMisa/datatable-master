@@ -59,6 +59,8 @@ export default C.make({
 							config={{
 								isVisible: config().loadingEditModal,
 								hasConfig: true,
+								mode: "grow",
+								color: "primary"
 							}}
 						/>
 					</div>

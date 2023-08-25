@@ -56,7 +56,9 @@ export default C.make({
                             ref="loading"
                             config={{
                                 isVisible: datatable_load.isLoading,
-                                hasConfig:true
+                                hasConfig:true,
+								mode: "grow",
+								color: "primary"
                             }}
                         />
 					</div>

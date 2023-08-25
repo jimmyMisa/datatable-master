@@ -134,7 +134,7 @@ class CommonTableOverride{
 				return <div class="size_wrapper">
 					<div class="mr-1">Show</div> 
 					{this.$commonSelect(this.getConfig().pageSize.field())}
-					<div class="ml-1">entries</div>
+					<div class="ml-1">{getText("COMMON").ENTRY}</div>
 				</div>
 			},
 			renderDatatableSearchBar(){

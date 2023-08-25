@@ -6,6 +6,9 @@ import {
 } from "modules/client/ClientAssets.js";
 import classNames from "classnames";
 import Components from "vue/components/common/Components/Components.jsx";
+import { 
+    PwLoading,
+} from "pw-components-jsx-dev";
 
 export default C.make({
 	...Components.getMethods(),
@@ -47,6 +50,12 @@ export default C.make({
 							</button>
 							{this.$button(config("saveRemoveButton")(config("removeParams"), instance))}
 						</div>
+						<PwLoading
+							config={{
+								isVisible: config().loadingRemoveModal,
+								hasConfig: true,
+							}}
+						/>
 					</div>
 				</div>
 			</div>

@@ -57,6 +57,15 @@ class Components {
                     var { [id]: element } = this.$refs;
                     callback({ element });
                 }, 100);
+
+                var onInput = (event) =>{
+                    var {currentTarget:input} = event
+                    waitInput(input, () =>{
+                        var {value} = input
+                        var {onInput} = field
+                        onInput({value, event, input})
+                    }, 500)
+                }
                 return (
                     <div class="inline_input">
                         <span>{field.label}</span>
@@ -70,9 +79,9 @@ class Components {
                             name={field.name}
                             required={field.required}
                             class="form-control"
-                            onInput={field.checkValidation.bind(field)}
-                            onPaste={field.checkRestriction.bind(field)}
-                            onKeypress={field.checkRestriction.bind(field)}
+                            onInput={onInput}
+                            onPaste={onInput}
+                            onKeypress={onInput}
                         />
 
                         <span
@@ -96,6 +105,14 @@ class Components {
                     var { [id]: element } = this.$refs;
                     callback({ element });
                 }, 100);
+                var onInput = (event) =>{
+                    var {currentTarget:input} = event
+                    waitInput(input, () =>{
+                        var {value} = input
+                        var {onInput} = field
+                        onInput({value, event, input})
+                    }, 500)
+                }
                 return (
                     <label>
                         {content}
@@ -108,9 +125,9 @@ class Components {
                             name={field.name}
                             required={field.required}
                             class={classNames("form-control", customClass)}
-                            onInput={field.checkValidation.bind(field)}
-                            onPaste={field.checkRestriction.bind(field)}
-                            onKeypress={field.checkRestriction.bind(field)}
+                            onInput={onInput}
+                            onPaste={onInput}
+                            onKeypress={onInput}
                         />
                     </label>
 

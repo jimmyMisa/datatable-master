@@ -9,6 +9,9 @@ import {
 	getText, 
 	config
 } from "modules/client/ClientAssets.js";
+import { 
+    PwLoading,
+} from "pw-components-jsx-dev";
 
 export default C.make({
 	...CommonTable.getMethods(),
@@ -17,8 +20,25 @@ export default C.make({
 	getConfig(){
 		return config();
 	},
+	//TODO use another file to autoprefix using getMethods
+	renderDatatableContent(){
+		if (!this.getConfig().contentLines.length) {
+			return (
+				<tr>
+					<td colspan={this.getConfig().headerColumns.columns.length}>
+						{getText("CLIENT_LIST").EMPTY_MESSAGE}
+					</td>
+				</tr>
+			);
+		}
+		var trs = this.getConfig().contentLines.map((contentLine = {}, line) =>{
+			return CommonTable.getMethod(this, "ContentLine")({contentLine, line})
+		});
+		return trs
+	},
 	$render(h, instance) {
 		config().instance = this
+		var {datatable_load={}}= config()
 		
 		return (
 			<div class="middle-content container-xxl p-0 mt-2">
@@ -32,6 +52,13 @@ export default C.make({
 					</nav>
 					<div class="card-body">
 						{this.renderDatatableFull()}
+                        <PwLoading
+                            ref="loading"
+                            config={{
+                                isVisible: datatable_load.isLoading,
+                                hasConfig:true
+                            }}
+                        />
 					</div>
 				</div>
 			</div>

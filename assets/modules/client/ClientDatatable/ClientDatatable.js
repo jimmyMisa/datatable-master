@@ -15,55 +15,52 @@ class ClientDatatable{
 			order:config().headerColumns.order,
 			key:config().searchInput.value,
 		}
+	    config().datatable_load.isLoading = true;
 		var then = (result={})=>{
 			var {datas=[], total=0, totalFiltered=0, size=10} = result;
 	        config().contentLines = datas;
+	    	config().datatable_load.isLoading = false;
 			config().pageSize.field().value = size;
         	config().pagination.pages = calculatePageNumbers(totalFiltered, size);
 			config().instance.refresh()
 		}
-		ClientApi.listApi(data, then)
-		//TODO setup Ajax
+		ClientApi.listApi({data, then})
 	}
 	static add(params){
-		var {name, phone, then=()=>{}} = params
+		var {data={}, callback=()=>{}} = params
 		config().instance.refresh()
 
-		var callback = (result)=> {
+		var then = (result)=> {
+			callback(result)
 			if (result.code==200) {
-				then()
 				datatable().reload();
 			}
 			config().instance.refresh()
 		}
-		ClientApi.createApi({name,phone}, callback)
-		//TODO setup Ajax
+		ClientApi.createApi({data, then})
 	}
 	static edit(params){
-		var {id, name, phone, then=()=>{}} = params
-		config().instance.refresh()
-
-		var callback = (result)=> {
+		var {data={}, callback=()=>{}} = params
+		var then = (result)=> {
+			callback(result)
 			if (result.code==200) {
-				then()
 				datatable().reload();
 			}
 			config().instance.refresh()
 		}
-		ClientApi.editApi(id, {name,phone}, callback)
-		//TODO setup Ajax
+		ClientApi.editApi({data, then})
 	}
-	static remove(id, then=()=>{}){
+	static remove(params){
+		var {id, callback=()=>{}} = params
 		config().instance.refresh()
-		var callback = (result)=> {
+		var then = (result)=> {
+			callback(result)
 			if (result.code==200) {
-				then()
 				datatable().reload();
 			}
 			config().instance.refresh()
 		}
-		ClientApi.removeApi(id, callback)
-		//TODO setup Ajax
+		ClientApi.removeApi({id, then})
 	}
 }
 

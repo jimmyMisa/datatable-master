@@ -55,7 +55,7 @@ function removeModal(){
 			},
 			hide(){
 				modal.instance.hide();
-			}
+			},
 		}
 		return modal;
 	}

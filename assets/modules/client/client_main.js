@@ -15,21 +15,26 @@ function main() {
     ClientApi.init();
 
     config().contentLines = {};
+    config().datatable_load = {
+        isLoading: true
+    };
 
-    ClientApi.listApi({
-            page:config().pagination.page,
-            size:config().pageSize.value,
-            orderBy:config().headerColumns.orderBy,
-            order:config().headerColumns.order,
-            key:config().searchInput.value,
-        }, (result)=>{
+    var data = {
+        page:config().pagination.page,
+        size:config().pageSize.value,
+        orderBy:config().headerColumns.orderBy,
+        order:config().headerColumns.order,
+        key:config().searchInput.value,
+    }
+    var then = (result)=>{
         var {datas=[], total=0, totalFiltered=0, size=10}= result;
         config().contentLines = datas;
+        config().datatable_load.isLoading=false;
         config().pageSize.field().value = size;
-        
         config().pagination.pages = calculatePageNumbers(totalFiltered, size);
         config().instance.refresh()
-    })
+    }
+    ClientApi.listApi({data, then})
 
     setChildView("#app", ClientTable, {});
 }

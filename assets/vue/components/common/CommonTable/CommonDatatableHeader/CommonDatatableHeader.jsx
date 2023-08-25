@@ -16,7 +16,7 @@ class CommonDatatableHeader{
 			HeaderColumn({headerColumn} = {}){
 				return (
 					<th>
-						{headerColumn.name}
+						{headerColumn.label}
 					</th>
 				)
 			},

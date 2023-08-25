@@ -44,8 +44,7 @@ export default C.make({
 		)
 	},*/
 	$render(h, instance) {
-		config().instance = this
-		var {datatable_load={}}= config()
+		config().instance = this;
 		
 		return (
 			
@@ -58,13 +57,7 @@ export default C.make({
 					</div>
 					<div class="card-body">
 						{this.renderDatatableFull()}
-                        <PwLoading
-                            ref="loading"
-                            config={{
-                                isVisible: datatable_load.isLoading,
-                                hasConfig:true
-                            }}
-                        />
+						{this.renderDatatableLoadingContent()}
 					</div>
 				</div>
 			</div>

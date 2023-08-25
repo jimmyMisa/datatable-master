@@ -96,6 +96,9 @@ class CommonTableOverride{
 			renderDatatableSearchBar(){
 				return this.$inputInline(this.getConfig().searchInput);
 			},
+			renderDatatableLoadingContent(){
+				return this.$commonLoading(this.getConfig().loadingContent);
+			},
 		}
 	}
 }

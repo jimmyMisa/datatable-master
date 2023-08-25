@@ -15,9 +15,10 @@ function main() {
     ClientApi.init();
 
     config().contentLines = {};
-    config().datatable_load = {
-        isLoading: true
-    };
+    if (!config().loadingContent) {
+        config().loadingContent ={}
+    }
+    config().loadingContent.isVisible = true;
 
     var data = {
         page:config().pagination.page,
@@ -29,7 +30,7 @@ function main() {
     var then = (result)=>{
         var {datas=[], total=0, totalFiltered=0, size=10}= result;
         config().contentLines = datas;
-        config().datatable_load.isLoading=false;
+        config().loadingContent.isVisible=false;
         config().pageSize.field().value = size;
         config().pagination.pages = calculatePageNumbers(totalFiltered, size);
         config().instance.refresh()

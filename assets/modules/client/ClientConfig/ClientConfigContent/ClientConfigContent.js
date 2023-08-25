@@ -7,6 +7,7 @@ import {
 class ClientConfigContent{
     static configure(){
         config().contentLines = ClientDatatableAssets.contentLines();
+        config().loadingContent = ClientDatatableAssets.loadingContent();
 
         //CONTENT COLUMNS ACTIONS
         config().editButton = ClientDatatableAssets.editButton();

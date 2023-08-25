@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import { waitInput } from "pw-components-core-dev";
 import { idGenerator } from "core/tools/security/idGenerator.js";
-import { PwInput, PwSelect } from "pw-components-jsx-dev";
+import { PwInput, PwSelect, PwLoading } from "pw-components-jsx-dev";
 
 class Components {
     static getMethods() {
@@ -315,6 +315,22 @@ class Components {
                             </li>
                         </ul>
                     </nav>
+                );
+            },
+            $commonLoading(params={}) {
+                var {
+                    isVisible=false, 
+                    hasConfig=true, 
+                    ref="loading"
+                } = params;
+                return (
+                    <PwLoading
+                        ref={ref}
+                        config={{
+                            isVisible: isVisible,
+                            hasConfig:hasConfig
+                        }}
+                    />
                 );
             },
         };

@@ -54,6 +54,11 @@ class BUTTON{
             DEFAULT:"Fermer",
         }
     }
+    static PRODUCT_ADD_BUTTON = {
+        TEXT:{
+            DEFAULT:"Créer un produit",
+        }
+    }
 }
 
 export default BUTTON

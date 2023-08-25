@@ -1,12 +1,16 @@
 import {CommonTable} from "vue/components/common/CommonTable/CommonTable.jsx";
+
 import ViewSvg from "vue/components/common/icons/ViewSvg.jsx";
 import EditSvg from "vue/components/common/icons/EditSvg.jsx";
 import RemoveSvg from "vue/components/common/icons/RemoveSvg.jsx";
 import {getText} from "modules/client/ClientAssets.js"
 
+import {ClientDecorator} from "vue/components/client/ClientTable/ClientDecorator.jsx";
+
 class CommonTableOverride{
 	static getMethods(){
 		return {
+			...ClientDecorator.getMethods(),
 			renderDatatableCreate(){
 				return (
 					<div class="float-right">
@@ -45,20 +49,14 @@ class CommonTableOverride{
 				)
 			},
 			renderDatatableBottom(){
-				return (
-					<div class="float-right">
-						{CommonTable.getMethod(this, "Pagination")()}
-					</div>
-				)
-			},
-			detailIcon(){
-				return <ViewSvg />
-			},
-			editIcon(){
-				return <EditSvg />
-			},
-			removeIcon(){
-				return <RemoveSvg />
+				if(this.getConfig().pagination.pages > 2){
+
+					return (
+						<div class="float-right">
+							{CommonTable.getMethod(this, "Pagination")()}
+						</div>
+					)
+				}
 			},
 			renderDatatableDetailButton(params = {}){
 				return this.$iconButton(

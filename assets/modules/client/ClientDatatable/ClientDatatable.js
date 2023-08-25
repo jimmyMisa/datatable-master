@@ -9,7 +9,7 @@ import { calculatePageNumbers } from "modules/common/datatableUtils.js";
 class ClientDatatable{
 	static reload(){
 		var data = {
-			page:config().pagination.value,
+			page:config().pagination.page,
 			size:config().pageSize.value,
 			orderBy:config().headerColumns.orderBy,
 			order:config().headerColumns.order,
@@ -17,10 +17,11 @@ class ClientDatatable{
 		}
 	    config().datatable_load.isLoading = true;
 		var then = (result={})=>{
-			var {datas=[], total=0, totalFiltered=0} = result;
+			var {datas=[], total=0, totalFiltered=0, size=10} = result;
 	        config().contentLines = datas;
 	    	config().datatable_load.isLoading = false;
-	        config().pagination.pages = calculatePageNumbers(totalFiltered, config().pageSize.value);
+			config().pageSize.field().value = size;
+        	config().pagination.pages = calculatePageNumbers(totalFiltered, size);
 			config().instance.refresh()
 		}
 		ClientApi.listApi({data, then})

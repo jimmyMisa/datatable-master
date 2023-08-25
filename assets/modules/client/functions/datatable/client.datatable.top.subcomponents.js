@@ -22,8 +22,11 @@ function pageSize() {
 		            content: key,
 		        }
 			});
-			field.onChange = () =>{
-				config().pageSize.value = config().pageSize.field().value;
+			field.onChange = (event) =>{
+				var { currentTarget:input } = event;
+				var { value } = input;
+				config().pagination.page = 1;
+				config().pageSize.value = value;
 				datatable().reload();
 			}
 			pageSize.f = field

@@ -2,6 +2,7 @@ import {CommonTable} from "vue/components/common/CommonTable/CommonTable.jsx";
 import ViewSvg from "vue/components/common/icons/ViewSvg.jsx";
 import EditSvg from "vue/components/common/icons/EditSvg.jsx";
 import RemoveSvg from "vue/components/common/icons/RemoveSvg.jsx";
+import {getText} from "modules/client/ClientAssets.js"
 
 class CommonTableOverride{
 	static getMethods(){
@@ -91,7 +92,7 @@ class CommonTableOverride{
 				return <div class="size_wrapper">
 					<div class="mr-1">Show</div> 
 					{this.$commonSelect(this.getConfig().pageSize.field())}
-					<div class="ml-1">entries</div>
+					<div class="ml-1">{getText("COMMON").ENTRY}</div>
 				</div>
 			},
 			renderDatatableSearchBar(){

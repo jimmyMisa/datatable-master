@@ -75,8 +75,8 @@ function refs(field) {
 function config(key) {
 	return ClientAssets.config(key);
 }
-function getText(key) {
-	return ClientAssets.componentAssets().getText(key);
+function getText(key, conversion=undefined) {
+	return ClientAssets.componentAssets().getText(key, conversion);
 }
 function datatable() {
 	return ClientAssets.datatable();

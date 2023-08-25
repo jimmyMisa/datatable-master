@@ -6,6 +6,9 @@ import {
 } from "modules/client/ClientAssets.js";
 import classNames from "classnames";
 import Components from "vue/components/common/Components/Components.jsx";
+import { 
+    PwLoading,
+} from "pw-components-jsx-dev";
 
 export default C.make({
 	...Components.getMethods(),
@@ -52,6 +55,12 @@ export default C.make({
 							</button>
 							{this.$button(config("saveEditButton")(config("editFields"), instance))}
 						</div>
+						<PwLoading
+							config={{
+								isVisible: config().loadingEditModal,
+								hasConfig: true,
+							}}
+						/>
 					</div>
 				</div>
 			</div>

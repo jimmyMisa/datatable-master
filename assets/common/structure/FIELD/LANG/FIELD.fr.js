@@ -59,6 +59,9 @@ class FIELD{
     static CLIENT_LIST = {
         EMPTY_MESSAGE:"Aucun resultat"
     }
+    static COMMON = {
+        ENTRY: "entrée(s)"
+    }
 }
 
 export default FIELD;

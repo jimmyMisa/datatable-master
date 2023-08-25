@@ -53,16 +53,22 @@ function saveEditButton() {
             required_fields: Object.values([fields.name, fields.phone]),
         });
         button.onSuccess = () =>{
-            var data = {
-                id:fields.id,
-                name:fields.name.value,
-                phone:fields.phone.value,
-                then: ()=>{
-                    var { modal } = instance.$refs;
+            config().loadingEditModal = true;
+            config().instance.refresh()
+            var callback = (result)=>{
+                var { modal } = instance.$refs;
+                config().loadingEditModal = false;
+                config().instance.refresh()
+                if (result.code==200) {
                     $(modal).modal("hide")
                 }
             }
-            datatable().edit(data)
+            var data = {
+                id:fields.id,
+                name:fields.name.value,
+                phone:fields.phone.value
+            }
+            datatable().edit({data,callback})
         }
         return button
     }
@@ -81,11 +87,17 @@ function saveRemoveButton() {
             domain: ComponentAssets.FieldManager.domain,
         });
         button.onSuccess = () =>{
-            var then = ()=>{
+            config().loadingRemoveModal = true;
+            config().instance.refresh()
+            var callback = (result)=>{
                 var { modal } = instance.$refs;
-                $(modal).modal("hide")
+                config().loadingRemoveModal = false;
+                config().instance.refresh()
+                if (result.code==200) {
+                    $(modal).modal("hide")
+                }
             }
-            datatable().remove(field.id, then)
+            datatable().remove({id:field.id, callback})
         }
         return button
     }

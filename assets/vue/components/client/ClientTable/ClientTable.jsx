@@ -36,13 +36,13 @@ export default C.make({
 		});
 		return trs
 	},
-	renderDatatableHeaderColumn({headerColumn} = {}){
+	/*renderDatatableHeaderColumn({headerColumn} = {}){
 		return (
 			<th>
 				{headerColumn.label}
 			</th>
 		)
-	},
+	},*/
 	$render(h, instance) {
 		config().instance = this
 		var {datatable_load={}}= config()

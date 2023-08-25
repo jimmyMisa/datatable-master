@@ -10,29 +10,28 @@ class ClientApi{
 		ClientApi.apis.editAction = new Api({url: window.api_edit_client});
 		ClientApi.apis.removeAction = new Api({url: window.api_remove_client});
 	}
-	static listApi(data, then){
+	static listApi(params={}){
+		var {data={}, then=()=>{}}=params;
 		ClientApi.apis.listAction.run({data: json_encode(data), then})
 	}
-	static createApi(data, then){
-		var query = {
-			...data
-		}
+	static createApi(params={}){
+		var {data={}, then=()=>{}}=params;
+		var query = data;
 		var data = {
 			query: json_encode(query)
 		}
 		ClientApi.apis.createAction.run({data, then})
 	}
-	static editApi(id, data, then){
-		var query = {
-			id: id,
-			...data
-		}
+	static editApi(params={}){
+		var {data={}, then=()=>{}}=params;
+		var query = data;
 		var data = {
 			query: json_encode(query)
 		}
 		ClientApi.apis.editAction.run({data, then})
 	}
-	static getApi(id, then){
+	static getApi(params={}){
+		var {id, then=()=>{}}=params;
 		var query = {
 			id: id
 		}
@@ -41,7 +40,8 @@ class ClientApi{
 		}
 		ClientApi.apis.getAction.run({data, then})
 	}
-	static removeApi(id, then){
+	static removeApi(params={}){
+		var {id, then=()=>{}}=params;
 		var query = {
 			id: id
 		}

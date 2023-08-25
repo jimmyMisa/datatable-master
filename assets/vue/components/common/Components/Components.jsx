@@ -57,6 +57,15 @@ class Components {
                     var { [id]: element } = this.$refs;
                     callback({ element });
                 }, 100);
+
+                var onInput = (event) =>{
+                    var {currentTarget:input} = event
+                    waitInput(input, () =>{
+                        var {value} = input
+                        var {onInput} = field
+                        onInput({value, event, input})
+                    }, 500)
+                }
                 return (
                     <div class="inline_input">
                         <span>{field.label}</span>
@@ -70,9 +79,9 @@ class Components {
                             name={field.name}
                             required={field.required}
                             class="form-control"
-                            onInput={field.checkValidation.bind(field)}
-                            onPaste={field.checkRestriction.bind(field)}
-                            onKeypress={field.checkRestriction.bind(field)}
+                            onInput={onInput}
+                            onPaste={onInput}
+                            onKeypress={onInput}
                         />
 
                         <span
@@ -221,9 +230,7 @@ class Components {
                         name={field.name}
                         required={field.required}
                         class={classNames("pw_input form-control", field.class)}
-                        onInput={field.checkValidation.bind(field)}
-                        onPaste={field.checkRestriction.bind(field)}
-                        onKeypress={field.checkRestriction.bind(field)}
+                        onChange={field.onChange}
                     >
                         {optionsElements()}
                     </select>
@@ -278,17 +285,30 @@ class Components {
                     }
                     return pages;
                 };
-                //TODO add disable state on next prev
+
+                var disablePrev = () => {
+                    if(pagination.page == 1){
+                        return "disabled"
+                    }
+                    return ""
+                }
+
+                var disableNext = () => {
+                    if(pagination.page == pagination.pages){
+                        return "disabled";
+                    }
+                    return ""
+                }
                 return (
                     <nav>
                         <ul class="pagination">
-                            <li class="page-item">
+                            <li class={classNames("page-item", disablePrev())}>
                                 <a class="page-link" href="#" onClick={pagination.prev}>
                                     Previous
                                 </a>
                             </li>
                             {pages()}
-                            <li class="page-item">
+                            <li class={classNames("page-item", disableNext())}>
                                 <a class="page-link" href="#" onClick={pagination.next}>
                                     Next
                                 </a>

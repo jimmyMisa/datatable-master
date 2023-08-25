@@ -24,15 +24,21 @@ function saveButton(){
             required_fields: Object.values([fields.name, fields.phone]),
         });
         button.onSuccess = () =>{
-            var data = {
-                name:fields.name.value,
-                phone:fields.phone.value,
-                then: ()=>{
+            config().loadingAddModal = true;
+            config().instance.refresh()
+            var callback = (result)=>{
+                config().loadingAddModal = false;
+                config().instance.refresh()
+                if (result.code==200) {
                     var { modal } = instance.$refs;
                     $(modal).modal("hide")
                 }
             }
-            datatable().add(data)
+            var data = {
+                name:fields.name.value,
+                phone:fields.phone.value,
+            }
+            datatable().add({data,callback})
         }
         return button
     }

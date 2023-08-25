@@ -16,6 +16,7 @@ class ClientDatatable{
 			key:config().searchInput.value,
 		}
 	    config().datatable_load.isLoading = true;
+		config().instance.refresh()
 		var then = (result={})=>{
 			var {datas=[], total=0, totalFiltered=0, size=10} = result;
 	        config().contentLines = datas;

@@ -44,7 +44,7 @@ class ClientService {
                 [
                     "query" => "client_name LIKE :client_name_value OR client_name LIKE :client_name_val",
                     "params" => [
-                        "client_name_value" => "%atrika%",
+                        "client_name_value" => "%randria%",
                         "client_name_val" => "%rakoto%"
                     ]
                 ],

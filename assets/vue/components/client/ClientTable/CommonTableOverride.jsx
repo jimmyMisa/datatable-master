@@ -6,13 +6,28 @@ import {
     datatable
 } from "modules/client/ClientAssets.js";
 import classNames from "classnames";
-import { toggleOrder } from "modules/common/datatableUtils.js";
 import {ClientDecorator} from "vue/components/client/ClientTable/ClientDecorator.jsx";
 
 class CommonTableOverride{
 	static getMethods(){
 		return {
 			...ClientDecorator.getMethods(),
+			//TODO autoprefix using getMethods
+			renderDatatableContent(){
+				if (!this.getConfig().contentLines.length) {
+					return (
+						<tr>
+							<td colspan={this.getConfig().headerColumns.columns.length}>
+								{getText("CLIENT_LIST").EMPTY_MESSAGE}
+							</td>
+						</tr>
+					);
+				}
+				var trs = this.getConfig().contentLines.map((contentLine = {}, line) =>{
+					return CommonTable.getMethod(this, "ContentLine")({contentLine, line})
+				});
+				return trs
+			},
 			renderDatatableCreate(){
 				return (
 					<div class="float-right">
@@ -134,26 +149,12 @@ class CommonTableOverride{
 				else if(order == "DESC"){
 					orderClass = "sorting_desc";
 				}
-				console.log({headerColumn})
+				
 				return (
-					<th class={classNames(orderClass)} onClick={this.sortColumns({headerColumn})}>
+					<th class={classNames(orderClass)} onClick={config().sortColumns(headerColumn)}>
 						{headerColumn.label}
 					</th>
 				)
-			},
-			sortColumns({headerColumn}){
-				return () => {
-					var { name = "", index = null, order:columnOrder = null } = headerColumn;
-					config().headerColumns.orderBy = name;
-					var order = toggleOrder(columnOrder);
-					config().headerColumns.order = order;
-					config().headerColumns.columns.map((column) => {
-						return column.order = null;
-					})
-					config().headerColumns.columns[index].order = order;
-					config().instance.refresh()
-					datatable().reload();
-				}
 			}
 		}
 	}

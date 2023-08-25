@@ -17,22 +17,6 @@ export default C.make({
 	getConfig(){
 		return config();
 	},
-	//TODO use another file to autoprefix using getMethods
-	renderDatatableContent(){
-		if (!this.getConfig().contentLines.length) {
-			return (
-				<tr>
-					<td colspan={this.getConfig().headerColumns.columns.length}>
-						{getText("CLIENT_LIST").EMPTY_MESSAGE}
-					</td>
-				</tr>
-			);
-		}
-		var trs = this.getConfig().contentLines.map((contentLine = {}, line) =>{
-			return CommonTable.getMethod(this, "ContentLine")({contentLine, line})
-		});
-		return trs
-	},
 	$render(h, instance) {
 		config().instance = this
 		

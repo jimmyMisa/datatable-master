@@ -22,15 +22,21 @@ function editModal(){
 		config().editFields = editField
 		config().editFields.client.options = window.client_options;
 		config().editFields.product.options = window.product_options;
+		config().editFields.client.onChange = (params={}) => {
+			var { value } = params;
+			config().editFields.client.value = value
+		}
+		config().editFields.product.onChange = (params={}) => {
+			var { value } = params;
+			config().editFields.product.value = value
+		}
 
 		var modal = {
 			show(){
-				console.log(refs)
 				modal.instance = showModal(Assets.editModal(), {});
 				setTimeout(() =>{
 					var {contentLine={}} = params;
 					var {client_id, product_id} = contentLine;
-					//TODO setup default value
 					editField.client.value = client_id;
 					editField.product.value = product_id;
 					editField.client.refresh();

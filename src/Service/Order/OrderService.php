@@ -2,9 +2,7 @@
 namespace App\Service\Order;
 use Doctrine\ORM\EntityManagerInterface;
 
-use App\Entity\Order;
-use App\Constant\Order\OrderSuccessMessages;
-use App\Constant\Order\OrderFailureMessages;
+use App\Entity\OrderProduct;
 use App\Service\Datatable\DatatableService;
 
 class OrderService {
@@ -54,30 +52,30 @@ class OrderService {
 
     /**
      * @param array $content
-     * @return Order
+     * @return OrderProduct
      */   
-    public function createAction($data): Order
+    public function createAction($data): OrderProduct
     {
-        $name = trim($data["name"]);
-        $phone = trim($data["phone"]);
+        $client = $data["client"];
+        $product = $data["product"];
 
 
-        $order = new Order();
-        $order->setName($name);
-        $order->setPhone($phone);
+        $order = new OrderProduct();
+        $order->setClient($client);
+        $order->setProduct($product);
 
         $this->em->persist($order);
         $this->em->flush();
         return $order;
     }
 
-    public function editAction($data): ?Order
+    public function editAction($data): ?OrderProduct
     {
         $id = trim($data["id"]);
         $name = trim($data["name"]);
         $phone = trim($data["phone"]);
 
-        $order = $this->em->getRepository(Order::class)->findOneBy(["id" => $id]);
+        $order = $this->em->getRepository(OrderProduct::class)->findOneBy(["id" => $id]);
         if (!$order) {
             return null;
         }
@@ -88,7 +86,7 @@ class OrderService {
         /* 
             Prerequisite: Define the save function in the repository
         */
-        $this->em->getRepository(Order::class)->save($order);
+        $this->em->getRepository(OrderProduct::class)->save($order);
 
         return $order;
     }
@@ -97,7 +95,7 @@ class OrderService {
     {
         $id = trim($data["id"]);
 
-        $order = $this->em->getRepository(Order::class)->findOneBy(["id" => $id]);
+        $order = $this->em->getRepository(OrderProduct::class)->findOneBy(["id" => $id]);
 
         if (!$order) {
             return null;
@@ -112,7 +110,7 @@ class OrderService {
     {
         $id = $data["id"];
 
-        $order = $this->em->getRepository(Order::class)->findOneBy([
+        $order = $this->em->getRepository(OrderProduct::class)->findOneBy([
             "id" => $id
         ]);
         if (!$order) {
@@ -122,7 +120,7 @@ class OrderService {
         /* 
             Prerequisite: Define the remove function in the repository
         */
-        $this->em->getRepository(Order::class)->remove($order);
+        $this->em->getRepository(OrderProduct::class)->remove($order);
 
         return true;
     }
@@ -131,7 +129,7 @@ class OrderService {
     {
         $ids = $data["ids"];
         
-        $instances = $this->em->getRepository(Order::class)->findBy([
+        $instances = $this->em->getRepository(OrderProduct::class)->findBy([
             "id" => $ids
         ]);
         
@@ -146,7 +144,7 @@ class OrderService {
      * Update multiple order instances based on provided data.
      *
      * @param array $data The data containing updates for order instances.
-     * @return Order[]|null An array of updated order instances, or null if no updates were made.
+     * @return OrderProduct[]|null An array of updated order instances, or null if no updates were made.
      */
     public function editMultiple($data)
     {
@@ -171,7 +169,7 @@ class OrderService {
         ]
         */
     
-        $instances = $this->em->getRepository(Order::class)->findBy([
+        $instances = $this->em->getRepository(OrderProduct::class)->findBy([
             "id" => $ids
         ]);
     

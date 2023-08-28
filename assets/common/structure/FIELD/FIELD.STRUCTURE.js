@@ -19,6 +19,14 @@ class STRUCTURE{
         NAME:"unit_price",
         TYPE:"number"
     }
+    static ORDER_CLIENT = {
+        NAME:"client_id",
+        TYPE:"select"
+    }
+    static ORDER_PRODUCT = {
+        NAME:"product_id",
+        TYPE:"select"
+    }
 }
 
 export default STRUCTURE

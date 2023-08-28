@@ -7,7 +7,7 @@ import {
 
 function addButton(){
     var button = ComponentAssets.Button.create({
-        BUTTON: ComponentAssets.getButton().CLIENT_ADD_BUTTON,
+        BUTTON: ComponentAssets.getButton().ORDER_ADD_BUTTON,
         domain: ComponentAssets.FieldManager.domain,
     });
     button.onSuccess = () =>{
@@ -19,9 +19,9 @@ function addButton(){
 function saveButton(){
     return (fields, instance={}) =>{
         var button = ComponentAssets.Button.create({
-            BUTTON: ComponentAssets.getButton().CLIENT_REGISTER,
+            BUTTON: ComponentAssets.getButton().ORDER_REGISTER,
             domain: ComponentAssets.FieldManager.domain,
-            required_fields: Object.values([fields.name, fields.phone]),
+            required_fields: Object.values([fields.client, fields.product]),
         });
         button.onSuccess = () =>{
             config().loadingAddModal = true;
@@ -35,8 +35,8 @@ function saveButton(){
                 }
             }
             var data = {
-                name:fields.name.value,
-                phone:fields.phone.value,
+                client_id:fields.client.value,
+                product_id:fields.product.value,
             }
             datatable().add({data,callback})
         }

@@ -38,10 +38,10 @@ export default C.make({
 						<div class="modal-body">
 							<form>
 								<div class="form-group mb-4 col-12">
-									{this.$input(config("addFields").name)}
+									{this.$select(config("addFields").client)}
 								</div>
 								<div class="form-group mb-4 col-12">
-									{this.$phone(config("addFields").phone)}
+									{this.$select(config("addFields").product)}
 								</div>
 							</form>
 						</div>

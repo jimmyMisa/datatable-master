@@ -9,6 +9,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Constant\Common\CommonFailureMessages;
 use App\Constant\Common\CommonSuccessMessages;
+use App\Service\Client\ClientMoreService;
+use App\Service\Product\ProductMoreService;
 
 class ApiOrderController extends AbstractController
 {
@@ -21,20 +23,34 @@ class ApiOrderController extends AbstractController
         return $this->json($results);
     }
     #[Route('/api/creer-une-commande', name: 'api_create_order')]
-    public function create(OrderService $orderService, Request $request)
+    public function create(
+        OrderService $orderService, 
+        Request $request,
+        ClientMoreService $clientMoreService,
+        ProductMoreService $productMoreService,
+    )
     {
-        $results = OrderFailureMessages::NOT_FOUND;
+        $results = CommonFailureMessages::NOT_FOUND;
         $data = json_decode($request->request->get('query'), true);
         
         if (
-            !isset($data["name"]) || 
-            !isset($data["phone"]) || 
-            $data["name"] === null || 
-            $data["phone"] === null
+            !isset($data["client_id"]) || 
+            !isset($data["product_id"]) || 
+            $data["client_id"] === null || 
+            $data["product_id"] === null
         ) {
-            $results = OrderFailureMessages::REQUIRED_FIELD;
+            $results = CommonFailureMessages::REQUIRED_FIELD;
             return $this->json($results);
         }
+
+        // Retrieve the client by ID from the repository
+        $client = $clientMoreService->find($data["client_id"]);
+        $product = $productMoreService->find($data["product_id"]);
+
+        $data = [
+            "client" => $client,
+            "product" => $product
+        ];
 
 
         $instance = $orderService->createAction($data);
@@ -46,7 +62,7 @@ class ApiOrderController extends AbstractController
     #[Route('/api/supprimer-une-commande', name: 'api_remove_order')]
     public function remove(OrderService $orderService, Request $request)
     {
-        $results = OrderFailureMessages::NOT_FOUND;
+        $results = CommonFailureMessages::NOT_FOUND;
 
         $data = json_decode($request->request->get('query'), true);
         $id = null;
@@ -69,7 +85,7 @@ class ApiOrderController extends AbstractController
     #[Route('/api/modifier-une-commande', name: 'api_edit_order')]
     public function edit(OrderService $orderService, Request $request)
     {
-        $results = OrderFailureMessages::NOT_FOUND;
+        $results = CommonFailureMessages::NOT_FOUND;
 
         $data = json_decode($request->request->get('query'), true);
         $id = null;
@@ -92,7 +108,7 @@ class ApiOrderController extends AbstractController
     #[Route('/api/detail-d-une-commande', name: 'api_get_order')]
     public function get(OrderService $orderService, Request $request)
     {
-        $results = OrderFailureMessages::NOT_FOUND;
+        $results = CommonFailureMessages::NOT_FOUND;
         $data = json_decode($request->request->get('query'), true);
         $id = null;
 
@@ -110,7 +126,7 @@ class ApiOrderController extends AbstractController
     #[Route('/api/suppression-multiple-de-commandes', name: 'api_remove_multiple_order')]
     public function removeMultiple(OrderService $orderService, Request $request)
     {
-        $results = OrderFailureMessages::NOT_FOUND;
+        $results = CommonFailureMessages::NOT_FOUND;
         $data = json_decode($request->request->get('query'), true);
         if (
             !isset($data["ids"]) || 
@@ -129,7 +145,7 @@ class ApiOrderController extends AbstractController
     #[Route('/api/modification-multiple-de-commandes', name: 'api_edit_multiple_order')]
     public function editMultiple(OrderService $orderService, Request $request)
     {
-        $results = OrderFailureMessages::NOT_FOUND;
+        $results = CommonFailureMessages::NOT_FOUND;
 
         $data = json_decode($request->request->get('query'), true);
         if (

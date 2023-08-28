@@ -8,14 +8,27 @@ import {
 
 function addFields(){
 	return {
-		name:ComponentAssets.FieldManager.create("CLIENT_NAME", config().displayPage),
-		phone:ComponentAssets.FieldManager.create("CLIENT_PHONE", config().displayPage)
+		client:ComponentAssets.FieldManager.create("ORDER_CLIENT", config().displayPage),
+		product:ComponentAssets.FieldManager.create("ORDER_PRODUCT", config().displayPage)
 	}
 }
 
 function createModal(){
 	return ()=>{
 		config().addFields = addFields()
+		var client_options = [
+			{
+				value: 1,
+				content: "p1"
+			},
+			{
+				value: 2,
+				content: "p2"
+			}
+		];
+		config().addFields.client.options = window.client_options;
+		config().addFields.product.options = window.product_options;
+
 		var modal = {
 			show(){
 				modal.instance = showModal(Assets.createModal(), {})

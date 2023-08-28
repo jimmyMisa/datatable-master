@@ -14,11 +14,11 @@ function headerColumns() {
 			name:"id",
 			label:"ID",
 		},{
-			name:"order_name",
-			label:getText("CLIENT_NAME").TH,
+			name:"client_name",
+			label:getText("CLIENT_NAME_ORDER").TH,
 		},{
-			name:"order_phone",
-			label:getText("CLIENT_PHONE").TH,
+			name:"product_name",
+			label:getText("PRODUCT_NAME_ORDER").TH,
 		}],
 	}
 }

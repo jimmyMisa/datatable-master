@@ -105,6 +105,33 @@ class FIELD{
     }
     static PRODUCT_ID = "Id"
     static CONFIRM_REMOVE_MESSAGE = "Etes vous sur de supprimer {{name}} ?"
+
+    static CLIENT_NAME_ORDER = {
+        ...STRUCTURE.NAME,
+        PLACEHOLDER:{
+            DEFAULT:"Entrer le nom du client",
+        },
+        LABEL:{
+            DEFAULT:"Nom du client",
+        },
+        EMPTY_MESSAGE:{
+            DEFAULT:"Veuillez saisir le nom du client",
+        },
+        TH:"Nom du client",
+    }
+    static PRODUCT_NAME_ORDER = {
+        ...STRUCTURE.NAME,
+        PLACEHOLDER:{
+            DEFAULT:"Entrer le nom du produit",
+        },
+        LABEL:{
+            DEFAULT:"Nom du produit",
+        },
+        EMPTY_MESSAGE:{
+            DEFAULT:"Veuillez saisir le nom du produit",
+        },
+        TH:"Nom du produit",
+    }
 }
 
 export default FIELD;

@@ -8,8 +8,8 @@ import {
 
 function addFields(){
 	return {
-		name:ComponentAssets.FieldManager.create("CLIENT_NAME", config().displayPage),
-		phone:ComponentAssets.FieldManager.create("CLIENT_PHONE", config().displayPage)
+		name:ComponentAssets.FieldManager.create("PRODUCT_NAME", config().displayPage),
+		unit_price:ComponentAssets.FieldManager.create("PRODUCT_UNIT_PRICE", config().displayPage)
 	}
 }
 

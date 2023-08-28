@@ -19,9 +19,9 @@ function addButton(){
 function saveButton(){
     return (fields, instance={}) =>{
         var button = ComponentAssets.Button.create({
-            BUTTON: ComponentAssets.getButton().CLIENT_REGISTER,
+            BUTTON: ComponentAssets.getButton().PRODUCT_REGISTER,
             domain: ComponentAssets.FieldManager.domain,
-            required_fields: Object.values([fields.name, fields.phone]),
+            required_fields: Object.values([fields.name, fields.unit_price]),
         });
         button.onSuccess = () =>{
             config().loadingAddModal = true;
@@ -36,7 +36,7 @@ function saveButton(){
             }
             var data = {
                 name:fields.name.value,
-                phone:fields.phone.value,
+                unit_price:fields.unit_price.value,
             }
             datatable().add({data,callback})
         }

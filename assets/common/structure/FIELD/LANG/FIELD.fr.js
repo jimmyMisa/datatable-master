@@ -75,6 +75,33 @@ class FIELD{
     static COMMON = {
         ENTRY: "entrée(s)"
     }
+
+    static PRODUCT_NAME = {
+        ...STRUCTURE.NAME,
+        PLACEHOLDER:{
+            DEFAULT:"Entrer le nom du produit",
+        },
+        LABEL:{
+            DEFAULT:"Nom du produit",
+        },
+        EMPTY_MESSAGE:{
+            DEFAULT:"Veuillez saisir le nom du produit",
+        },
+        TH:"Nom du produit",
+    }
+    static PRODUCT_UNIT_PRICE = {
+        ...STRUCTURE.UNIT_PRICE,
+        PLACEHOLDER:{
+            DEFAULT:"Entrer le prix unitaire",
+        },
+        LABEL:{
+            DEFAULT:"Prix unitaire",
+        },
+        EMPTY_MESSAGE:{
+            DEFAULT:"Veuillez saisir le prix unitaire",
+        },
+        TH:"Prix unitaire",
+    }
 }
 
 export default FIELD;

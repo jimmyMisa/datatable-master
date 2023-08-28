@@ -15,6 +15,10 @@ class STRUCTURE{
         NAME:"page_size",
         TYPE:"select"
     }
+    static UNIT_PRICE = {
+        NAME:"unit_price",
+        TYPE:"text"
+    }
 }
 
 export default STRUCTURE

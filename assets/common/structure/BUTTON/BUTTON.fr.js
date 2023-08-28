@@ -59,6 +59,11 @@ class BUTTON{
             DEFAULT:"Créer un produit",
         }
     }
+    static PRODUCT_REGISTER = {
+        TEXT:{
+            DEFAULT:"Enregistrer produit",
+        }
+    }
 }
 
 export default BUTTON

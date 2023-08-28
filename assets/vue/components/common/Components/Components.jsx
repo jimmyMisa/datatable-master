@@ -2,6 +2,7 @@ import classNames from "classnames";
 import { waitInput } from "pw-components-core-dev";
 import { idGenerator } from "core/tools/security/idGenerator.js";
 import { PwInput, PwSelect, PwLoading } from "pw-components-jsx-dev";
+import { determinePagination } from "modules/common/datatableUtils.js";
 
 class Components {
     static getMethods() {
@@ -98,7 +99,6 @@ class Components {
                 );
             },
             $phone(field, callback = () => {}) {
-                console.log("000000")
                 this.$setupInstance([field]);
                 var id = field.id;
                 if(!field.id){
@@ -220,6 +220,15 @@ class Components {
                         )
                     })
                 }
+                var onChange = (event) =>{
+                    var {currentTarget:input} = event
+                    waitInput(input, () =>{
+                        var {value} = input
+                        var {onChange} = field
+                        onChange({value, event, input})
+                    }, 100)
+                }
+
                 return (
                     <select
                         data-jid={field.id}
@@ -230,7 +239,7 @@ class Components {
                         name={field.name}
                         required={field.required}
                         class={classNames("pw_input form-control", field.class)}
-                        onChange={field.onChange}
+                        onChange={onChange}
                     >
                         {optionsElements()}
                     </select>
@@ -317,18 +326,99 @@ class Components {
                     </nav>
                 );
             },
+            $dottedPagination(pagination) {
+                var pages = () => {
+                    var pages = [];
+
+                    var paginations = determinePagination(pagination.page, pagination.pages, 5);
+
+                    paginations.map((page) => {
+                        var active = () =>{
+                            if(page == pagination.page){
+                                return "active"
+                            }
+                            return ""
+                        }
+                        if (typeof page == "object") {
+                            var { go = ""} = page;
+                            pages.push(
+                                <li
+                                    class="page-item"
+                                    onClick={pagination.goto(go)}
+                                >
+                                    <a class="page-link" href="#">
+                                        ...
+                                    </a>
+                                </li>
+                            );
+                        } else {
+                            pages.push(
+                                <li
+                                    class={classNames(
+                                        "page-item", active()
+                                    )}
+                                    onClick={pagination.goto(page)}
+                                >
+                                    <a class="page-link" href="#">
+                                        {page}
+                                    </a>
+                                </li>
+                            );
+                        }
+                    });
+                    
+                    return pages;
+                };
+
+                var disablePrev = () => {
+                    if(pagination.page == 1){
+                        return "disabled"
+                    }
+                    return ""
+                }
+
+                var disableNext = () => {
+                    if(pagination.page == pagination.pages){
+                        return "disabled";
+                    }
+                    return ""
+                }
+                return (
+                    <nav>
+                        <ul class="pagination">
+                            <li class={classNames("page-item", disablePrev())}>
+                                <a class="page-link" href="#" onClick={pagination.prev}>
+                                    Previous
+                                </a>
+                            </li>
+                            {pages()}
+                            <li class={classNames("page-item", disableNext())}>
+                                <a class="page-link" href="#" onClick={pagination.next}>
+                                    Next
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                );
+            },
             $commonLoading(params={}) {
                 var {
                     isVisible=false, 
                     hasConfig=true, 
-                    ref="loading"
+                    ref="loading",
+                    mode="border",
+                    color="primary",
+                    className = "",
                 } = params;
                 return (
                     <PwLoading
                         ref={ref}
                         config={{
                             isVisible: isVisible,
-                            hasConfig:hasConfig
+                            hasConfig:hasConfig,
+                            mode,
+							color,
+                            className
                         }}
                     />
                 );

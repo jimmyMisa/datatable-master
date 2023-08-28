@@ -50,11 +50,11 @@ class CommonTableOverride{
 				)
 			},
 			renderDatatableBottom(){
-				if(this.getConfig().pagination.pages > 2){
+				if(this.getConfig().pagination.pages >= 2){
 
 					return (
 						<div class="float-right">
-							{CommonTable.getMethod(this, "Pagination")()}
+							{this.$dottedPagination(this.getConfig().pagination)}
 						</div>
 					)
 				}

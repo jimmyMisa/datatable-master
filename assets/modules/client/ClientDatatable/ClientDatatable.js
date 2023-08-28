@@ -10,7 +10,7 @@ class ClientDatatable{
 	static reload(){
 		var data = {
 			page:config().pagination.page,
-			size:config().pageSize.value,
+			size:config().pageSize.field().value,
 			orderBy:config().headerColumns.orderBy,
 			order:config().headerColumns.order,
 			key:config().searchInput.value,

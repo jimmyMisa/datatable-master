@@ -8,8 +8,8 @@ import {
 function pageSize() {
 	var pageSize = {
 		f:null,
-		value:10,
-		options: [5, 10, 25, 50, 100],
+		value:1,
+		options: [1, 5, 10, 25, 50, 100],
 		field:() =>{
 			if(pageSize.f){
 				return pageSize.f
@@ -22,11 +22,10 @@ function pageSize() {
 		            content: key,
 		        }
 			});
-			field.onChange = (event) =>{
-				var { currentTarget:input } = event;
-				var { value } = input;
+			field.onChange = (params={}) =>{
+				var { value } = params;
 				config().pagination.page = 1;
-				config().pageSize.value = value;
+				config().pageSize.field().value = value;
 				datatable().reload();
 			}
 			pageSize.f = field

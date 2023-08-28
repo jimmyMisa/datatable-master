@@ -12,6 +12,9 @@ function loadingContent() {
         isVisible: false,
         hasConfig: true,
         ref: "loading",
+        mode:"border",
+        color:"primary",
+        className : "custom_spinner",
     }
     return loadingContent
 }

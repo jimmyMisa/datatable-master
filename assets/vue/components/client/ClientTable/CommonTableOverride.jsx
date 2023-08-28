@@ -54,7 +54,7 @@ class CommonTableOverride{
 
 					return (
 						<div class="float-right">
-							{CommonTable.getMethod(this, "Pagination")()}
+							{this.$dottedPagination(this.getConfig().pagination)}
 						</div>
 					)
 				}

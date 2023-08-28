@@ -2,6 +2,7 @@ import classNames from "classnames";
 import { waitInput } from "pw-components-core-dev";
 import { idGenerator } from "core/tools/security/idGenerator.js";
 import { PwInput, PwSelect, PwLoading } from "pw-components-jsx-dev";
+import { determinePagination } from "modules/common/datatableUtils.js";
 
 class Components {
     static getMethods() {
@@ -283,6 +284,81 @@ class Components {
                             </li>,
                         );
                     }
+                    return pages;
+                };
+
+                var disablePrev = () => {
+                    if(pagination.page == 1){
+                        return "disabled"
+                    }
+                    return ""
+                }
+
+                var disableNext = () => {
+                    if(pagination.page == pagination.pages){
+                        return "disabled";
+                    }
+                    return ""
+                }
+                return (
+                    <nav>
+                        <ul class="pagination">
+                            <li class={classNames("page-item", disablePrev())}>
+                                <a class="page-link" href="#" onClick={pagination.prev}>
+                                    Previous
+                                </a>
+                            </li>
+                            {pages()}
+                            <li class={classNames("page-item", disableNext())}>
+                                <a class="page-link" href="#" onClick={pagination.next}>
+                                    Next
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                );
+            },
+            $dottedPagination(pagination) {
+                var pages = () => {
+                    var pages = [];
+
+                    var paginations = determinePagination(pagination.page, pagination.pages, 5);
+
+                    paginations.map((page) => {
+                        var active = () =>{
+                            if(page == pagination.page){
+                                return "active"
+                            }
+                            return ""
+                        }
+                        if (typeof page == "object") {
+                            var { go = ""} = page;
+                            pages.push(
+                                <li
+                                    class="page-item"
+                                    onClick={pagination.goto(go)}
+                                >
+                                    <a class="page-link" href="#">
+                                        ...
+                                    </a>
+                                </li>
+                            );
+                        } else {
+                            pages.push(
+                                <li
+                                    class={classNames(
+                                        "page-item", active()
+                                    )}
+                                    onClick={pagination.goto(page)}
+                                >
+                                    <a class="page-link" href="#">
+                                        {page}
+                                    </a>
+                                </li>
+                            );
+                        }
+                    });
+                    
                     return pages;
                 };
 

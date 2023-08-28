@@ -42,8 +42,8 @@ function removeModal(){
 	return (params) =>{
 		config().removeParams = params.contentLine;
 		config().removeText = () =>{
-			return getText("CLIENT_REMOVE_MESSAGE", {
-				productName:() =>{
+			return getText("CONFIRM_REMOVE_MESSAGE", {
+				name:() =>{
 					//TODO send this formation datatable actions
 					return params.contentLine.product_name;
 				}

@@ -103,6 +103,7 @@ class FIELD{
         TH:"Prix unitaire",
     }
     static PRODUCT_ID = "Id"
+    static CONFIRM_REMOVE_MESSAGE = "Etes vous sur de supprimer {{name}} ?"
 }
 
 export default FIELD;

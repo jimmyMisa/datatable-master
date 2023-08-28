@@ -321,14 +321,20 @@ class Components {
                 var {
                     isVisible=false, 
                     hasConfig=true, 
-                    ref="loading"
+                    ref="loading",
+                    mode="border",
+                    color="primary",
+                    className = "",
                 } = params;
                 return (
                     <PwLoading
                         ref={ref}
                         config={{
                             isVisible: isVisible,
-                            hasConfig:hasConfig
+                            hasConfig:hasConfig,
+                            mode,
+							color,
+                            className
                         }}
                     />
                 );

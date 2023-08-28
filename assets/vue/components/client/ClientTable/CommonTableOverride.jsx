@@ -89,7 +89,7 @@ class CommonTableOverride{
 			},
 			renderDatatablePageSize(){
 				return <div class="size_wrapper">
-					<div class="mr-1">Show</div> 
+					<div class="mr-1">{getText("COMMON").SHOW}</div> 
 					{this.$commonSelect(this.getConfig().pageSize.field())}
 					<div class="ml-1">{getText("COMMON").ENTRY}</div>
 				</div>

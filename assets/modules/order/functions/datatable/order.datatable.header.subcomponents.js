@@ -8,7 +8,7 @@ import { toggleOrder } from "modules/common/datatableUtils.js";
 
 function headerColumns() {
 	return {
-		orderBy:"order_name",
+		orderBy:"id",
 		order:"ASC",
 		columns:[{
 			name:"id",

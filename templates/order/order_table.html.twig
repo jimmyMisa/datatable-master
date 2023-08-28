@@ -1,0 +1,25 @@
+{% extends 'client/client_layout.html.twig' %}
+
+{% block title %}Gestion des commandes{% endblock %}
+{% block stylesheets %}
+{{ encore_entry_link_tags('order_index') }}
+{% endblock %}
+
+{% block body %}
+<div id="app">
+</div>
+<div id="app_modal_wrapper">
+</div>
+{% endblock %}
+{% block javascripts %}
+	<script type="text/javascript">
+	window.api_list_order = "{{ path('api_list_order') }}";
+	window.api_create_order = "{{ path('api_create_order') }}";
+	window.api_remove_order = "{{ path('api_remove_order') }}";
+	window.api_edit_order = "{{ path('api_edit_order') }}";
+	window.api_get_order = "{{ path('api_get_order') }}";
+	window.api_remove_multiple_order = "{{ path('api_remove_multiple_order') }}";
+	window.api_edit_multiple_order = "{{ path('api_edit_multiple_order') }}";
+	</script>
+{{ encore_entry_script_tags('order_index') }}
+{% endblock %}

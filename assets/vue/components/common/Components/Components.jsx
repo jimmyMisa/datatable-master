@@ -99,7 +99,6 @@ class Components {
                 );
             },
             $phone(field, callback = () => {}) {
-                console.log("000000")
                 this.$setupInstance([field]);
                 var id = field.id;
                 if(!field.id){
@@ -221,6 +220,15 @@ class Components {
                         )
                     })
                 }
+                var onChange = (event) =>{
+                    var {currentTarget:input} = event
+                    waitInput(input, () =>{
+                        var {value} = input
+                        var {onChange} = field
+                        onChange({value, event, input})
+                    }, 100)
+                }
+
                 return (
                     <select
                         data-jid={field.id}
@@ -231,7 +239,7 @@ class Components {
                         name={field.name}
                         required={field.required}
                         class={classNames("pw_input form-control", field.class)}
-                        onChange={field.onChange}
+                        onChange={onChange}
                     >
                         {optionsElements()}
                     </select>

@@ -11,8 +11,8 @@ import {
 function editFields(params){
 	return {
 		id: params.contentLine.id,
-		name:ComponentAssets.FieldManager.create("CLIENT_NAME", config().displayPage),
-		phone:ComponentAssets.FieldManager.create("CLIENT_PHONE", config().displayPage),
+		name:ComponentAssets.FieldManager.create("PRODUCT_NAME", config().displayPage),
+		unit_price:ComponentAssets.FieldManager.create("PRODUCT_UNIT_PRICE", config().displayPage),
 	}
 }
 
@@ -25,9 +25,9 @@ function editModal(){
 				modal.instance = showModal(Assets.editModal(), {});
 				setTimeout(() =>{
 					editField.name.value = params.contentLine.product_name;
-					var phone = editField.phone
-					$(refs(phone).input).val(params.contentLine.product_phone)
+					editField.unit_price.value = params.contentLine.product_unit_price;
 					editField.name.refresh();
+					editField.unit_price.refresh();
 				}, 100)
 			},
 			hide(){

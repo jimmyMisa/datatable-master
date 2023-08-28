@@ -50,7 +50,7 @@ function saveEditButton() {
         var button = ComponentAssets.Button.create({
             BUTTON: ComponentAssets.getButton().CLIENT_SAVE_EDIT_BUTTON,
             domain: ComponentAssets.FieldManager.domain,
-            required_fields: Object.values([fields.name, fields.phone]),
+            required_fields: Object.values([fields.name, fields.unit_price]),
         });
         button.onSuccess = () =>{
             config().loadingEditModal = true;
@@ -66,7 +66,7 @@ function saveEditButton() {
             var data = {
                 id:fields.id,
                 name:fields.name.value,
-                phone:fields.phone.value
+                unit_price:fields.unit_price.value
             }
             datatable().edit({data,callback})
         }

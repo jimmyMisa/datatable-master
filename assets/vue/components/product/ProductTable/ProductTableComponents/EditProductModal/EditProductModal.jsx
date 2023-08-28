@@ -25,7 +25,7 @@ export default C.make({
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title">Modifier un product</h5>
+							<h5 class="modal-title">Modifier un produit</h5>
 							<button
 								type="button"
 								class="close"
@@ -41,7 +41,7 @@ export default C.make({
 									{this.$input(config("editFields").name)}
 								</div>
 								<div class="form-group mb-4 col-12">
-									{this.$phone(config("editFields").phone)}
+									{this.$input(config("editFields").unit_price)}
 								</div>
 							</form>
 						</div>

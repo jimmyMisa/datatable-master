@@ -224,7 +224,7 @@ class Components {
                     var {currentTarget:input} = event
                     waitInput(input, () =>{
                         var {value} = input
-                        var {onChange} = field
+                        var {onChange=() => {}} = field
                         onChange({value, event, input})
                     }, 100)
                 }

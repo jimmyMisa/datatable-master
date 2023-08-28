@@ -22,7 +22,7 @@ export default C.make({
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title">Detail sur un order</h5>
+							<h5 class="modal-title">Detail sur la commande</h5>
 							<button
 								type="button"
 								class="close"
@@ -39,12 +39,12 @@ export default C.make({
 									{config("detailFields").id}
 								</div>
 								<div class="form-group mb-4 col-12">
-									{config("detailFields").labels.name} :{" "}
-									{config("detailFields").name}
+									{config("detailFields").labels.client} :{" "}
+									{config("detailFields").client}
 								</div>
 								<div class="form-group mb-4 col-12">
-									{config("detailFields").labels.phone} :{" "}  
-									{config("detailFields").phone}
+									{config("detailFields").labels.product} :{" "}  
+									{config("detailFields").product}
 								</div>
 							</form>
 						</div>

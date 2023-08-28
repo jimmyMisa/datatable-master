@@ -64,12 +64,12 @@ function removeModal(){
 function detailFields(params){
 	return {
 		id:params.contentLine.id,
-		name:params.contentLine.order_name,
-		phone:params.contentLine.order_phone,
+		client:params.contentLine.client_name,
+		product:params.contentLine.product_name,
 		labels:{
 			id:getText("CLIENT_ID"),
-			name:getText("CLIENT_NAME").LABEL.DEFAULT,
-			phone:getText("CLIENT_PHONE").LABEL.DEFAULT
+			client:getText("CLIENT_NAME_ORDER").LABEL.DEFAULT,
+			product:getText("PRODUCT_NAME_ORDER").LABEL.DEFAULT
 		}
 	}
 }

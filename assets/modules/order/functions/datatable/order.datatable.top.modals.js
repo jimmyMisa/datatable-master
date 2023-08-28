@@ -16,16 +16,6 @@ function addFields(){
 function createModal(){
 	return ()=>{
 		config().addFields = addFields()
-		var client_options = [
-			{
-				value: 1,
-				content: "p1"
-			},
-			{
-				value: 2,
-				content: "p2"
-			}
-		];
 		config().addFields.client.options = window.client_options;
 		config().addFields.product.options = window.product_options;
 

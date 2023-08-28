@@ -221,7 +221,9 @@ class Components {
                     })
                 }
                 var onChange = (event) =>{
+                    console.log({event})
                     var {currentTarget:input} = event
+                    console.log({input})
                     waitInput(input, () =>{
                         var {value} = input
                         var {onChange} = field

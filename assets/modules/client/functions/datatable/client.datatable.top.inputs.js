@@ -10,6 +10,7 @@ function searchInput(){
 	field.onInput = (params={}) =>{
 		var {value, event, input} = params;
 		config().searchInput.value = value;
+		config().pagination.page = 1;
 		config().instance.refresh();
 		datatable().reload();
 	}

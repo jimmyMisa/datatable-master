@@ -31,6 +31,8 @@ function editModal(){
 					var {contentLine={}} = params;
 					var {client_id, product_id} = contentLine;
 					//TODO setup default value
+					editField.client.value = client_id;
+					editField.product.value = product_id;
 					editField.client.refresh();
 				}, 100)
 			},
@@ -46,10 +48,13 @@ function removeModal(){
 	return (params) =>{
 		config().removeParams = params.contentLine;
 		config().removeText = () =>{
-			return getText("CLIENT_REMOVE_MESSAGE", {
-				orderName:() =>{
+			return getText("ORDER_REMOVE_MESSAGE", {
+				product:() =>{
 					//TODO send this formation datatable actions
-					return params.contentLine.order_name;
+					return params.contentLine.product_name;
+				},
+				client:() =>{
+					return params.contentLine.client_name;
 				}
 			})
 		}

@@ -132,6 +132,8 @@ class FIELD{
         },
         TH:"Nom du produit",
     }
+    static ORDER_REMOVE_MESSAGE = "Etes vous sur de supprimer la commande {{product}} de {{client}} ?"
+
 }
 
 export default FIELD;

@@ -38,10 +38,10 @@ export default C.make({
 						<div class="modal-body">
 							<form>
 								<div class="form-group mb-4 col-12">
-									{this.$select(config("editFields").client)}
+									{this.$commonSelect(config("editFields").client)}
 								</div>
 								<div class="form-group mb-4 col-12">
-									{this.$select(config("editFields").product)}
+									{this.$commonSelect(config("editFields").product)}
 								</div>
 							</form>
 						</div>

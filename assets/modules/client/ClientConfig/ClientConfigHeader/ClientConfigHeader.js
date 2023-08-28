@@ -8,6 +8,8 @@ class ClientConfigHeader{
 	static configure(){
         //HEADER COLUMNS
         config().headerColumns = ClientDatatableAssets.headerColumns();
+
+		config().sortColumns = ClientDatatableAssets.sortColumns;
 	}
 }
 

@@ -73,6 +73,7 @@ class FIELD{
         EMPTY_MESSAGE:"Aucun resultat"
     }
     static COMMON = {
+        SHOW: "Afficher",
         ENTRY: "entrée(s)"
     }
 

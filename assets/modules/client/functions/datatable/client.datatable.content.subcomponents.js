@@ -7,4 +7,16 @@ function contentLines() {
 	return config().contentLines
 }
 
-export { contentLines };
+function loadingContent() {
+    var loadingContent = {
+        isVisible: false,
+        hasConfig: true,
+        ref: "loading",
+    }
+    return loadingContent
+}
+
+export { 
+    contentLines, 
+    loadingContent 
+};

@@ -1,11 +1,12 @@
 import {CommonTable} from "vue/components/common/CommonTable/CommonTable.jsx";
 
-import ViewSvg from "vue/components/common/icons/ViewSvg.jsx";
-import EditSvg from "vue/components/common/icons/EditSvg.jsx";
-import RemoveSvg from "vue/components/common/icons/RemoveSvg.jsx";
-import {getText} from "modules/client/ClientAssets.js"
-
+import { 
+    ClientAssets as Assets, 
+    config,
+	getText
+} from "modules/client/ClientAssets.js";
 import {ClientDecorator} from "vue/components/client/ClientTable/ClientDecorator.jsx";
+import classNames from "classnames";
 
 class CommonTableOverride{
 	static getMethods(){
@@ -88,7 +89,7 @@ class CommonTableOverride{
 			},
 			renderDatatablePageSize(){
 				return <div class="size_wrapper">
-					<div class="mr-1">Show</div> 
+					<div class="mr-1">{getText("COMMON").SHOW}</div> 
 					{this.$commonSelect(this.getConfig().pageSize.field())}
 					<div class="ml-1">{getText("COMMON").ENTRY}</div>
 				</div>
@@ -96,6 +97,25 @@ class CommonTableOverride{
 			renderDatatableSearchBar(){
 				return this.$inputInline(this.getConfig().searchInput);
 			},
+			renderDatatableLoadingContent(){
+				return this.$commonLoading(this.getConfig().loadingContent);
+			},
+			renderDatatableHeaderColumn({headerColumn} = {}){
+				var orderClass = "sorting";
+				var { order } = headerColumn;
+				if(order == "ASC"){
+					orderClass = "sorting sorting_asc";
+				}
+				else if(order == "DESC"){
+					orderClass = "sorting sorting_desc";
+				}
+				
+				return (
+					<th class={classNames(orderClass)} onClick={config().sortColumns(headerColumn)}>
+						{headerColumn.label}
+					</th>
+				)
+			}
 		}
 	}
 }

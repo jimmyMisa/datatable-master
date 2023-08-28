@@ -102,6 +102,7 @@ class FIELD{
         },
         TH:"Prix unitaire",
     }
+    static PRODUCT_ID = "Id"
 }
 
 export default FIELD;

@@ -65,11 +65,11 @@ function detailFields(params){
 	return {
 		id:params.contentLine.id,
 		name:params.contentLine.product_name,
-		phone:params.contentLine.product_phone,
+		unit_price:params.contentLine.product_unit_price,
 		labels:{
-			id:getText("CLIENT_ID"),
-			name:getText("CLIENT_NAME").LABEL.DEFAULT,
-			phone:getText("CLIENT_PHONE").LABEL.DEFAULT
+			id:getText("PRODUCT_ID"),
+			name:getText("PRODUCT_NAME").LABEL.DEFAULT,
+			unit_price:getText("PRODUCT_UNIT_PRICE").LABEL.DEFAULT
 		}
 	}
 }

@@ -12,10 +12,10 @@ function headerColumns() {
 			label:"ID",
 		},{
 			name:"product_name",
-			label:getText("CLIENT_NAME").TH,
+			label:getText("PRODUCT_NAME").TH,
 		},{
-			name:"product_phone",
-			label:getText("CLIENT_PHONE").TH,
+			name:"product_unit_price",
+			label:getText("PRODUCT_UNIT_PRICE").TH,
 		}],
 	}
 }

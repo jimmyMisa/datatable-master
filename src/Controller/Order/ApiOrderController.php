@@ -83,7 +83,12 @@ class ApiOrderController extends AbstractController
         return $this->json($results);
     }
     #[Route('/api/modifier-une-commande', name: 'api_edit_order')]
-    public function edit(OrderService $orderService, Request $request)
+    public function edit(
+        OrderService $orderService, 
+        Request $request,
+        ClientMoreService $clientMoreService,
+        ProductMoreService $productMoreService
+    )
     {
         $results = CommonFailureMessages::NOT_FOUND;
 
@@ -98,6 +103,12 @@ class ApiOrderController extends AbstractController
             $results = CommonFailureMessages::REQUIRED_FIELD;
             return $this->json($results);
         }
+
+        $client = $clientMoreService->find($data["client_id"]);
+        $product = $productMoreService->find($data["product_id"]);
+
+        $data["client"] = $client;
+        $data["product"] = $product;
         
         $instance = $orderService->editAction($data);
         if($instance){

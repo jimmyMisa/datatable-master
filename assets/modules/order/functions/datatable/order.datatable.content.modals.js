@@ -11,8 +11,8 @@ import {
 function editFields(params){
 	return {
 		id: params.contentLine.id,
-		name:ComponentAssets.FieldManager.create("CLIENT_NAME", config().displayPage),
-		phone:ComponentAssets.FieldManager.create("CLIENT_PHONE", config().displayPage),
+		client:ComponentAssets.FieldManager.create("CLIENT_NAME_ORDER", config().displayPage),
+		product:ComponentAssets.FieldManager.create("PRODUCT_NAME_ORDER", config().displayPage),
 	}
 }
 
@@ -20,14 +20,18 @@ function editModal(){
 	return (params) =>{
 		var editField = editFields(params)
 		config().editFields = editField
+		config().editFields.client.options = window.client_options;
+		config().editFields.product.options = window.product_options;
+
 		var modal = {
 			show(){
+				console.log(refs)
 				modal.instance = showModal(Assets.editModal(), {});
 				setTimeout(() =>{
-					editField.name.value = params.contentLine.order_name;
-					var phone = editField.phone
-					$(refs(phone).input).val(params.contentLine.order_phone)
-					editField.name.refresh();
+					var {contentLine={}} = params;
+					var {client_id, product_id} = contentLine;
+					//TODO setup default value
+					editField.client.refresh();
 				}, 100)
 			},
 			hide(){

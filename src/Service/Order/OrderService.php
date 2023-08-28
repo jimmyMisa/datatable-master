@@ -24,7 +24,9 @@ class OrderService {
             SELECT
                 order_product.id AS id,
                 client.name AS client_name,
-                product.name AS product_name
+                client.id AS client_id,
+                product.name AS product_name,
+                product.id AS product_id
             FROM
                 order_product
             LEFT JOIN
@@ -72,16 +74,16 @@ class OrderService {
     public function editAction($data): ?OrderProduct
     {
         $id = trim($data["id"]);
-        $name = trim($data["name"]);
-        $phone = trim($data["phone"]);
+        $client = $data["client"];
+        $product = $data["product"];
 
         $order = $this->em->getRepository(OrderProduct::class)->findOneBy(["id" => $id]);
         if (!$order) {
             return null;
         }
 
-        $order->setName($name);
-        $order->setPhone($phone);
+        $order->setClient($client);
+        $order->setProduct($product);
 
         /* 
             Prerequisite: Define the save function in the repository

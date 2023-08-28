@@ -7,7 +7,7 @@ class ProductConfig {
         //GLOBAL CONFIGURAITONS
         ProductConfig.params.lang = "FR";
         ProductConfig.params.domain = "DEFAULT";
-        ProductConfig.params.displayPage = "CLIENT_LIST";
+        ProductConfig.params.displayPage = "PRODUCT_LIST";
 
         FIELD.init(ProductConfig.params);
 

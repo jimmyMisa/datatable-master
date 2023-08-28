@@ -17,7 +17,7 @@ class STRUCTURE{
     }
     static UNIT_PRICE = {
         NAME:"unit_price",
-        TYPE:"text"
+        TYPE:"number"
     }
 }
 

@@ -1,7 +1,10 @@
 import { 
 	ProductAssets as Assets,
-    getText 
+    getText,
+	config,
+	datatable
 } from "modules/product/ProductAssets.js";
+import { toggleOrder } from "modules/common/datatableUtils.js";
 
 function headerColumns() {
 	return {
@@ -13,6 +16,7 @@ function headerColumns() {
 		},{
 			name:"product_name",
 			label:getText("PRODUCT_NAME").TH,
+			order: "ASC"
 		},{
 			name:"product_unit_price",
 			label:getText("PRODUCT_UNIT_PRICE").TH,

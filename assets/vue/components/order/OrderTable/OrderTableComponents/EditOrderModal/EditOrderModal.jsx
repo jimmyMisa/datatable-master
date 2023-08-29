@@ -18,7 +18,6 @@ export default C.make({
 			<div
 				class="modal fade"
 				ref="modal"
-				tabindex="-1"
 				role="dialog"
 				aria-hidden="true"
 			>
@@ -38,10 +37,10 @@ export default C.make({
 						<div class="modal-body">
 							<form>
 								<div class="form-group mb-4 col-12">
-									{this.$commonSelect(config("editFields").client)}
+									{this.$select(config("editFields").client)}
 								</div>
 								<div class="form-group mb-4 col-12">
-									{this.$commonSelect(config("editFields").product)}
+									{this.$select(config("editFields").product)}
 								</div>
 							</form>
 						</div>

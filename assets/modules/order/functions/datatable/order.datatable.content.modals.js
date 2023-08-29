@@ -19,17 +19,9 @@ function editFields(params){
 function editModal(){
 	return (params) =>{
 		var editField = editFields(params)
+		editField.client.options = window.client_options;
+		editField.product.options = window.product_options;
 		config().editFields = editField
-		config().editFields.client.options = window.client_options;
-		config().editFields.product.options = window.product_options;
-		config().editFields.client.onChange = (params={}) => {
-			var { value } = params;
-			config().editFields.client.value = value
-		}
-		config().editFields.product.onChange = (params={}) => {
-			var { value } = params;
-			config().editFields.product.value = value
-		}
 
 		var modal = {
 			show(){
@@ -37,10 +29,18 @@ function editModal(){
 				setTimeout(() =>{
 					var {contentLine={}} = params;
 					var {client_id, product_id} = contentLine;
-					editField.client.value = client_id;
-					editField.product.value = product_id;
-					editField.client.refresh();
-				}, 100)
+					editField.client.value = params.contentLine.client_id;
+					editField.product.value = params.contentLine.product_id;
+
+					var client = editField.client
+					var select = refs(client).select
+					$(select).val(client_id).trigger('change');
+
+					var product = editField.product
+					var select = refs(product).select
+					$(select).val(product_id).trigger('change');
+
+				}, 500)
 			},
 			hide(){
 				modal.instance.hide();

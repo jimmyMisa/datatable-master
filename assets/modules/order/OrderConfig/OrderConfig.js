@@ -5,9 +5,9 @@ class OrderConfig {
     static params = {};
     static init() {
         //GLOBAL CONFIGURAITONS
-        OrderConfig.params.lang = "FR";
+        OrderConfig.params.lang = "MG";
         OrderConfig.params.domain = "DEFAULT";
-        OrderConfig.params.displayPage = "CLIENT_LIST";
+        OrderConfig.params.displayPage = "ORDER_LIST";
 
         FIELD.init(OrderConfig.params);
 

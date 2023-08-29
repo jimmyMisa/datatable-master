@@ -8,8 +8,8 @@ import {
 
 function addFields(){
 	return {
-		client:ComponentAssets.FieldManager.create("ORDER_CLIENT", config().displayPage),
-		product:ComponentAssets.FieldManager.create("ORDER_PRODUCT", config().displayPage)
+		client:ComponentAssets.FieldManager.create("CLIENT_NAME_ORDER", config().displayPage),
+		product:ComponentAssets.FieldManager.create("PRODUCT_NAME_ORDER", config().displayPage)
 	}
 }
 

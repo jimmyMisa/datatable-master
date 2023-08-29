@@ -18,7 +18,6 @@ export default C.make({
 			<div
 				class="modal fade"
 				ref="modal"
-				tabindex="-1"
 				role="dialog"
 				aria-hidden="true"
 			>

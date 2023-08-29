@@ -1,0 +1,17 @@
+.rounded_button{
+    background-color: transparent;
+    border: none;
+    color: #515365;
+
+    &.info:hover {
+        color: #2196f3;
+    }
+
+    &.primary:hover {
+        color: #4361ee;
+    }
+
+    &.danger:hover {
+        color: red;
+    }
+}

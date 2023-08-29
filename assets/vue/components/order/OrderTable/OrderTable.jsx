@@ -36,31 +36,30 @@ export default C.make({
 		});
 		return trs
 	},
-	/*renderDatatableHeaderColumn({headerColumn} = {}){
-		return (
-			<th>
-				{headerColumn.label}
-			</th>
-		)
-	},*/
 	$render(h, instance) {
 		config().instance = this;
 		
 		return (
-			
-			<div class="container mt-3">
-
-				<div class="card">
-					<div class="card-header">
-						Liste des orders
-						{this.renderDatatableCreate()}
-					</div>
-					<div class="card-body">
-						{this.renderDatatableFull()}
-						{this.renderDatatableLoadingContent()}
+			<div class="container">
+				<div class="layout-px-spacing">
+					<div class="middle-content container-xxl p-0 mt-2">
+						<div class="page-meta">
+							<nav class="breadcrumb-style-one" aria-label="breadcrumb">
+								<ol class="breadcrumb">
+									<li class="breadcrumb-item">
+										{this.renderDatatableCreate()}
+									</li>
+								</ol>
+							</nav>
+							<div class="card-body">
+								{this.renderDatatableFull()}
+								{this.renderDatatableLoadingContent()}
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
+			
 		);
 	},
 });

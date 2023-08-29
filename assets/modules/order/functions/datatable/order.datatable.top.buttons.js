@@ -29,10 +29,8 @@ function saveButton(){
             var callback = (result)=>{
                 config().loadingAddModal = false;
                 config().instance.refresh()
-                if (result.code==200) {
-                    var { modal } = instance.$refs;
-                    $(modal).modal("hide")
-                }
+                var { modal } = instance.$refs;
+                $(modal).modal("hide")
             }
             var data = {
                 client_id:fields.client.value,

@@ -47,7 +47,7 @@ export default C.make({
 						<div class="modal-footer">
 							<button
 								type="button"
-								class="btn btn-secondary"
+								class="btn btn-dark"
 								data-dismiss="modal"
 							>
 								{config("cancelSaveButton").text}
@@ -58,6 +58,8 @@ export default C.make({
 							config={{
 								isVisible: config().loadingAddModal,
 								hasConfig: true,
+								mode: "grow",
+								color: "primary"
 							}}
 						/>
 					</div>

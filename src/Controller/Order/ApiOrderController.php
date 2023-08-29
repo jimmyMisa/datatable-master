@@ -27,7 +27,7 @@ class ApiOrderController extends AbstractController
         OrderService $orderService, 
         Request $request,
         ClientMoreService $clientMoreService,
-        ProductMoreService $productMoreService,
+        ProductMoreService $productMoreService
     )
     {
         $results = CommonFailureMessages::NOT_FOUND;

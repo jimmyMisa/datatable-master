@@ -1,8 +1,10 @@
-{% extends 'client/client_layout.html.twig' %}
+{% extends 'client/client_layout_cork.html.twig' %}
 
 {% block title %}Gestion des commandes{% endblock %}
 {% block stylesheets %}
-{{ encore_entry_link_tags('order_index') }}
+	<link rel="stylesheet" type="text/css" href="{{asset('cork_admin/src/plugins/src/table/datatable/datatables.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('cork_admin/src/plugins/css/light/table/datatable/dt-global_style.css')}}">
+	{{ encore_entry_link_tags('order_index') }}
 {% endblock %}
 
 {% block body %}

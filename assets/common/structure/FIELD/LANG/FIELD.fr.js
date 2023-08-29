@@ -74,7 +74,8 @@ class FIELD{
     }
     static COMMON = {
         SHOW: "Afficher",
-        ENTRY: "entrée(s)"
+        ENTRY: "entrée(s)",
+        RESULTS: "Résultats"
     }
 
     static PRODUCT_NAME = {

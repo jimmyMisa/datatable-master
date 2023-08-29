@@ -19,7 +19,12 @@ class CommonDatatableFull{
 						{CommonTable.getMethod(this, "Bottom")()}
 					</div>
 				)
-			}
+			}, 
+			LoadingContent(){
+				return (
+					<div></div>
+				)
+			},
 		}
 	}
 }

@@ -48,7 +48,7 @@ export default C.make({
 						<div class="modal-footer">
 							<button
 								type="button"
-								class="btn btn-secondary"
+								class="btn btn-dark"
 								data-dismiss="modal"
 							>
 								{config("cancelSaveButton").text}

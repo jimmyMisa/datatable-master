@@ -3,7 +3,8 @@ import {CommonTable} from "vue/components/common/CommonTable/CommonTable.jsx";
 import { 
     ClientAssets as Assets, 
     config,
-    datatable
+    datatable,
+	getText
 } from "modules/client/ClientAssets.js";
 import classNames from "classnames";
 import {ClientDecorator} from "vue/components/client/ClientTable/ClientDecorator.jsx";
@@ -96,11 +97,13 @@ class CommonTableOverride{
 				)
 			},
 			renderDatatablePagination(){
-				var params = {
-					"prevContent": this.prevIcon(),
-					"nextContent": this.nextIcon()
+				if(this.getConfig().pagination.pages >= 2){
+					var params = {
+						"prevContent": this.prevIcon(),
+						"nextContent": this.nextIcon()
+					}
+					return this.$dottedPagination(this.getConfig().pagination, params);
 				}
-				return this.$paginationCork(this.getConfig().pagination, params);
 			},
 			renderDatatableDetailButton(params = {}){
 				return this.$iconButtonCork(
@@ -132,13 +135,16 @@ class CommonTableOverride{
 			},
 			renderDatatablePageSize(){
 				return <div class="size_wrapper">
-					<div class="mr-1">Show</div> 
+					<div class="mr-1">{getText("COMMON").SHOW}</div> 
 					{this.$commonSelect(this.getConfig().pageSize.field())}
 					<div class="ml-1">{getText("COMMON").ENTRY}</div>
 				</div>
 			},
 			renderDatatableSearchBar(){
 				return this.$inputInline(this.getConfig().searchInput);
+			},
+			renderDatatableLoadingContent(){
+				return this.$commonLoading(this.getConfig().loadingContent);
 			},
 			renderDatatableHeaderColumn({headerColumn} = {}){
 				var orderClass = "sorting";

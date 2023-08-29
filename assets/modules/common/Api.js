@@ -8,7 +8,6 @@ class Api{
 
 	}
 	run({data, then = () =>{}}){
-		console.log("run", [this.url, data])
 		Request.post({
 			url:this.url,
 			data,

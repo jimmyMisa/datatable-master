@@ -1,8 +1,8 @@
 import { 
 	ClientAssets as Assets,
-    config,
-    datatable,
-	getText
+	config,
+    getText,
+	datatable
 } from "modules/client/ClientAssets.js";
 import { toggleOrder } from "modules/common/datatableUtils.js";
 

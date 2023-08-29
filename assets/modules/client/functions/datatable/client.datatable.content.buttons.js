@@ -14,7 +14,6 @@ function editButton() {
         });
         button.onSuccess = () =>{
             config().editModal(params).show();
-            console.log(params)
         }
         return button
     }
@@ -27,7 +26,6 @@ function removeButton() {
         });
         button.onSuccess = () =>{
             config().removeModal(params).show();
-            console.log(params)
         }
         return button
     }
@@ -40,7 +38,6 @@ function detailButton() {
         });
         button.onSuccess = () =>{
             config().detailModal(params).show();
-            console.log(params)
         }
         return button
     }

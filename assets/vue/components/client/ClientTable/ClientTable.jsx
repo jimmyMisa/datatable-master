@@ -37,8 +37,7 @@ export default C.make({
 		return trs
 	},
 	$render(h, instance) {
-		config().instance = this
-		var {datatable_load={}}= config()
+		config().instance = this;
 		
 		return (
 			<div class="container">
@@ -54,15 +53,7 @@ export default C.make({
 							</nav>
 							<div class="card-body">
 								{this.renderDatatableFull()}
-								<PwLoading
-									ref="loading"
-									config={{
-										isVisible: datatable_load.isLoading,
-										hasConfig:true,
-										mode: "grow",
-										color: "primary"
-									}}
-								/>
+								{this.renderDatatableLoadingContent()}
 							</div>
 						</div>
 					</div>

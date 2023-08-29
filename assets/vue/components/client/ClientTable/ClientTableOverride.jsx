@@ -19,7 +19,7 @@ class ClientTableOverride{
 					return (
 						<tr>
 							<td colspan={this.getConfig().headerColumns.columns.length}>
-								{getText("CLIENT_LIST").EMPTY_MESSAGE}
+								{getText("COMMON").EMPTY_MESSAGE}
 							</td>
 						</tr>
 					);
@@ -160,6 +160,22 @@ class ClientTableOverride{
 					<th class={classNames(orderClass)} onClick={config().sortColumns(headerColumn)}>
 						{headerColumn.label}
 					</th>
+				)
+			},
+			renderDatatableBody(){
+				return (
+					<div class="widget-content widget-content-area br-8">
+						<div id="zero-config_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
+							<div class="dt--top-section">
+								<div class="row">
+									<div class="col-12 d-flex justify-content-sm-start justify-content-center">
+									{this.renderDatatableFull()}
+									{this.renderDatatableLoadingContent()}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				)
 			}
 		}

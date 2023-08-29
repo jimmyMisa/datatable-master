@@ -8,7 +8,7 @@ import {
 function pageSize() {
 	var pageSize = {
 		f:null,
-		value:10,
+		value:5,
 		options: [5, 10, 25, 50, 100],
 		field:() =>{
 			if(pageSize.f){

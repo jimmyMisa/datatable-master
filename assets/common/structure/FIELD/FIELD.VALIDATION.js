@@ -12,9 +12,6 @@ class FIELD_VALIDATION {
         Validation.add("validatePhoneNumber", () => {
             return (value, {instance}) => {
                 var refs = instance.instance.$refs;
-                //instance = field
-                //instance.instance = modal
-                //instance.instance.$refs[instance.id] Input
                 if (refs && refs[instance.id]) {
                     return refs[instance.id].$refs.input.inputmask.isComplete()
                 }

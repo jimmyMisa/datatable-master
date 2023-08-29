@@ -1,5 +1,5 @@
 import STRUCTURE from "common/structure/FIELD/FIELD.STRUCTURE.js"
-//TODO spread default translation and optimize getText: getText("...") > getText()....
+//TODO optimize getText: getText("...") > getText()....
 
 class FIELD{
     static initProperties(targetClass) {

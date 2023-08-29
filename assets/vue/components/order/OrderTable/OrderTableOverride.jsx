@@ -8,7 +8,7 @@ import {
 import {OrderDecorator} from "vue/components/order/OrderTable/OrderDecorator.jsx";
 import classNames from "classnames";
 
-class CommonTableOverride{
+class OrderTableOverride{
 	static getMethods(){
 		return {
 			...OrderDecorator.getMethods(),
@@ -185,5 +185,5 @@ class CommonTableOverride{
 
 
 export {
-	CommonTableOverride
+	OrderTableOverride
 }

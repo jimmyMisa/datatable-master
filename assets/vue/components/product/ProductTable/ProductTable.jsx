@@ -1,21 +1,17 @@
 import { C } from "vue/helper/V02Component.jsx";
 import classNames from "classnames";
 import styles from "./ProductTable.scss?module";
-import CreateProductModal from "vue/components/product/ProductTable/ProductTableComponents/CreateProductModal/CreateProductModal.jsx"
 import { CommonTable } from "vue/components/common/CommonTable/CommonTable.jsx";
-import { CommonTableOverride } from "vue/components/product/ProductTable/CommonTableOverride.jsx";
+import { ProductTableOverride } from "vue/components/product/ProductTable/ProductTableOverride.jsx";
 import { 
 	ProductAssets as Assets, 
 	getText, 
 	config
 } from "modules/product/ProductAssets.js";
-import { 
-    PwLoading,
-} from "pw-components-jsx-dev";
 
 export default C.make({
 	...CommonTable.getMethods(),
-	...CommonTableOverride.getMethods(),
+	...ProductTableOverride.getMethods(),
 
 	getConfig(){
 		return config();
@@ -36,13 +32,6 @@ export default C.make({
 		});
 		return trs
 	},
-	/*renderDatatableHeaderColumn({headerColumn} = {}){
-		return (
-			<th>
-				{headerColumn.label}
-			</th>
-		)
-	},*/
 	$render(h, instance) {
 		config().instance = this
 		var {datatable_load={}}= config()

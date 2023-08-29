@@ -3,7 +3,7 @@ import classNames from "classnames";
 import styles from "./OrderTable.scss?module";
 import CreateOrderModal from "vue/components/order/OrderTable/OrderTableComponents/CreateOrderModal/CreateOrderModal.jsx"
 import { CommonTable } from "vue/components/common/CommonTable/CommonTable.jsx";
-import { CommonTableOverride } from "vue/components/order/OrderTable/CommonTableOverride.jsx";
+import { OrderTableOverride } from "vue/components/order/OrderTable/OrderTableOverride.jsx";
 import { 
 	OrderAssets as Assets, 
 	getText, 
@@ -15,7 +15,7 @@ import {
 
 export default C.make({
 	...CommonTable.getMethods(),
-	...CommonTableOverride.getMethods(),
+	...OrderTableOverride.getMethods(),
 
 	getConfig(){
 		return config();

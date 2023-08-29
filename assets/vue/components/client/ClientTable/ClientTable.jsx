@@ -1,21 +1,17 @@
 import { C } from "vue/helper/V02Component.jsx";
 import classNames from "classnames";
 import styles from "./ClientTable.scss?module";
-import CreateClientModal from "vue/components/client/ClientTable/ClientTableComponents/CreateClientModal/CreateClientModal.jsx"
 import { CommonTable } from "vue/components/common/CommonTable/CommonTable.jsx";
-import { CommonTableOverride } from "vue/components/client/ClientTable/CommonTableOverride.jsx";
+import { ClientTableOverride } from "vue/components/client/ClientTable/ClientTableOverride.jsx";
 import { 
 	ClientAssets as Assets, 
 	getText, 
 	config
 } from "modules/client/ClientAssets.js";
-import { 
-    PwLoading,
-} from "pw-components-jsx-dev";
 
 export default C.make({
 	...CommonTable.getMethods(),
-	...CommonTableOverride.getMethods(),
+	...ClientTableOverride.getMethods(),
 
 	getConfig(){
 		return config();

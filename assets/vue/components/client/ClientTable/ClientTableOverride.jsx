@@ -1,17 +1,18 @@
 import {CommonTable} from "vue/components/common/CommonTable/CommonTable.jsx";
 
-import {
-    ProductAssets as Assets, 
-	getText,
-	config,
-} from "modules/product/ProductAssets.js"
+import { 
+    ClientAssets as Assets, 
+    config,
+    datatable,
+	getText
+} from "modules/client/ClientAssets.js";
 import classNames from "classnames";
-import {ProductDecorator} from "vue/components/product/ProductTable/ProductDecorator.jsx";
+import {ClientDecorator} from "vue/components/client/ClientTable/ClientDecorator.jsx";
 
-class CommonTableOverride{
+class ClientTableOverride{
 	static getMethods(){
 		return {
-			...ProductDecorator.getMethods(),
+			...ClientDecorator.getMethods(),
 			//TODO autoprefix using getMethods
 			renderDatatableContent(){
 				if (!this.getConfig().contentLines.length) {
@@ -109,7 +110,7 @@ class CommonTableOverride{
 					this.getConfig().detailButton(params),
 					{
 						"content": this.detailIcon(),
-						"customClass": "rounded_button info mr-3"
+						"customClass": "rounded_button mr-3"
 					}
 					 
 				);
@@ -119,7 +120,7 @@ class CommonTableOverride{
 					this.getConfig().editButton(params),
 					{
 						"content": this.editIcon(),
-						"customClass": "rounded_button primary mr-3"
+						"customClass": "rounded_button mr-3"
 					}
 				);
 			},
@@ -128,7 +129,7 @@ class CommonTableOverride{
 					this.getConfig().removeButton(params),
 					{
 						"content": this.removeIcon(),
-						"customClass": "rounded_button danger"
+						"customClass": "rounded_button"
 					}
 				);
 			},
@@ -167,5 +168,5 @@ class CommonTableOverride{
 
 
 export {
-	CommonTableOverride
+	ClientTableOverride
 }

@@ -18,7 +18,7 @@ class CommonTableOverride{
 					return (
 						<tr>
 							<td colspan={this.getConfig().headerColumns.columns.length}>
-								{getText("CLIENT_LIST").EMPTY_MESSAGE}
+								{getText("COMMON").EMPTY_MESSAGE}
 							</td>
 						</tr>
 					);
@@ -80,31 +80,31 @@ class CommonTableOverride{
 				)
 			},
 			renderDatatableBottom(){
-				return (
-					<div class="dt--bottom-section d-sm-flex justify-content-sm-between text-center">
-					<div class="dt--pages-count mb-sm-0 mb-3 pages_count_wrapper">
-						<div class="dataTables_info" role="status" aria-live="polite">
-							Showing page 1 of 3
+				if(this.getConfig().pagination.pages >= 2){
+					return (
+						<div class="dt--bottom-section d-sm-flex justify-content-sm-between text-center">
+							<div class="dt--pages-count mb-sm-0 mb-3">
+								<div class="dataTables_info" role="status" aria-live="polite">
+									{this.$statistic(this.getConfig().pagination)}
+								</div>
+							</div>
+							<div class="dt--pagination">
+								<div class="dataTables_paginate paging_simple_numbers" id="zero-config_paginate">
+									<ul class="pagination">
+										{CommonTable.getMethod(this, "Pagination")()}
+									</ul>
+								</div>
+							</div>
 						</div>
-					</div>
-					<div class="dt--pagination">
-						<div class="dataTables_paginate paging_simple_numbers" id="zero-config_paginate">
-							<ul class="pagination">
-								{CommonTable.getMethod(this, "Pagination")()}
-							</ul>
-						</div>
-					</div>
-					</div>
-				)
+					)
+				}
 			},
 			renderDatatablePagination(){
-				if(this.getConfig().pagination.pages >= 2){
-					var params = {
-						"prevContent": this.prevIcon(),
-						"nextContent": this.nextIcon()
-					}
-					return this.$dottedPagination(this.getConfig().pagination, params);
+				var params = {
+					"prevContent": this.prevIcon(),
+					"nextContent": this.nextIcon()
 				}
+				return this.$dottedPagination(this.getConfig().pagination, params);
 			},
 			renderDatatableDetailButton(params = {}){
 				return this.$iconButtonCork(
@@ -161,6 +161,22 @@ class CommonTableOverride{
 					<th class={classNames(orderClass)} onClick={config().sortColumns(headerColumn)}>
 						{headerColumn.label}
 					</th>
+				)
+			},
+			renderDatatableBody(){
+				return (
+					<div class="widget-content widget-content-area br-8">
+						<div id="zero-config_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
+							<div class="dt--top-section">
+								<div class="row">
+									<div class="col-12 d-flex justify-content-sm-start justify-content-center">
+									{this.renderDatatableFull()}
+									{this.renderDatatableLoadingContent()}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				)
 			}
 		}

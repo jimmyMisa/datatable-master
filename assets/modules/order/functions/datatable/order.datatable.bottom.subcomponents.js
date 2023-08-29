@@ -1,7 +1,8 @@
 import { 
 	OrderAssets as Assets,
     config,
-    datatable
+    datatable,
+	getText
 } from "modules/order/OrderAssets.js";
 
 function pagination() {
@@ -24,6 +25,8 @@ function pagination() {
 				datatable().reload();
 			}
 		},
+		statShowText: getText("COMMON").STAT.SHOWING,
+		statOf: getText("COMMON").STAT.OF
 	}
 }
 

@@ -533,6 +533,17 @@ class Components {
                     />
                 );
             },
+            $statistic(pagination){
+                var { 
+                    statShowText = "Showing page",
+                    page = 1,
+                    statOf = "of",
+                    pages = 0 
+                } = pagination;
+                if(pages >= 2){
+                    return `${statShowText} ${page} ${statOf} ${pages}`;
+                }
+            }
         };
     }
 }

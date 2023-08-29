@@ -14,6 +14,17 @@ class FIELD{
         this.initProperties(this);
     }
 
+    static COMMON = {
+        SHOW: "Afficher",
+        ENTRY: "entrée(s)",
+        RESULTS: "Résultats",
+        STAT: {
+            SHOWING: "Affichage de la page",
+            OF: "sur"
+        },
+        EMPTY_MESSAGE:"Aucun resultat"
+    }
+
     static CLIENT_NAME = {
         ...STRUCTURE.NAME,
         PLACEHOLDER:{
@@ -71,11 +82,6 @@ class FIELD{
     static CLIENT_ID = "Id"
     static CLIENT_LIST = {
         EMPTY_MESSAGE:"Aucun resultat"
-    }
-    static COMMON = {
-        SHOW: "Afficher",
-        ENTRY: "entrée(s)",
-        RESULTS: "Résultats"
     }
 
     static PRODUCT_NAME = {

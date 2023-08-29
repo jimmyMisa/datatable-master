@@ -23,10 +23,12 @@ import {
 
 import {
 	headerColumns,
+	sortColumns
 } from "modules/product/functions/datatable/product.datatable.header.subcomponents.js";
 
 import {
 	contentLines,
+	loadingContent,
 } from "modules/product/functions/datatable/product.datatable.content.subcomponents.js";
 
 import {
@@ -51,7 +53,9 @@ class ProductDatatableAssets {
 	static searchInput = searchInput;
 	
 	static headerColumns = headerColumns;
+	static sortColumns = sortColumns;
 	static contentLines = contentLines;
+	static loadingContent = loadingContent;
 
 	static editButton = editButton;
 	static editModal = editModal;

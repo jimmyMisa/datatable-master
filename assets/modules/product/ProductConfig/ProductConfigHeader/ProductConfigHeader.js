@@ -8,6 +8,8 @@ class ProductConfigHeader{
 	static configure(){
         //HEADER COLUMNS
         config().headerColumns = ProductDatatableAssets.headerColumns();
+
+		config().sortColumns = ProductDatatableAssets.sortColumns;
 	}
 }
 

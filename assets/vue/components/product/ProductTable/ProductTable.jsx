@@ -49,22 +49,22 @@ export default C.make({
 		
 		return (
 			
-			<div class="container mt-3">
-
-				<div class="card">
-					<div class="card-header">
-						Liste des products
-						{this.renderDatatableCreate()}
-					</div>
-					<div class="card-body">
-						{this.renderDatatableFull()}
-                        <PwLoading
-                            ref="loading"
-                            config={{
-                                isVisible: datatable_load.isLoading,
-                                hasConfig:true
-                            }}
-                        />
+			<div class="container">
+				<div class="layout-px-spacing">
+					<div class="middle-content container-xxl p-0 mt-2">
+						<div class="page-meta">
+							<nav class="breadcrumb-style-one" aria-label="breadcrumb">
+								<ol class="breadcrumb">
+									<li class="breadcrumb-item">
+										{this.renderDatatableCreate()}
+									</li>
+								</ol>
+							</nav>
+							<div class="card-body">
+								{this.renderDatatableFull()}
+								{this.renderDatatableLoadingContent()}
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

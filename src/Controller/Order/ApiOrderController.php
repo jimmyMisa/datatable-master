@@ -47,6 +47,11 @@ class ApiOrderController extends AbstractController
         $client = $clientMoreService->find($data["client_id"]);
         $product = $productMoreService->find($data["product_id"]);
 
+        if(!$client || !$product){
+            $results = CommonFailureMessages::NOT_FOUND;
+            return $this->json($results);
+        }
+
         $data = [
             "client" => $client,
             "product" => $product

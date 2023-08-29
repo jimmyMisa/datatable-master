@@ -54,6 +54,8 @@ export default C.make({
 							config={{
 								isVisible: config().loadingRemoveModal,
 								hasConfig: true,
+								mode: "grow",
+								color: "primary"
 							}}
 						/>
 					</div>

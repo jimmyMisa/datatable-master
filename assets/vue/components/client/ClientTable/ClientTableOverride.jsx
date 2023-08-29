@@ -66,7 +66,7 @@ class ClientTableOverride{
 							<div class="col-12 col-sm-6 d-flex justify-content-sm-start justify-content-center">
 							<div class="dataTables_length">
 								<label>
-								Results :
+								{getText("COMMON").RESULTS} :
 								{this.$commonSelect(this.getConfig().pageSize.field())}
 								</label>
 							</div>
@@ -81,29 +81,29 @@ class ClientTableOverride{
 				)
 			},
 			renderDatatableBottom(){
-				return (
-					<div class="dt--bottom-section d-sm-flex justify-content-sm-between text-center">
-					<div class="dt--pages-count mb-sm-0 mb-3 pages_count_wrapper">
-						<div class="dataTables_info" role="status" aria-live="polite">
-						
+				if(this.getConfig().pagination.pages >= 2){
+					return (
+						<div class="dt--bottom-section d-sm-flex justify-content-sm-between text-center">
+							<div class="dt--pages-count mb-sm-0 mb-3">
+								<div class="dataTables_info" role="status" aria-live="polite">
+									{this.$statistic(this.getConfig().pagination)}
+								</div>
+							</div>
+							<div class="dt--pagination">
+								<div class="dataTables_paginate paging_simple_numbers" id="zero-config_paginate">
+									{CommonTable.getMethod(this, "Pagination")()}
+								</div>
+							</div>
 						</div>
-					</div>
-					<div class="dt--pagination">
-						<div class="dataTables_paginate paging_simple_numbers" id="zero-config_paginate">
-							{CommonTable.getMethod(this, "Pagination")()}
-						</div>
-					</div>
-					</div>
-				)
+					)
+				}
 			},
 			renderDatatablePagination(){
-				if(this.getConfig().pagination.pages >= 2){
-					var params = {
-						"prevContent": this.prevIcon(),
-						"nextContent": this.nextIcon()
-					}
-					return this.$dottedPagination(this.getConfig().pagination, params);
+				var params = {
+					"prevContent": this.prevIcon(),
+					"nextContent": this.nextIcon()
 				}
+				return this.$dottedPagination(this.getConfig().pagination, params);
 			},
 			renderDatatableDetailButton(params = {}){
 				return this.$iconButtonCork(

@@ -7,6 +7,13 @@ class FIELD extends FR_FIELD{
             DEFAULT:"Hitady : ",
         },
     }
+
+    static COMMON = {
+        ...FR_FIELD.COMMON,
+        RESULTS: "Valiny",
+        EMPTY_MESSAGE:"Tsy nahitana"
+    }
+
     static CLIENT_REMOVE_MESSAGE = "Ho fafaina ve i {{clientName}} ?"
 }
 

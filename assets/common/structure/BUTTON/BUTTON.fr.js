@@ -54,6 +54,27 @@ class BUTTON{
             DEFAULT:"Fermer",
         }
     }
+    static PRODUCT_ADD_BUTTON = {
+        TEXT:{
+            DEFAULT:"Créer un produit",
+        }
+    }
+    static PRODUCT_REGISTER = {
+        TEXT:{
+            DEFAULT:"Enregistrer produit",
+        }
+    }
+
+    static ORDER_ADD_BUTTON = {
+        TEXT:{
+            DEFAULT:"Créer une commande",
+        }
+    }
+    static ORDER_REGISTER = {
+        TEXT:{
+            DEFAULT:"Enregistrer commande",
+        }
+    }
 }
 
 export default BUTTON

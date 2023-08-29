@@ -76,6 +76,64 @@ class FIELD{
         SHOW: "Afficher",
         ENTRY: "entrée(s)"
     }
+
+    static PRODUCT_NAME = {
+        ...STRUCTURE.NAME,
+        PLACEHOLDER:{
+            DEFAULT:"Entrer le nom du produit",
+        },
+        LABEL:{
+            DEFAULT:"Nom du produit",
+        },
+        EMPTY_MESSAGE:{
+            DEFAULT:"Veuillez saisir le nom du produit",
+        },
+        TH:"Nom du produit",
+    }
+    static PRODUCT_UNIT_PRICE = {
+        ...STRUCTURE.UNIT_PRICE,
+        PLACEHOLDER:{
+            DEFAULT:"Entrer le prix unitaire",
+        },
+        LABEL:{
+            DEFAULT:"Prix unitaire",
+        },
+        EMPTY_MESSAGE:{
+            DEFAULT:"Veuillez saisir le prix unitaire",
+        },
+        TH:"Prix unitaire",
+    }
+    static PRODUCT_ID = "Id"
+    static CONFIRM_REMOVE_MESSAGE = "Etes vous sur de supprimer {{name}} ?"
+
+    static CLIENT_NAME_ORDER = {
+        ...STRUCTURE.NAME,
+        PLACEHOLDER:{
+            DEFAULT:"Entrer le nom du client",
+        },
+        LABEL:{
+            DEFAULT:"Nom du client",
+        },
+        EMPTY_MESSAGE:{
+            DEFAULT:"Veuillez saisir le nom du client",
+        },
+        TH:"Nom du client",
+    }
+    static PRODUCT_NAME_ORDER = {
+        ...STRUCTURE.NAME,
+        PLACEHOLDER:{
+            DEFAULT:"Entrer le nom du produit",
+        },
+        LABEL:{
+            DEFAULT:"Nom du produit",
+        },
+        EMPTY_MESSAGE:{
+            DEFAULT:"Veuillez saisir le nom du produit",
+        },
+        TH:"Nom du produit",
+    }
+    static ORDER_REMOVE_MESSAGE = "Etes vous sur de supprimer la commande {{product}} de {{client}} ?"
+
 }
 
 export default FIELD;

@@ -190,7 +190,11 @@ class Components {
             },
             $select(field, callback = () =>{}) {
                 this.$setupInstance([field])
-                var id = idGenerator();
+                var id = field.id;
+                if(!field.id){
+                    id = idGenerator();
+                    field.id = id;
+                }
                 setTimeout(() =>{
                     var {[id]:element} = this.$refs 
                     callback({element})

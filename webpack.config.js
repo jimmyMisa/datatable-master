@@ -24,6 +24,8 @@ Encore
     .addEntry('app', './assets/app.js')
     .addEntry('client_layout', './assets/modules/client/layout/client_layout_index.js')
     .addEntry('client_index', './assets/modules/client/client_index.js')
+    .addEntry('product_index', './assets/modules/product/product_index.js')
+    .addEntry('order_index', './assets/modules/order/order_index.js')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()

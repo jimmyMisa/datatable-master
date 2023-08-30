@@ -65,7 +65,7 @@ class ProductTableOverride{
 							<div class="col-12 col-sm-6 d-flex justify-content-sm-start justify-content-center">
 							<div class="dataTables_length">
 								<label>
-								Results :
+								{getText("COMMON").RESULTS} :
 								{this.$commonSelect(this.getConfig().pageSize.field())}
 								</label>
 							</div>

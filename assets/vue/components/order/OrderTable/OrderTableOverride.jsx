@@ -89,7 +89,7 @@ class OrderTableOverride{
 								</div>
 							</div>
 							<div class="dt--pagination">
-								<div class="dataTables_paginate paging_simple_numbers" id="zero-config_paginate">
+								<div class="dataTables_paginate paging_simple_numbers">
 									<ul class="pagination">
 										{CommonTable.getMethod(this, "Pagination")()}
 									</ul>
@@ -147,6 +147,36 @@ class OrderTableOverride{
 			renderDatatableLoadingContent(){
 				return this.$commonLoading(this.getConfig().loadingContent);
 			},
+			headerCheckbox(){
+				return (
+					<th>
+						<div class="form-check form-check-primary d-block new-control">
+							<input class="form-check-input chk-parent" type="checkbox"/>
+						</div>
+					</th>
+				)
+			},
+			contentCheckox(){
+				return (
+					<td class="checkbox-column sorting_1">
+						<div class="form-check form-check-primary d-block new-control">
+							<input class="form-check-input child-chk" type="checkbox"/>
+						</div>
+					</td>
+				)
+			},
+			renderDatatableHeader(){
+				var ths = [];
+				ths.push(this.headerCheckbox());
+				this.getConfig().headerColumns.columns.map((headerColumn = {}, index) =>{
+					headerColumn.index = index;
+					ths.push(CommonTable.getMethod(this, "HeaderColumn")({headerColumn, index}))
+				});
+				if(this.getConfig().haveAction){
+					ths.push(CommonTable.getMethod(this, "HeaderColumnAction")())
+				}
+				return <tr>{ths}</tr>
+			},
 			renderDatatableHeaderColumn({headerColumn} = {}){
 				var orderClass = "sorting";
 				var { order } = headerColumn;
@@ -166,7 +196,7 @@ class OrderTableOverride{
 			renderDatatableBody(){
 				return (
 					<div class="widget-content widget-content-area br-8">
-						<div id="zero-config_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
+						<div class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
 							<div class="dt--top-section">
 								<div class="row">
 									<div class="col-12 d-flex justify-content-sm-start justify-content-center">
@@ -178,7 +208,20 @@ class OrderTableOverride{
 						</div>
 					</div>
 				)
-			}
+			},
+			renderDatatableContentLine({contentLine, line} = {}){
+				var tds = []
+				tds.push(this.contentCheckox())
+				this.getConfig().headerColumns.columns.map((headerColumn, index) =>{
+					tds.push(CommonTable.getMethod(this, "ContentColumn")({contentLine, line, headerColumn, index}))
+				});
+				if(this.getConfig().haveAction){
+					tds.push(CommonTable.getMethod(this, "ContentColumnAction")({contentLine, line}))
+				}
+				return (
+					<tr>{tds}</tr>
+				)
+			},
 		}
 	}
 }

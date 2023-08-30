@@ -9,7 +9,7 @@ function pageSize() {
 	var pageSize = {
 		f:null,
 		value:5,
-		options: [5, 10, 25, 50, 100],
+		options: [1, 5, 10, 25, 50, 100],
 		field:() =>{
 			if(pageSize.f){
 				return pageSize.f

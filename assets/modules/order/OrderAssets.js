@@ -6,6 +6,7 @@ import CreateModal from "vue/components/order/OrderTable/OrderTableComponents/Cr
 import EditModal from "vue/components/order/OrderTable/OrderTableComponents/EditOrderModal/EditOrderModal.jsx"
 import RemoveModal from "vue/components/order/OrderTable/OrderTableComponents/RemoveOrderModal/RemoveOrderModal.jsx"
 import DetailModal from "vue/components/order/OrderTable/OrderTableComponents/DetailOrderModal/DetailOrderModal.jsx"
+import RemoveMultipleModal from "vue/components/order/OrderTable/OrderTableComponents/RemoveMultipleOrderModal/RemoveMultipleOrderModal.jsx"
 
 class OrderAssets{
 	static get(){	
@@ -17,6 +18,7 @@ class OrderAssets{
 			EditModal,
 			RemoveModal,
 			DetailModal,
+			RemoveMultipleModal
 		}
 	} 
 	static config(key){
@@ -63,6 +65,12 @@ class OrderAssets{
 			return {}
 		}
 		return OrderAssets.get().ComponentAssets
+	}
+	static removeMultipleModal(){
+		if (!OrderAssets.get().RemoveMultipleModal) {
+			return {}
+		}
+		return OrderAssets.get().RemoveMultipleModal
 	}
 }
 

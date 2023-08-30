@@ -37,6 +37,9 @@ export default C.make({
 							</div>
 							{this.renderDatatableBody()}
 						</div>
+						<div class="mt-3">
+							{this.renderDatatableRemoveMultipleButton()}
+						</div>
 					</div>
 				</div>
 			</div>

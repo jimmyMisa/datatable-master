@@ -6,12 +6,14 @@ import {
 	getText
 } from "modules/order/OrderAssets.js";
 import {OrderDecorator} from "vue/components/order/OrderTable/OrderDecorator.jsx";
+import {OrderAdditionalMethods} from "vue/components/order/OrderTable/OrderAdditionalMethods.jsx";
 import classNames from "classnames";
 
 class OrderTableOverride{
 	static getMethods(){
 		return {
 			...OrderDecorator.getMethods(),
+			...OrderAdditionalMethods.getMethods(),
 			//TODO autoprefix using getMethods
 			renderDatatableContent(){
 				if (!this.getConfig().contentLines.length) {
@@ -78,6 +80,12 @@ class OrderTableOverride{
 						</div>
 					</div>
 				)
+			},
+			renderDatatableRemoveMultipleButton(params={}){
+				if(this.getConfig().checkboxRows.selectedRows.length >=1){
+					config().removeMultipleButton.params = {...config().removeMultipleButton.params, ...params}
+					return this.$button(config().removeMultipleButton);
+				}
 			},
 			renderDatatableBottom(){
 				if(this.getConfig().pagination.pages >= 2){
@@ -147,24 +155,6 @@ class OrderTableOverride{
 			renderDatatableLoadingContent(){
 				return this.$commonLoading(this.getConfig().loadingContent);
 			},
-			headerCheckbox(){
-				return (
-					<th>
-						<div class="form-check form-check-primary d-block new-control">
-							<input class="form-check-input chk-parent" type="checkbox"/>
-						</div>
-					</th>
-				)
-			},
-			contentCheckox(){
-				return (
-					<td class="checkbox-column sorting_1">
-						<div class="form-check form-check-primary d-block new-control">
-							<input class="form-check-input child-chk" type="checkbox"/>
-						</div>
-					</td>
-				)
-			},
 			renderDatatableHeader(){
 				var ths = [];
 				ths.push(this.headerCheckbox());
@@ -211,7 +201,7 @@ class OrderTableOverride{
 			},
 			renderDatatableContentLine({contentLine, line} = {}){
 				var tds = []
-				tds.push(this.contentCheckox())
+				tds.push(this.contentCheckox({contentLine}))
 				this.getConfig().headerColumns.columns.map((headerColumn, index) =>{
 					tds.push(CommonTable.getMethod(this, "ContentColumn")({contentLine, line, headerColumn, index}))
 				});

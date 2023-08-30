@@ -29,10 +29,14 @@ import {
 import {
 	contentLines,
 	loadingContent,
+	checkboxRows
 } from "modules/order/functions/datatable/order.datatable.content.subcomponents.js";
 
 import {
 	pagination,
+	removeMultipleModal,
+	removeMultipleButton,
+	saveRemoveMultipleButton
 } from "modules/order/functions/datatable/order.datatable.bottom.subcomponents.js";
 
 import { createModal } from "modules/order/functions/datatable/order.datatable.top.modals.js";
@@ -47,6 +51,7 @@ class OrderDatatableAssets {
 	static createModal = createModal;
 	static saveButton = saveButton;
 	static cancelSaveButton = cancelSaveButton;
+	static removeMultipleButton = removeMultipleButton;
 
 	static pageSize = pageSize;
 
@@ -56,6 +61,7 @@ class OrderDatatableAssets {
 	static sortColumns = sortColumns;
 	static contentLines = contentLines;
 	static loadingContent = loadingContent;
+	static checkboxRows = checkboxRows;
 
 	static editButton = editButton;
 	static editModal = editModal;
@@ -72,5 +78,7 @@ class OrderDatatableAssets {
 	static closeDetailButton = closeDetailButton;
 
 	static pagination = pagination;
+	static removeMultipleModal = removeMultipleModal;
+	static saveRemoveMultipleButton = saveRemoveMultipleButton;
 }
 export { OrderDatatableAssets };

@@ -75,6 +75,12 @@ class BUTTON{
             DEFAULT:"Enregistrer commande",
         }
     }
+
+    static REMOVE_MULTIPLE_BUTTON = {
+        TEXT:{
+            DEFAULT:"Supprimer les éléments sélectionnés",
+        }
+    }
 }
 
 export default BUTTON

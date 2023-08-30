@@ -146,16 +146,14 @@ class ApiOrderController extends AbstractController
         $data = json_decode($request->request->get('query'), true);
         if (
             !isset($data["ids"]) || 
-            is_array($data["ids"])
+            !is_array($data["ids"])
         ) {
             $results = CommonFailureMessages::REQUIRED_FIELD;
             return $this->json($results);
         }
         
-        $success = $orderService->removeMultiple($data);
-        if($success){
-            $results = CommonSuccessMessages::OK;
-        }
+        $orderService->removeMultiple($data);
+        $results = CommonSuccessMessages::OK;
         return $this->json($results);
     }
     #[Route('/api/modification-multiple-de-commandes', name: 'api_edit_multiple_order')]

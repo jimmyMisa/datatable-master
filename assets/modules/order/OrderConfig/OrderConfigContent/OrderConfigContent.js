@@ -8,6 +8,7 @@ class OrderConfigContent{
     static configure(){
         config().contentLines = OrderDatatableAssets.contentLines();
         config().loadingContent = OrderDatatableAssets.loadingContent();
+        config().checkboxRows = OrderDatatableAssets.checkboxRows();
 
         //CONTENT COLUMNS ACTIONS
         config().editButton = OrderDatatableAssets.editButton();

@@ -65,6 +65,18 @@ class OrderDatatable{
 		}
 		OrderApi.removeApi({id, then})
 	}
+	static removeMultiple(params){
+		var {ids, callback=()=>{}} = params
+		config().instance.refresh()
+		var then = (result)=> {
+			callback(result)
+			if (result.code==200) {
+				datatable().reload();
+			}
+			config().instance.refresh()
+		}
+		OrderApi.removeMultipleApi({ids, then})
+	}
 }
 
 export {

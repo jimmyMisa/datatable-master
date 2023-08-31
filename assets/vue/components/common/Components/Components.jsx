@@ -454,6 +454,37 @@ class Components {
                     </nav>
                 );
             },
+            $checkboxComponent(field, callback = () =>{}) {
+                this.$setupInstance([field]);
+                var id = idGenerator();
+                setTimeout(() => {
+                    var { [id]: element } = this.$refs;
+                    callback({ element });
+                }, 100);
+
+                var {checked = false} = field;
+
+                var onChange = (event) =>{
+                    var {currentTarget:input} = event
+                    waitInput(input, () =>{
+                        var {value, checked=false} = input
+                        var {onChange=() => {}} = field
+                        onChange({value, event, input, checked})
+                    }, 100)
+                }
+
+                return (
+                    <label class="chekbox_column">
+                        <input 
+                            type="checkbox" 
+                            class="check_column"
+                            checked={checked}
+                            onChange={onChange}
+                        />
+                        <span class="check_column_indicator"></span>
+                    </label>
+                )
+            },
             $paginationCork(pagination, params={}) {
                 var { prevContent="Prev", nextContent="Next" } = params;
                 var pages = () => {
@@ -543,7 +574,8 @@ class Components {
                 if(pages >= 2){
                     return `${statShowText} ${page} ${statOf} ${pages}`;
                 }
-            }
+            },
+            
         };
     }
 }

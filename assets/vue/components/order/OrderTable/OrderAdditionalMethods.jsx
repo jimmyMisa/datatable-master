@@ -13,19 +13,20 @@ class OrderAdditionalMethods{
 			headerCheckbox(){
 				return (
 					<th>
-						<div class="form-check form-check-primary d-block new-control">
-							<PwCheckbox 
-								config={{
-									checked: config().checkboxRows.selectAllRows,
-									onChange: (params={}) => {
-										var {input} = params
-										var {checked=false} = input
-										config().checkboxRows.handleCheckboxHeaderChange({checked})
-									},
-									className: "checkbox_primary"
-								}}
-							/>
-						</div>
+						
+						{this.$checkboxComponent(
+							{
+								checked: config().checkboxRows.selectAllRows,
+								onChange: (params={}) => {
+									var {checked} = params
+									config().checkboxRows.handleCheckboxHeaderChange({checked})
+								},
+								className: "chekbox_column",
+								params: {
+									class:"check_column"
+								}
+							}
+						)}
 					</th>
 				)
 			},
@@ -33,17 +34,19 @@ class OrderAdditionalMethods{
 				var { id=null } = contentLine;
 				return (
 					<td class="checkbox-column sorting_1">
-						<div class="form-check form-check-primary d-block new-control">
-							<PwCheckbox 
-								config={{
-									checked: config().checkboxRows.selectedRows.includes(id),
-									onChange: () => {
-										config().checkboxRows.handleCheckboxChange(id);
-									},
-									className: "checkbox_primary"
-								}}
-							/>
-						</div>
+						
+						{this.$checkboxComponent(
+							{
+								checked: config().checkboxRows.selectedRows.includes(id),
+								onChange: () => {
+									config().checkboxRows.handleCheckboxChange(id);
+								},
+								className: "checkbox_primary",
+								params: {
+									class:"form-check-input chk-parent"
+								}
+							}
+						)}
 					</td>
 				)
 			},

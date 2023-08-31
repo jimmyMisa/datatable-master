@@ -16,26 +16,40 @@
     }
 }
 
-.field_checkbox.checkbox_primary {
-    .checkbox_indicator {
-        display: none;
-        border-color: #4361ee;
+th.sort {
 
-        &::after {
-            border-color: #4361ee;
+    position: relative;
+    cursor: pointer;
+
+    &:before{
+        right: 1em;
+        content: "↑";
+        opacity: 1;
+        color: #d3d3d3;
+        position: absolute;
+        bottom: .9em;
+        display: block;
+    }
+
+    &:after{
+        content: "↓";
+        right: .5em;
+        opacity: 1;
+        color: #d3d3d3;
+        position: absolute;
+        bottom: .9em;
+        display: block;
+    }
+
+    &.sort_asc {
+        &:before{
+            color: #0e1726;
         }
     }
 
-    & > input[type="checkbox"] {
-        display: block;
-        margin-top: 6px;
+    &.sort_desc {
+        &:after{
+            color: #0e1726;
+        }
     }
-}
-
-.cork_checkbox {
-    appearance: none;
-    background-position-x: 50%;
-    background-position-y: 50%;
-    background-repeat: no-repeat;
-    border-radius: 3.5px;
 }

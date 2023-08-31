@@ -168,13 +168,13 @@ class OrderTableOverride{
 				return <tr>{ths}</tr>
 			},
 			renderDatatableHeaderColumn({headerColumn} = {}){
-				var orderClass = "sorting";
+				var orderClass = "sort";
 				var { order } = headerColumn;
 				if(order == "ASC"){
-					orderClass = "sorting_asc";
+					orderClass = "sort sort_asc";
 				}
 				else if(order == "DESC"){
-					orderClass = "sorting_desc";
+					orderClass = "sort sort_desc";
 				}
 				
 				return (

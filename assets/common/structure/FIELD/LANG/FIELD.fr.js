@@ -22,7 +22,12 @@ class FIELD{
             SHOWING: "Affichage de la page",
             OF: "sur"
         },
-        EMPTY_MESSAGE:"Aucun resultat"
+        EMPTY_MESSAGE:"Aucun resultat",
+        SEARCH: "Rechercher",
+        TOTAL_FOUND: "élément(s) trouvé(s)",
+        ACTIONS: {
+            ADD: "Ajouter"
+        }
     }
 
     static CLIENT_NAME = {
@@ -57,7 +62,7 @@ class FIELD{
     static CLIENT_SEARCH = {
         ...STRUCTURE.SEARCH,
         PLACEHOLDER:{
-            DEFAULT:"Entrer une clé de recherche",
+            DEFAULT:"Rechercher",
         },
         LABEL:{
             DEFAULT:"Rechercher : ",

@@ -8,7 +8,7 @@ import {
 function pageSize() {
 	var pageSize = {
 		f:null,
-		value:5,
+		value:1,
 		options: [1, 5, 10, 25, 50, 100],
 		field:() =>{
 			if(pageSize.f){
@@ -22,6 +22,7 @@ function pageSize() {
 		            content: key,
 		        }
 			});
+			field.class = "datatable_select"
 			field.onChange = (params={}) =>{
 				var { value } = params;
 				config().pagination.page = 1;

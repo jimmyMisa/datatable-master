@@ -1,4 +1,10 @@
 class BUTTON{
+    ADD_BUTTON = {
+        TEXT:{
+            DEFAULT: "Ajouter"
+        }
+    }
+
     static CLIENT_ADD_BUTTON = {
         TEXT:{
             DEFAULT:"Créer un client",
@@ -67,7 +73,7 @@ class BUTTON{
 
     static ORDER_ADD_BUTTON = {
         TEXT:{
-            DEFAULT:"Créer une commande",
+            DEFAULT:"Ajouter",
         }
     }
     static ORDER_REGISTER = {

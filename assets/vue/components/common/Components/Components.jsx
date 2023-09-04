@@ -285,7 +285,8 @@ class Components {
                     </select>
                 );
             },
-            $button(button) {
+            $button(button, params = {}) {
+                var {content = ""} = params;
                 this.$setupInstance([button]);
                 return (
                     <div class="form-group">
@@ -293,7 +294,7 @@ class Components {
                             class="btn btn-primary"
                             onClick={button.handleValidation.bind(button)}
                         >
-                            {button.text}
+                            {content} {button.text}
                         </button>
                     </div>
                 );

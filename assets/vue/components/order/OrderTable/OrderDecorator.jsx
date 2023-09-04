@@ -5,6 +5,7 @@ import RemoveCorkSvg from "vue/components/common/icons/RemoveCorkSvg.jsx";
 import PrevCorkSvg from "vue/components/common/icons/PrevCorkSvg.jsx";
 import NextCorkSvg from "vue/components/common/icons/NextCorkSvg.jsx";
 import SearchCorkSvg from "vue/components/common/icons/SearchCorkSvg";
+import AddCorkSvg from "vue/components/common/icons/AddCorkSvg";
 
 class OrderDecorator{
 	static getMethods(){
@@ -27,6 +28,9 @@ class OrderDecorator{
 			searchIcon(){
 				return <SearchCorkSvg />
 			},
+			addIcon(){
+				return <AddCorkSvg />
+			}
 		}
 	}
 }

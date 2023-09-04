@@ -33,7 +33,6 @@ export default C.make({
 								<div class="col-8">
 									<h5>Liste des commandes</h5>
 								</div>
-								<div class="col-4">{this.renderDatatableCreate()}</div>
 							</div>
 							{this.renderDatatableBody()}
 						</div>

@@ -29,6 +29,7 @@ function checkboxRows() {
             }
             if (config().checkboxRows.selectedRows.includes(id)) {
                 config().checkboxRows.selectedRows = config().checkboxRows.selectedRows.filter((rowId) => rowId !== id);
+                config().checkboxRows.selectAllRows = false;
             } else {
                 config().checkboxRows.selectedRows.push(id)
             }

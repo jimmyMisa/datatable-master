@@ -28,7 +28,8 @@ function pagination() {
 			}
 		},
 		statShowText: getText("COMMON").STAT.SHOWING,
-		statOf: getText("COMMON").STAT.OF
+		statOf: getText("COMMON").STAT.OF,
+		totalFiltered: "-"
 	}
 }
 

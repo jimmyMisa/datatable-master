@@ -162,10 +162,18 @@ class OrderTableOverride{
 					headerColumn.index = index;
 					ths.push(CommonTable.getMethod(this, "HeaderColumn")({headerColumn, index}))
 				});
+				ths.push(this.headerSwitch());
 				if(this.getConfig().haveAction){
 					ths.push(CommonTable.getMethod(this, "HeaderColumnAction")())
 				}
 				return <tr class="datatable_header">{ths}</tr>
+			},
+			renderDatatableHeaderColumnAction(){
+				return (
+					<th class="datatable_header">
+						Actions
+					</th>
+				)
 			},
 			renderDatatableHeaderColumn({headerColumn} = {}){
 				var orderClass = "sort";
@@ -205,6 +213,7 @@ class OrderTableOverride{
 				this.getConfig().headerColumns.columns.map((headerColumn, index) =>{
 					tds.push(CommonTable.getMethod(this, "ContentColumn")({contentLine, line, headerColumn, index}))
 				});
+				tds.push(this.contentSwitch({contentLine}))
 				if(this.getConfig().haveAction){
 					tds.push(CommonTable.getMethod(this, "ContentColumnAction")({contentLine, line}))
 				}

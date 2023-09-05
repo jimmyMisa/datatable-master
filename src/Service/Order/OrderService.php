@@ -26,7 +26,8 @@ class OrderService {
                 client.name AS client_name,
                 client.id AS client_id,
                 product.name AS product_name,
-                product.id AS product_id
+                product.id AS product_id,
+                order_product.status AS order_status
             FROM
                 order_product
             LEFT JOIN
@@ -199,5 +200,15 @@ class OrderService {
         return $instances;
     }
     
-    
+    public function switchFieldValue($data){
+        $field = $data["field"];
+        $checked = $data["checked"];
+        $id = $data["id"];
+
+        $order = $this->em->getRepository(OrderProduct::class)->findOneBy(["id" => $id]);
+        $order->setStatus($checked);
+        $this->em->flush();
+
+        return $order;
+    }
 }

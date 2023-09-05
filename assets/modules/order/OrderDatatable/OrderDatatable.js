@@ -78,6 +78,16 @@ class OrderDatatable{
 		}
 		OrderApi.removeMultipleApi({ids, then})
 	}
+	static switchValue(params){
+		var {checked, id, field, callback=()=>{}} = params
+		config().instance.refresh()
+		var then = (result)=> {
+			callback(result)
+			datatable().reload();
+			config().instance.refresh()
+		}
+		OrderApi.swithValueApi({checked, id, field, then})
+	}
 }
 
 export {

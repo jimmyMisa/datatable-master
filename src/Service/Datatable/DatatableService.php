@@ -184,13 +184,29 @@ class DatatableService
         }
 
         if($key){
-            list(
-                $params, 
-                $field
-            ) = $this->addParam($params, "%$key%") ;
+            $keyWords = explode(" ", $key);
+            if(count($keyWords) <= 1){
 
-            foreach($searchFields as $searchField){
-                $search[] = "$searchField LIKE :$field";
+                list(
+                    $params, 
+                    $field
+                ) = $this->addParam($params, "%$key%") ;
+    
+                foreach($searchFields as $searchField){
+                    $search[] = "$searchField LIKE :$field";
+                }
+            }
+            else{
+                foreach($keyWords as $f_index => $f_key){
+
+                    $tmp = [];
+                    foreach($searchFields as $f){
+
+                        $tmp[] = "$f LIKE :f_key$f_index";
+                    }
+                    $search[] = $this->groupConditions($tmp, "AND") ; 
+                    $params["f_key$f_index"] = "%$f_key%";
+                }
             }
         }
 
@@ -203,6 +219,28 @@ class DatatableService
         }
 
         return [$params, $whereSql];
+    }
+
+    function generateSearchConditions($columnsToSearch, $keywords) {
+        $searchConditions = [];
+        $parameters = [];
+    
+        foreach ($columnsToSearch as $column1) {
+            foreach ($columnsToSearch as $column2) {
+                foreach ($columnsToSearch as $column3) {
+                    
+                    $condition = "($column1 LIKE :f_key1 AND $column2 LIKE :f_key2 AND $column3 LIKE :f_key3)";
+                    $searchConditions[] = $condition;
+
+                    // Bind parameters
+                    $parameters[':f_key1'] = '%' . $keywords[0] . '%';
+                    $parameters[':f_key2'] = '%' . $keywords[1] . '%';
+                    $parameters[':f_key3'] = '%' . $keywords[2] . '%';
+                }
+            }
+        }
+    
+        return ['searchConditions' => $searchConditions, 'parameters' => $parameters];
     }
 
     /**

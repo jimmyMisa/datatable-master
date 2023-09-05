@@ -486,6 +486,36 @@ class Components {
                     </label>
                 )
             },
+            $switchComponent(field, callback = () =>{}) {
+                this.$setupInstance([field]);
+                var id = idGenerator();
+                setTimeout(() => {
+                    var { [id]: element } = this.$refs;
+                    callback({ element });
+                }, 100);
+
+                var {checked = false} = field;
+
+                var onChange = (event) =>{
+                    var {currentTarget:input} = event
+                    waitInput(input, () =>{
+                        var {value, checked=false} = input
+                        var {onChange=() => {}} = field
+                        onChange({value, event, input, checked})
+                    }, 100)
+                }
+
+                return (
+                    <label class="switch s-icons s-outline s-outline-success align-middle mb-0 ml-1">
+                        <input 
+                            type="checkbox"
+                            checked={checked}
+                            onChange={onChange}
+                        />
+                        <span class="slider round"></span>
+                    </label>
+                )
+            },
             $paginationCork(pagination, params={}) {
                 var { prevContent="Prev", nextContent="Next" } = params;
                 var pages = () => {

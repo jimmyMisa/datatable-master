@@ -9,6 +9,7 @@ class OrderConfigContent{
         config().contentLines = OrderDatatableAssets.contentLines();
         config().loadingContent = OrderDatatableAssets.loadingContent();
         config().checkboxRows = OrderDatatableAssets.checkboxRows();
+        config().switchRows = OrderDatatableAssets.switchRows();
 
         //CONTENT COLUMNS ACTIONS
         config().editButton = OrderDatatableAssets.editButton();

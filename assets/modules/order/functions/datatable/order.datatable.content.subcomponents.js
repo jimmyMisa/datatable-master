@@ -1,6 +1,7 @@
 import { 
     OrderAssets as Assets, 
-    config 
+    config,
+    datatable
 } from "modules/order/OrderAssets.js";
 
 function contentLines() {
@@ -56,8 +57,21 @@ function checkboxRows() {
     return checkboxRows;
 }
 
+function switchRows() {
+    var switchRows = {
+        handleSwitchChange: (params={}) => {
+            var {checked=false, id, field} = params;
+            var callback = (result)=>{
+            }
+            datatable().switchValue({checked, id, field, callback})
+        }
+    }
+    return switchRows;
+}
+
 export { 
     contentLines,
     loadingContent,
-    checkboxRows
+    checkboxRows,
+    switchRows
 };

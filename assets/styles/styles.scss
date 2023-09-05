@@ -16,14 +16,13 @@
     }
 }
 
-th.sort {
+th {
 
     position: relative;
     cursor: pointer;
-
+    
     &:before{
         right: 1em;
-        content: "↑";
         opacity: 1;
         color: #d3d3d3;
         position: absolute;
@@ -31,14 +30,25 @@ th.sort {
         display: block;
     }
 
+    &.sort {
+        &:before {
+            content: "↑";
+        }
+    }
+
     &:after{
-        content: "↓";
         right: .5em;
         opacity: 1;
         color: #d3d3d3;
         position: absolute;
         bottom: .9em;
         display: block;
+    }
+
+    &.sort {
+        &:after{
+            content: "↓";
+        }
     }
 
     &.sort_asc {

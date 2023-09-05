@@ -175,4 +175,24 @@ class ApiOrderController extends AbstractController
         }
         return $this->json($results);
     }
+    #[Route('/api/changer-valeur-de-champ', name: 'api_switch_field_value_order')]
+    public function switchFieldValue(OrderService $orderService, Request $request)
+    {
+        $results = CommonFailureMessages::NOT_FOUND;
+
+        $data = json_decode($request->request->get('query'), true);
+        if (
+            !isset($data["checked"]) || 
+            !isset($data["id"]) ||
+            !isset($data["field"])
+        ){
+            $results = CommonFailureMessages::REQUIRED_FIELD;
+            return $this->json($results);
+        }
+        $success = $orderService->switchFieldValue($data);
+        if($success){
+            $results = CommonSuccessMessages::OK;
+        }
+        return $this->json($results);
+    }
 }

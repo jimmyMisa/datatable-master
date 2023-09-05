@@ -21,6 +21,9 @@ class OrderProduct
     #[ORM\JoinColumn(nullable: false)]
     private ?Product $product = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $status = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -49,4 +52,16 @@ class OrderProduct
 
         return $this;
     }
+
+    public function isStatus(): ?bool
+    {
+        return $this->status;
+    }
+
+    public function setStatus(?bool $status): self
+    {
+        $this->status = $status;
+
+        return $this;
+    } 
 }

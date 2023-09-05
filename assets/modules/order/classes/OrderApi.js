@@ -10,6 +10,7 @@ class OrderApi{
 		OrderApi.apis.editAction = new Api({url: window.api_edit_order});
 		OrderApi.apis.removeAction = new Api({url: window.api_remove_order});
 		OrderApi.apis.removeMultipleAction = new Api({url: window.api_remove_multiple_order});
+		OrderApi.apis.swithValueAction = new Api({url: window.api_switch_field_value_order});
 	}
 	static listApi(params={}){
 		var {data={}, then=()=>{}}=params;
@@ -60,6 +61,16 @@ class OrderApi{
 			query: json_encode(query)
 		}
 		OrderApi.apis.removeMultipleAction.run({data, then})
+	}
+	static swithValueApi(params={}){
+		var {checked, id, field, then=()=>{}}=params;
+		var query = {
+			id, field, checked
+		}
+		var data = {
+			query: json_encode(query)
+		}
+		OrderApi.apis.swithValueAction.run({data, then})
 	}
 }
 

@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import {main} from './client_layout_main.js';
 import "styles/styles.scss";
 import "styles/checkbox.scss";
+import "styles/slider.scss";
 
 require('utilities/utilities.js')
 

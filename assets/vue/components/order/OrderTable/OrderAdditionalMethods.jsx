@@ -12,7 +12,7 @@ class OrderAdditionalMethods{
 		return {
 			headerCheckbox(){
 				return (
-					<th>
+					<th class="datatable_header">
 						
 						{this.$checkboxComponent(
 							{
@@ -50,6 +50,32 @@ class OrderAdditionalMethods{
 					</td>
 				)
 			},
+			headerSwitch(){
+				return(
+					<th class="sort">
+						Statut
+					</th>
+				)
+			},
+			contentSwitch({contentLine}){
+				var { id=null, order_status } = contentLine;
+				var field = "order_status";
+				return (
+					<td>
+						{
+							this.$switchComponent(
+								{
+									checked: order_status,
+									onChange: (params = {}) => {
+										var {checked} = params;
+										config().switchRows.handleSwitchChange({id, field, checked});
+									}
+								}
+							)
+						}
+					</td>
+				)
+			}
 		}
 	}
 }

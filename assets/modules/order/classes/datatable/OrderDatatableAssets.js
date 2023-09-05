@@ -29,7 +29,8 @@ import {
 import {
 	contentLines,
 	loadingContent,
-	checkboxRows
+	checkboxRows,
+	switchRows
 } from "modules/order/functions/datatable/order.datatable.content.subcomponents.js";
 
 import {
@@ -62,6 +63,7 @@ class OrderDatatableAssets {
 	static contentLines = contentLines;
 	static loadingContent = loadingContent;
 	static checkboxRows = checkboxRows;
+	static switchRows = switchRows;
 
 	static editButton = editButton;
 	static editModal = editModal;

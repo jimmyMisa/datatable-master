@@ -1,3 +1,5 @@
+@import "styles/variables.scss";
+
 :global {
     .rounded_button{
         background-color: transparent;
@@ -90,5 +92,49 @@
             width: 50px;
             height: 50px;
         }
+    }
+
+    .total_summary {
+        float: right;
+        margin-top: 20px;
+    }
+
+    .dataTables_wrapper {
+        select.form-control.datatable_select {
+
+            background: #fff url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5'%3E%3Cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E") right .75rem center/8px 10px no-repeat;
+            background-color: #f1f2f3;
+            border: none;
+            border-radius: .25rem;
+            padding: 7px 16px;
+            height: 39px;
+            position: relative;
+        }
+    }
+
+    .dt--bottom-section {
+        justify-content: center;
+        align-items: center;
+    }
+
+    .pagination a {
+        border-radius: 50%;
+    }
+
+    ul.pagination li.page-item:last-child a.page-link {
+        border-radius: 50%;
+    }
+
+    ul.pagination li.page-item:first-child a.page-link {
+        border-radius: 50%;
+    }
+
+    .table > thead > tr > th {
+        text-transform: uppercase;
+        letter-spacing: 0px;
+        background-color: #fff;
+        color: $primary-color;
+        border-top: 1px solid #e0e6ed;
+        border-bottom: 2px solid #e0e6ed;
     }
 }

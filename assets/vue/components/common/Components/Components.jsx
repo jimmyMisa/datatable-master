@@ -65,7 +65,7 @@ class Components {
                         var {value} = input
                         var {onInput} = field
                         onInput({value, event, input})
-                    }, 500)
+                    }, 600)
                 }
                 return (
                     <div class="inline_input">

@@ -185,27 +185,26 @@ class DatatableService
 
         if($key){
             $keyWords = explode(" ", $key);
-            if(count($keyWords) <= 1){
+            list(
+                $params, 
+                $field
+            ) = $this->addParam($params, "%$key%") ;
 
-                list(
-                    $params, 
-                    $field
-                ) = $this->addParam($params, "%$key%") ;
-    
-                foreach($searchFields as $searchField){
-                    $search[] = "$searchField LIKE :$field";
-                }
+            foreach($searchFields as $searchField){
+                $search[] = "$searchField LIKE :$field";
             }
-            else{
-                foreach($keyWords as $f_index => $f_key){
+            if(count($keyWords) > 1){
 
-                    $tmp = [];
-                    foreach($searchFields as $f){
-
-                        $tmp[] = "$f LIKE :f_key$f_index";
-                    }
-                    $search[] = $this->groupConditions($tmp, "AND") ; 
-                    $params["f_key$f_index"] = "%$f_key%";
+                $permutations = $this->permute($keyWords);
+                $concatedSearchField = $this->generateConcatString($searchFields);
+                foreach ($permutations as $permutation) {
+                    $like = implode('%', $permutation);
+                    $like = "%$like%";
+                    list(
+                        $params, 
+                        $field
+                    ) = $this->addParam($params, "$like") ;
+                    $search[] = "$concatedSearchField LIKE :$field";
                 }
             }
         }
@@ -221,7 +220,22 @@ class DatatableService
         return [$params, $whereSql];
     }
 
-    function generateSearchConditions($columnsToSearch, $keywords) {
+    public function generateConcatString($columnNames) {
+        $concatString = "CONCAT(";
+        $lastIndex = count($columnNames) - 1;
+    
+        foreach ($columnNames as $index => $columnName) {
+            $concatString .= $columnName;
+            if ($index < $lastIndex) {
+                $concatString .= ", ' ', ";
+            }
+        }
+    
+        $concatString .= ")";
+        return $concatString;
+    }
+
+    public function generateSearchConditions($columnsToSearch, $keywords) {
         $searchConditions = [];
         $parameters = [];
     
@@ -295,5 +309,29 @@ class DatatableService
         }
 
         return $query;
+    }
+
+    public function permute($array) {
+        $result = [];
+        $this->permuteHelper($array, 0, count($array) - 1, $result);
+        return $result;
+    }
+    
+    public function permuteHelper(&$array, $left, $right, &$result) {
+        if ($left == $right) {
+            $result[] = $array;
+        } else {
+            for ($i = $left; $i <= $right; $i++) {
+                $this->swap($array[$left], $array[$i]);
+                $this->permuteHelper($array, $left + 1, $right, $result);
+                $this->swap($array[$left], $array[$i]); // Backtrack
+            }
+        }
+    }
+    
+    public function swap(&$a, &$b) {
+        $temp = $a;
+        $a = $b;
+        $b = $temp;
     }
 }

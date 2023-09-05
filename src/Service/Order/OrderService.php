@@ -206,7 +206,8 @@ class OrderService {
         $id = $data["id"];
 
         $order = $this->em->getRepository(OrderProduct::class)->findOneBy(["id" => $id]);
-        $order->setStatus($checked);
+        $function = "set$field";
+        $order->{$function}($checked);
         $this->em->flush();
 
         return $order;

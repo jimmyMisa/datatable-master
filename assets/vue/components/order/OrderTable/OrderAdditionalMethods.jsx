@@ -52,14 +52,14 @@ class OrderAdditionalMethods{
 			},
 			headerSwitch(){
 				return(
-					<th class="sort">
+					<th>
 						Statut
 					</th>
 				)
 			},
 			contentSwitch({contentLine}){
 				var { id=null, order_status } = contentLine;
-				var field = "order_status";
+				var field = "Status";
 				return (
 					<td>
 						{

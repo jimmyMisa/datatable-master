@@ -19,7 +19,7 @@ class OrderTableOverride{
 				if (!this.getConfig().contentLines.length) {
 					return (
 						<tr class="text-center">
-							<td colspan={this.getConfig().headerColumns.columns.length+2}>
+							<td colspan={this.getConfig().headerColumns.columns.length+3}>
 								{getText("COMMON").EMPTY_MESSAGE}
 							</td>
 						</tr>

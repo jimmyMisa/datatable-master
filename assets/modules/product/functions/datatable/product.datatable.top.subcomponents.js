@@ -22,6 +22,7 @@ function pageSize() {
 		            content: key,
 		        }
 			});
+			field.class = "datatable_select"
 			field.onChange = (params={}) =>{
 				var { value } = params;
 				config().pagination.page = 1;

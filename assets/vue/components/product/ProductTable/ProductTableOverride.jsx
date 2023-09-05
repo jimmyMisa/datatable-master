@@ -62,38 +62,42 @@ class ProductTableOverride{
 				return (
 					<div class="dt--top-section">
 						<div class="row">
-							<div class="col-12 col-sm-6 d-flex justify-content-sm-start justify-content-center">
-							<div class="dataTables_length">
-								<label>
-								{getText("COMMON").RESULTS} :
-								{this.$commonSelect(this.getConfig().pageSize.field())}
-								</label>
+							<div class="col-12 col-sm-6 justify-content-sm-start justify-content-center pl-0">
+								<div class="add_button">
+									{CommonTable.getMethod(this, "TopActions")()}
+								</div>
+								<div class="dataTables_length">
+									<label>
+									{this.$commonSelect(this.getConfig().pageSize.field())}
+									</label>
+								</div>
 							</div>
-							</div>
-							<div class="col-12 col-sm-6 d-flex justify-content-sm-end justify-content-center mt-sm-0 mt-3">
-							<div class="dataTables_filter">
-								{this.$inputWithIcon(this.getConfig().searchInput, params)}
-							</div>
+							<div class="col-12 col-sm-6 justify-content-sm-end justify-content-center mt-sm-0 mt-3 pr-0">
+								<div class="dataTables_filter">
+									{this.$inputWithIcon(this.getConfig().searchInput, params)}
+								</div>
+								<div class="total_summary">
+									{config().pagination.totalFiltered} {getText("COMMON").TOTAL_FOUND}
+								</div>
 							</div>
 						</div>
 					</div>
 				)
 			},
 			renderDatatableBottom(){
-				return (
-					<div class="dt--bottom-section d-sm-flex justify-content-sm-between text-center">
-					<div class="dt--pages-count mb-sm-0 mb-3 pages_count_wrapper">
-						<div class="dataTables_info" role="status" aria-live="polite">
-						
+				if(this.getConfig().pagination.pages >= 2){
+					return (
+						<div class="dt--bottom-section d-sm-flex justify-content text-center">
+							<div class="dt--pagination">
+								<div class="dataTables_paginate paging_simple_numbers">
+									<ul class="pagination">
+										{CommonTable.getMethod(this, "Pagination")()}
+									</ul>
+								</div>
+							</div>
 						</div>
-					</div>
-					<div class="dt--pagination">
-						<div class="dataTables_paginate paging_simple_numbers" id="zero-config_paginate">
-							{CommonTable.getMethod(this, "Pagination")()}
-						</div>
-					</div>
-					</div>
-				)
+					)
+				}
 			},
 			renderDatatablePagination(){
 				if(this.getConfig().pagination.pages >= 2){
@@ -146,13 +150,13 @@ class ProductTableOverride{
 				return this.$commonLoading(this.getConfig().loadingContent);
 			},
 			renderDatatableHeaderColumn({headerColumn} = {}){
-				var orderClass = "sorting";
+				var orderClass = "sort";
 				var { order } = headerColumn;
 				if(order == "ASC"){
-					orderClass = "sorting_asc";
+					orderClass = "sort sort_asc";
 				}
 				else if(order == "DESC"){
-					orderClass = "sorting_desc";
+					orderClass = "sort sort_desc";
 				}
 				
 				return (
@@ -176,7 +180,13 @@ class ProductTableOverride{
 						</div>
 					</div>
 				)
-			}
+			},
+			renderDatatableCreateButton(params = {}){
+				this.getConfig().addButton.params = {...this.getConfig().addButton.params, ...params}
+				return this.$button(this.getConfig().addButton, {
+					"content": this.addIcon()
+				});
+			},
 		}
 	}
 }

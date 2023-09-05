@@ -24,6 +24,7 @@ class ProductDatatable{
 	        config().contentLines = datas;
 	    	config().loadingContent.isVisible = false;
 			config().pageSize.field().value = size;
+			config().pagination.totalFiltered = totalFiltered;
         	config().pagination.pages = calculatePageNumbers(totalFiltered, size);
 			config().instance.refresh()
 		}

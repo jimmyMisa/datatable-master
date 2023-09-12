@@ -48,7 +48,6 @@ function cancelSaveButton(){
     var button = ComponentAssets.Button.create({
         BUTTON: ComponentAssets.getButton().CLIENT_CANCEL_REGISTER,
         domain: ComponentAssets.FieldManager.domain,
-        //required_fields: Object.values([lastname, password, confirm_password]),
     });
     return button
 }
